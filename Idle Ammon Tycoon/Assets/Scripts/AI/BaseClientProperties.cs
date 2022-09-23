@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class BaseClientProperties : MonoBehaviour
+public abstract class BaseClientProperties : MonoBehaviour
 {
     public NavMeshAgent Agent;
     public Transform targetPosition;
-    public Sprite[] taskSprites;
     public Image taskImage;
+    public float accuracy;
 }
