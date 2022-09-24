@@ -1088,7 +1088,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7838753477800704160}
   - component: {fileID: 7838753477800704163}
+  - component: {fileID: 4885539487694328859}
   - component: {fileID: 875879039}
+  - component: {fileID: 3827516324375893240}
   m_Layer: 0
   m_Name: Client AI (1)
   m_TagString: Untagged
@@ -1122,8 +1124,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 7838753477800704162}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
+  m_Radius: 0.9
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1131,10 +1133,29 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 7
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &4885539487694328859
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838753477800704162}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 88571deca7de0a2478a1e34a0591891a, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3b3294a69c722b04c94b6d7967665f48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &875879039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1149,9 +1170,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Agent: {fileID: 7838753477800704163}
   targetPosition: {fileID: 0}
-  taskSprites: []
   taskImage: {fileID: 3597366103745059556}
   accuracy: 2
+  anim: {fileID: 4885539487694328859}
+  canvas: {fileID: 7972724517499270801}
+--- !u!136 &3827516324375893240
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838753477800704162}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.0755708
+  m_Height: 7.628291
+  m_Direction: 1
+  m_Center: {x: 0.0047752857, y: 3.3141456, z: 0}
 --- !u!1 &7838753477813991490
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,7 +2319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7623195396439718646
 RectTransform:
   m_ObjectHideFlags: 0

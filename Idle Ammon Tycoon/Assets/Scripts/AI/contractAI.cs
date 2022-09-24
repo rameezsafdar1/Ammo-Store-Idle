@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class contractAI : BaseClientProperties
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
+        Agent.SetDestination(targetPosition.position);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        
+        base.Update();
+
+        if (Agent.velocity.magnitude <= 0.1f && targetPosition != null)
+        {
+            transform.rotation = Quaternion.identity;
+        }
     }
 }

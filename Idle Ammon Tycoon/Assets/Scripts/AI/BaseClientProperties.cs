@@ -10,4 +10,20 @@ public abstract class BaseClientProperties : MonoBehaviour
     public Transform targetPosition;
     public Image taskImage;
     public float accuracy;
+    public Animator anim;
+    public GameObject canvas;
+
+    public virtual void Update()
+    {
+        anim.SetFloat("Velocity", Agent.velocity.magnitude);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "HelpDesk")
+        {
+            canvas.SetActive(true);
+        }
+    }
+
 }

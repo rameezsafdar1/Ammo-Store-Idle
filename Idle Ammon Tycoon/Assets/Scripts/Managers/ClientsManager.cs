@@ -8,10 +8,13 @@ public class ClientsManager : MonoBehaviour
     public float clientCoolDown;
     public int maxClientAvaialable;
     public List<BaseClientProperties> clientsPool = new List<BaseClientProperties>();
-    public Transform[] destinationPoints;
-    public Sprite[] taskSprites;
-    private float tempTime;
-    private int currentClient;
+    public List<Transform> destinationPoints = new List<Transform>();
+    public Sprite contractSprite;   
+    [HideInInspector]
+    public float tempTime;
+    private int currentClient, currentDestination;
+    public Transform startPos;
+
     private void Update()
     {
         if (currentClient < maxClientAvaialable)
@@ -20,8 +23,22 @@ public class ClientsManager : MonoBehaviour
 
             if (tempTime >= clientCoolDown)
             {
+                clientsPool[currentClient].transform.position = startPos.position;
+                clientsPool[currentClient].targetPosition = destinationPoints[currentDestination];
+                clientsPool[currentClient].gameObject.SetActive(true);
+                clientsPool.Remove(clientsPool[currentClient]);
+                currentClient++;
+                currentDestination++;
 
+                if (currentDestination >= destinationPoints.Count)
+                {
+                    currentDestination = 0;
+                }
 
+                if (currentClient >= clientsPool.Count)
+                {
+                    currentClient = 0;
+                }
 
                 tempTime = 0;
             }
