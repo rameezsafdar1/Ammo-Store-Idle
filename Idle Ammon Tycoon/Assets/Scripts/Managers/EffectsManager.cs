@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class EffectsManager : MonoBehaviour
 {
     public static EffectsManager Instance;
+    public CinemachineBrain brain;
     public Camera mainCamera;
     public CinemachineVirtualCamera lookCamera;
     [SerializeField]
@@ -112,5 +113,10 @@ public class EffectsManager : MonoBehaviour
     //    Splash.loadLevel = sceneNumber;
     //    Splash.gameObject.SetActive(true);
     //}
+
+    public void changeCamTransTime(float time)
+    {
+        brain.m_DefaultBlend.m_Time = time;
+    }
 
 }
