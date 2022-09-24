@@ -32,7 +32,7 @@ public class BattleStationHelper : MonoBehaviour
                 if (tempFillTime >= fillTime)
                 {
                     station.playerFill.gameObject.SetActive(false);
-                    station.taskImage.gameObject.SetActive(false);
+                    station.taskImage.transform.parent.gameObject.SetActive(false);
                     station.waitImage.gameObject.SetActive(true);
                     station.playerFill = null;
                     EffectsManager.Instance.contractSigned = true;

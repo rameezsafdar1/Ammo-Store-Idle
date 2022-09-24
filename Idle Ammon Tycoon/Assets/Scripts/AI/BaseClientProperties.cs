@@ -11,7 +11,6 @@ public abstract class BaseClientProperties : MonoBehaviour
     public Image taskImage, fillImage, waitImage;
     public float accuracy;
     public Animator anim;
-    public GameObject canvas;
 
     public virtual void Update()
     {
@@ -22,7 +21,7 @@ public abstract class BaseClientProperties : MonoBehaviour
     {
         if (other.tag == "HelpDesk")
         {
-            canvas.SetActive(true);
+            taskImage.transform.parent.gameObject.SetActive(true);
         }
     }
 
