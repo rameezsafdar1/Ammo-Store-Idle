@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class zombieAi : BaseAIProperties
 {
+    private float patrolWait;
+
     private void Update()
     {
         anim.SetFloat("Velocity", agent.velocity.magnitude);
@@ -14,7 +16,8 @@ public class zombieAi : BaseAIProperties
 
             if (tempPatrolTime >= waitToPatrol)
             {
-                agent.SetDestination(RandomNavmeshLocation(10));
+                patrolWait = 0;
+                agent.SetDestination(RandomNavmeshLocation(40));
                 state = bodyStates.patrol;
                 tempPatrolTime = 0;
             }
@@ -22,12 +25,16 @@ public class zombieAi : BaseAIProperties
 
         if (state == bodyStates.patrol)
         {
-            if (agent.velocity.magnitude <= 0.2f)
+            patrolWait += Time.deltaTime;
+            if (patrolWait >= 1f)
             {
-                agent.isStopped = true;
-                agent.velocity = Vector3.zero;
-                agent.ResetPath();
-                state = bodyStates.idle;
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    agent.isStopped = true;
+                    agent.velocity = Vector3.zero;
+                    agent.ResetPath();
+                    state = bodyStates.idle;
+                }
             }
         }
 

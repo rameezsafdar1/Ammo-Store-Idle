@@ -26,6 +26,7 @@ public abstract class BaseAIProperties : MonoBehaviour
     protected Color lerpColor;
     protected float colorChangeTime;
     protected Vector3 randomDirection;
+
     public virtual void Start()
     {
         tempHealth = health;
@@ -71,11 +72,10 @@ public abstract class BaseAIProperties : MonoBehaviour
     }
     public Vector3 RandomNavmeshLocation(float radius)
     {
-        randomDirection = Random.insideUnitSphere * radius;
-        randomDirection += transform.position;
+        randomDirection = (Random.insideUnitSphere * radius) + transform.position;
         NavMeshHit hit;
         Vector3 finalPosition = Vector3.zero;
-        if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
+        if (NavMesh.SamplePosition(randomDirection, out hit, radius, NavMesh.AllAreas))
         {
             finalPosition = hit.position;
         }
