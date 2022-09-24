@@ -8,7 +8,7 @@ public abstract class BaseClientProperties : MonoBehaviour
 {
     public NavMeshAgent Agent;
     public Transform targetPosition;
-    public Image taskImage;
+    public Image taskImage, fillImage, waitImage;
     public float accuracy;
     public Animator anim;
     public GameObject canvas;

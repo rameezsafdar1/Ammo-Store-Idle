@@ -23,7 +23,7 @@ public class EffectsManager : MonoBehaviour
     public GameObject upgradesMenu;
     public int scene;
     //public splash Splash;
-
+    public bool contractSigned;
     private void Start()
     {
         //maxXp = userLevel * 10;

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - HelpDesk
+  - AI
   layers:
   - Default
   - TransparentFX
