@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum bodyStates
+{
+    idle,
+    patrol,
+    attack,
+}
 public abstract class BaseAIProperties : MonoBehaviour
 {
-    public float health, accuracy;
-    protected float tempHealth;
+    public bodyStates state;
+    public float health, accuracy, waitToPatrol;
+    protected float tempHealth, tempPatrolTime;
     public GameObject wholeBody, deathParticle, deathReward;
     public Animator anim;
     public NavMeshAgent agent;
