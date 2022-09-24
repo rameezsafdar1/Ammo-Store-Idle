@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class transformSetter : MonoBehaviour
 {
-    public Transform newPosition;
-
-    public void setPosRot()
+    public CharacterController controller;
+    public void setPosRot(Transform newPosition)
     {
+        if (controller != null)
+        {
+            controller.enabled = false;
+        }
         transform.position = newPosition.position;
         transform.rotation = newPosition.rotation;
+        if (controller != null)
+        {
+            controller.enabled = true;
+        }
     }
 }
