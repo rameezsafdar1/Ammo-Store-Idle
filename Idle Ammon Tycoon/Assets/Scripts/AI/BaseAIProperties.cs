@@ -14,7 +14,7 @@ public abstract class BaseAIProperties : MonoBehaviour
     public bodyStates state;
     public float health, accuracy, waitToPatrol;
     protected float tempHealth, tempPatrolTime;
-    public GameObject wholeBody, deathParticle, deathReward;
+    public GameObject deathParticle, deathReward;
     public Animator anim;
     public NavMeshAgent agent;
     public Transform target;
@@ -25,7 +25,7 @@ public abstract class BaseAIProperties : MonoBehaviour
     public Color col;
     protected Color lerpColor;
     protected float colorChangeTime;
-
+    protected Vector3 randomDirection;
     public virtual void Start()
     {
         tempHealth = health;
@@ -68,5 +68,17 @@ public abstract class BaseAIProperties : MonoBehaviour
             propertyBlock[i].SetColor("_EmissionColor", lerpColor);
             bodyPart[i].SetPropertyBlock(propertyBlock[i]);
         }
+    }
+    public Vector3 RandomNavmeshLocation(float radius)
+    {
+        randomDirection = Random.insideUnitSphere * radius;
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        Vector3 finalPosition = Vector3.zero;
+        if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
     }
 }

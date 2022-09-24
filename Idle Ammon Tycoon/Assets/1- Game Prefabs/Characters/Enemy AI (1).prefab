@@ -699,7 +699,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -748,6 +748,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee29a130a46e73a4bb5260b4fc9313f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
+  health: 50
+  accuracy: 3
+  waitToPatrol: 3
+  deathParticle: {fileID: 0}
+  deathReward: {fileID: 0}
+  anim: {fileID: 4442137158826560485}
+  agent: {fileID: 5096927565430062104}
+  target: {fileID: 0}
+  bodyPart: []
+  col: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
 --- !u!1 &5096927565534474826
 GameObject:
   m_ObjectHideFlags: 0
