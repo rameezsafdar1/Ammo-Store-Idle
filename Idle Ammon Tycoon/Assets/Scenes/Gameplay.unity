@@ -21706,6 +21706,7 @@ GameObject:
   - component: {fileID: 2110995502}
   - component: {fileID: 2110995503}
   - component: {fileID: 2110995504}
+  - component: {fileID: 2110995505}
   m_Layer: 0
   m_Name: CD (1)
   m_TagString: HelpDesk
@@ -21756,6 +21757,38 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2110995505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110995501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ed599f892e373489819deff5e53e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerTag: AI
+  onEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 82935578}
+        m_TargetAssemblyTypeName: ClientsManager, Assembly-CSharp
+        m_MethodName: clientDealt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  dontDetect: 0
 --- !u!1001 &2115918701
 PrefabInstance:
   m_ObjectHideFlags: 0

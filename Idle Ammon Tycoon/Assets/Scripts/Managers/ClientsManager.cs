@@ -14,7 +14,6 @@ public class ClientsManager : MonoBehaviour
     public float tempTime;
     private int currentClient, currentDestination;
     public Transform startPos;
-
     private void Update()
     {
         if (currentClient < maxClientAvaialable)
@@ -43,6 +42,11 @@ public class ClientsManager : MonoBehaviour
                 tempTime = 0;
             }
         }
+    }
+
+    public void clientDealt()
+    {
+
     }
 
 }
