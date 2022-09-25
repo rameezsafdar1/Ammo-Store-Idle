@@ -4,9 +4,11 @@ using UnityEngine;
 
 public abstract class baseGuns : MonoBehaviour
 {
+    public playerStats mainController;
     public fieldOfView Fov;
     [Range(0.1f, 2f)]
     public float shootingFrequency;
+    public float damage;
     protected float tempShootTime;
     public Transform instPoint;
     public Bullet[] bullets;
@@ -15,6 +17,10 @@ public abstract class baseGuns : MonoBehaviour
     public Transform child;
     protected Transform closestEnemy;
 
+    private void OnEnable()
+    {
+        mainController.damage = damage;
+    }
     public virtual void Update()
     {
         if (Fov.detectedObjects.Count > 0)

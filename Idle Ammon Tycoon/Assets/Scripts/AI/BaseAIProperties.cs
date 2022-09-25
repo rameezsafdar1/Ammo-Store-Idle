@@ -85,9 +85,19 @@ public abstract class BaseAIProperties : MonoBehaviour, iDamagable
     public virtual void takeDamage(float damage, Transform source)
     {
         health -= damage;
-        colorChangeTime = 0.1f;
+        colorChangeTime = 0.3f;
+        agent.isStopped = true;
+        agent.velocity = Vector3.zero;
+        agent.ResetPath();
+        anim.SetBool("isHit", true);
         if (health <= 0)
         {
+            lerpColor = col;
+            for (int i = 0; i < propertyBlock.Length; i++)
+            {
+                propertyBlock[i].SetColor("_EmissionColor", lerpColor);
+                bodyPart[i].SetPropertyBlock(propertyBlock[i]);
+            }
             agent.isStopped = true;
             agent.velocity = Vector3.zero;
             agent.ResetPath();

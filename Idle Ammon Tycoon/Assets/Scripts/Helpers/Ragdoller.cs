@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Ragdoller : MonoBehaviour
 {
     private Collider[] ragCols;
     private Rigidbody[] ragRigids;
-    public Animator anim;    
+    public Animator anim;
+    public UnityEvent onRagdoll;
+
     private void Start()
     {
         offRagdoll();
@@ -35,9 +38,15 @@ public class Ragdoller : MonoBehaviour
         for (int i = 0; i < ragRigids.Length; i++)
         {
             ragRigids[i].isKinematic = false;
-            ragRigids[i].AddForce(transform.up * 5, ForceMode.Impulse);
+            ragRigids[i].AddForce(transform.up * 2, ForceMode.Impulse);
             ragRigids[i].AddForce(direction.normalized * force, ForceMode.Impulse);
         }
+
+        if (onRagdoll != null)
+        {
+            onRagdoll.Invoke();
+        }
+
     }
 
 }

@@ -9,13 +9,14 @@ public class zombieAi : BaseAIProperties
 
     private void Update()
     {
-        colorChangeForDamage();
-        if (health > 0)
+        if (health > 0 && !isHit)
         {
             anim.SetFloat("Velocity", agent.velocity.magnitude);
+            colorChangeForDamage();
 
             if (state == bodyStates.attack)
             {
+                agent.SetDestination(target.position);
 
             }
 

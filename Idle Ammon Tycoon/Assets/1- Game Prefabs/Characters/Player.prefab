@@ -444,8 +444,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca40d32bab74f6f4589a3813b6337b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainController: {fileID: 6473429353023996097}
   Fov: {fileID: -3693030650585782324}
-  shootingFrequency: 0.2
+  shootingFrequency: 0.5
+  damage: 15
   instPoint: {fileID: 1218485777808224059}
   bullets: []
   anim: {fileID: 5945354304595630967}
@@ -462,8 +464,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf0ee099c2ace1438bad8e4388dcd28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainController: {fileID: 6473429353023996097}
   Fov: {fileID: -3693030650585782324}
   shootingFrequency: 0.4
+  damage: 20
   instPoint: {fileID: 4795045839847406597}
   bullets: []
   anim: {fileID: 5945354304595630967}
