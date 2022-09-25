@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class Ragdoller : MonoBehaviour
 {
+    public BaseAIProperties baseController;
     private Collider[] ragCols;
     private Rigidbody[] ragRigids;
     public Animator anim;

@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 public class AIWaveManager : MonoBehaviour
 {
-    public List<GameObject> Agents = new List<GameObject>();
+    public List<Ragdoller> Agents = new List<Ragdoller>();
+    public Transform[] positions;
     public int enemyLoadOutNumber;
     public float waveTime;
     private float tempTime;
@@ -12,21 +13,23 @@ public class AIWaveManager : MonoBehaviour
     private int currentWave;
     public UnityEvent onWaveKilled;
     public float eventDelay;
+    [SerializeField]
     private int killsNeeded;
 
     private void OnEnable()
     {
         currentWave = 0;
         killsNeeded = totalWaves * enemyLoadOutNumber;
-    }
-
-    private void Start()
-    {
+        int randomPos = Random.Range(0, positions.Length);
         for (int i = 0; i < enemyLoadOutNumber; i++)
         {
-            Agents[i].SetActive(true);
+            Agents[i].transform.position = positions[randomPos].position;
+            Agents[i].baseController.waveManager = this;
+            Agents[i].gameObject.SetActive(true);
             Agents.Remove(Agents[i]);
         }
+        currentWave++;
+
     }
 
     private void Update()
@@ -39,19 +42,26 @@ public class AIWaveManager : MonoBehaviour
             {
                 if (Agents.Count < enemyLoadOutNumber)
                 {
+
+                    int randomPos = Random.Range(0, positions.Length);
                     for (int i = 0; i < Agents.Count; i++)
                     {
-                        Agents[i].SetActive(true);
+                        Agents[i].transform.position = positions[randomPos].position;
+                        Agents[i].baseController.waveManager = this;
+                        Agents[i].gameObject.SetActive(true);
                     }
                     Agents.Clear();
                 }
 
                 else
                 {
+                    int randomPos = Random.Range(0, positions.Length);
                     for (int i = 0; i < enemyLoadOutNumber; i++)
                     {
                         int x = Random.Range(0, Agents.Count - 1);
-                        Agents[x].SetActive(true);
+                        Agents[x].baseController.waveManager = this;
+                        Agents[x].transform.position = positions[randomPos].position;
+                        Agents[x].gameObject.SetActive(true);
                         Agents.Remove(Agents[x]);
                     }
                 }
@@ -73,7 +83,6 @@ public class AIWaveManager : MonoBehaviour
                 StartCoroutine(wait());
             }
         }
-
     }
 
     private IEnumerator wait()
@@ -81,5 +90,4 @@ public class AIWaveManager : MonoBehaviour
         yield return new WaitForSeconds(eventDelay);
         onWaveKilled.Invoke();
     }
-
 }

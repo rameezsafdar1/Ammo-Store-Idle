@@ -28,6 +28,8 @@ public abstract class BaseAIProperties : MonoBehaviour, iDamagable
     protected Color lerpColor;
     protected float colorChangeTime;
     protected Vector3 randomDirection;
+    [HideInInspector]
+    public AIWaveManager waveManager;
 
     public virtual void Start()
     {
@@ -85,7 +87,7 @@ public abstract class BaseAIProperties : MonoBehaviour, iDamagable
     public virtual void takeDamage(float damage, Transform source)
     {
         health -= damage;
-        colorChangeTime = 0.3f;
+        colorChangeTime = 0.1f;
         agent.isStopped = true;
         agent.velocity = Vector3.zero;
         agent.ResetPath();
@@ -104,6 +106,23 @@ public abstract class BaseAIProperties : MonoBehaviour, iDamagable
             gameObject.layer = 0;
             ragdoll.turnOnRagDoll(50, transform.position - source.position);
         }
+    }
+
+    public void resetMe()
+    {
+        lerpColor = Color.black;
+        for (int i = 0; i < propertyBlock.Length; i++)
+        {
+            propertyBlock[i].SetColor("_EmissionColor", lerpColor);
+            bodyPart[i].SetPropertyBlock(propertyBlock[i]);
+        }
+
+        ragdoll.offRagdoll();
+        anim.enabled = true;
+        health = tempHealth;
+        gameObject.layer = 6;
+        waveManager.Agents.Add(ragdoll);
+        ragdoll.gameObject.SetActive(false);
     }
 
 }
