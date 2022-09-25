@@ -6,11 +6,10 @@ using UnityEngine.AI;
 public class zombieAi : BaseAIProperties
 {
     private float patrolWait;
-    public Ragdoller ragdoll;
 
     private void Update()
     {
-
+        colorChangeForDamage();
         if (health > 0)
         {
             anim.SetFloat("Velocity", agent.velocity.magnitude);

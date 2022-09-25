@@ -21,10 +21,11 @@ public class Ragdoller : MonoBehaviour
         {
             ragCols[i].enabled = false;
         }
+        ragCols[0].enabled = true;
 
     }
 
-    public void turnOnRagDoll(float force)
+    public void turnOnRagDoll(float force, Vector3 direction)
     {
         anim.enabled = false;
         for (int i = 0; i < ragCols.Length; i++)
@@ -34,8 +35,8 @@ public class Ragdoller : MonoBehaviour
         for (int i = 0; i < ragRigids.Length; i++)
         {
             ragRigids[i].isKinematic = false;
-            ragRigids[i].AddForce(transform.up * 10, ForceMode.Impulse);
-            ragRigids[i].AddForce(transform.forward * force, ForceMode.Impulse);
+            ragRigids[i].AddForce(transform.up * 5, ForceMode.Impulse);
+            ragRigids[i].AddForce(direction.normalized * force, ForceMode.Impulse);
         }
     }
 

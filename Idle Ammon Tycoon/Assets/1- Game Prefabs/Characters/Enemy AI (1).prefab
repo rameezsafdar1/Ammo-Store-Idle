@@ -1137,8 +1137,7 @@ GameObject:
   - component: {fileID: 5096927565430062107}
   - component: {fileID: 5096927565430062104}
   - component: {fileID: 4442137158826560485}
-  - component: {fileID: 6169406744462415632}
-  - component: {fileID: 7608533425662651744}
+  - component: {fileID: 3564475915512200345}
   m_Layer: 0
   m_Name: Enemy AI (1)
   m_TagString: Untagged
@@ -1157,6 +1156,7 @@ Transform:
   m_LocalPosition: {x: 0.92, y: 0.0000009536743, z: -2.8689091}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
+  - {fileID: 7681058729350324865}
   - {fileID: 5096927565681407146}
   - {fileID: 5096927566424936406}
   m_Father: {fileID: 0}
@@ -1203,31 +1203,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6169406744462415632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5096927565430062105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee29a130a46e73a4bb5260b4fc9313f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 0
-  health: 50
-  accuracy: 3
-  waitToPatrol: 3
-  deathParticle: {fileID: 0}
-  deathReward: {fileID: 0}
-  anim: {fileID: 4442137158826560485}
-  agent: {fileID: 5096927565430062104}
-  target: {fileID: 0}
-  bodyPart: []
-  col: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
-  ragdoll: {fileID: 7608533425662651744}
---- !u!114 &7608533425662651744
+--- !u!114 &3564475915512200345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1424,7 +1400,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 5096927565430062107}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &5096927565681407141
 SkinnedMeshRenderer:
@@ -1631,8 +1607,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
-  m_Center: {x: -0.027451629, y: 0.18366091, z: 0.038924016}
+  m_Radius: 1.02
+  m_Center: {x: -0.027451629, y: 0.95, z: 0.038924016}
 --- !u!1 &5096927565772311849
 GameObject:
   m_ObjectHideFlags: 0
@@ -2454,7 +2430,7 @@ Transform:
   - {fileID: 5096927564926981765}
   - {fileID: 5096927565040695322}
   m_Father: {fileID: 5096927565430062107}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8622282567482043395
 Rigidbody:
@@ -3140,3 +3116,73 @@ Transform:
   m_Father: {fileID: 5096927565534474821}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6322832233759079034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7681058729350324865}
+  - component: {fileID: 3453057513116926712}
+  - component: {fileID: 3811673756863846327}
+  m_Layer: 6
+  m_Name: AI Hit point
+  m_TagString: AI
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7681058729350324865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6322832233759079034}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.8, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 5096927565430062107}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3453057513116926712
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6322832233759079034}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3811673756863846327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6322832233759079034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee29a130a46e73a4bb5260b4fc9313f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  ragdoll: {fileID: 3564475915512200345}
+  health: 50
+  accuracy: 3
+  waitToPatrol: 3
+  deathParticle: {fileID: 0}
+  deathReward: {fileID: 0}
+  anim: {fileID: 4442137158826560485}
+  agent: {fileID: 5096927565430062104}
+  target: {fileID: 0}
+  bodyPart:
+  - {fileID: 5096927565681407141}
+  col: {r: 1, g: 1, b: 1, a: 1}

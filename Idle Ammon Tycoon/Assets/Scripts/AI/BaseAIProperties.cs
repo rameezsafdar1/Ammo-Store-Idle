@@ -9,9 +9,10 @@ public enum bodyStates
     patrol,
     attack,
 }
-public abstract class BaseAIProperties : MonoBehaviour
+public abstract class BaseAIProperties : MonoBehaviour, iDamagable
 {
     public bodyStates state;
+    public Ragdoller ragdoll;
     public float health, accuracy, waitToPatrol;
     protected float tempHealth, tempPatrolTime;
     public GameObject deathParticle, deathReward;
@@ -21,6 +22,7 @@ public abstract class BaseAIProperties : MonoBehaviour
     protected bool isHit;
     [Header("Meshes")]
     public Renderer[] bodyPart;
+    [SerializeField]
     protected MaterialPropertyBlock[] propertyBlock;
     public Color col;
     protected Color lerpColor;
@@ -37,11 +39,9 @@ public abstract class BaseAIProperties : MonoBehaviour
         {
             propertyBlock[i] = new MaterialPropertyBlock();
             bodyPart[i].GetPropertyBlock(propertyBlock[i]);
-            bodyPart[i].gameObject.SetActive(true);
         }
 
     }
-
     public void hitComplete()
     {
         isHit = false;
@@ -81,4 +81,19 @@ public abstract class BaseAIProperties : MonoBehaviour
         }
         return finalPosition;
     }
+
+    public virtual void takeDamage(float damage, Transform source)
+    {
+        health -= damage;
+        colorChangeTime = 0.1f;
+        if (health <= 0)
+        {
+            agent.isStopped = true;
+            agent.velocity = Vector3.zero;
+            agent.ResetPath();
+            gameObject.layer = 0;
+            ragdoll.turnOnRagDoll(50, transform.position - source.position);
+        }
+    }
+
 }
