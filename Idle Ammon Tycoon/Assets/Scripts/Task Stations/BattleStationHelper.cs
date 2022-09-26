@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class BattleStationHelper : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class BattleStationHelper : MonoBehaviour
     public GameObject questionsPanel;
     public TMPro.TextMeshProUGUI contractText;
     public UnityEvent onContractSigned, onContractCompleted;
+    public Button acceptButton;
+
+    private void Start()
+    {
+        acceptButton.onClick.AddListener(() => acceptContract());
+    }
 
     private void OnTriggerStay(Collider other)
     {

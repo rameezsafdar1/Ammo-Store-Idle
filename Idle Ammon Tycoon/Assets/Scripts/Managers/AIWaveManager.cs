@@ -15,9 +15,23 @@ public class AIWaveManager : MonoBehaviour
     public float eventDelay;
     [SerializeField]
     private int killsNeeded;
+    public bool oneHostage;
+    public GameObject[] hostages;
+    public ActivityManager activityCounter;
 
     private void OnEnable()
     {
+        if (!oneHostage)
+        {
+            int x = Random.Range(1, hostages.Length);
+
+            for (int i = 0; i < x; i++)
+            {
+                hostages[i].SetActive(true);
+            }
+            activityCounter.totalEvents = x;
+        }
+
         currentWave = 0;
         killsNeeded = totalWaves * enemyLoadOutNumber;
         int randomPos = Random.Range(0, positions.Length);
