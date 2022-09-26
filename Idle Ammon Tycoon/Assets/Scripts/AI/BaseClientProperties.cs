@@ -12,6 +12,7 @@ public abstract class BaseClientProperties : MonoBehaviour
     public float accuracy;
     public Animator anim;
     public GameObject happyEmojis;
+    public string[] contractDetails;
 
     public virtual void Update()
     {
@@ -22,7 +23,7 @@ public abstract class BaseClientProperties : MonoBehaviour
     {
         if (other.tag == "HelpDesk")
         {
-            taskImage.transform.parent.gameObject.SetActive(true);
+            taskImage.gameObject.SetActive(true);
         }
     }
 

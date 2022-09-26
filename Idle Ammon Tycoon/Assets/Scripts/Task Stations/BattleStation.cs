@@ -7,18 +7,20 @@ using UnityEngine.UI;
 public class BattleStation : MonoBehaviour
 {
     [HideInInspector]
-    public Image playerFill, endFill, waitImage, taskImage;
+    public Image waitImage, taskImage;
     public BaseClientProperties bcp;
+    public string contractDetail;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "AI")
         {
             bcp = other.GetComponent<BaseClientProperties>();
-            playerFill = bcp.fillImage;
+            contractDetail = bcp.contractDetails[Random.Range(0, bcp.contractDetails.Length)];
+            //playerFill = bcp.fillImage;
             waitImage = bcp.waitImage;
             taskImage = bcp.taskImage;
-            endFill = bcp.endFill;
+            //endFill = bcp.endFill;
         }
     }
 }

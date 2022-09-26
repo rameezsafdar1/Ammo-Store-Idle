@@ -50,11 +50,14 @@ public class ClientsManager : MonoBehaviour
 
     public void clientDealt()
     {
-        clientsPool.Add(clientsEngaged[0]);        
+        clientsPool.Add(clientsEngaged[0]);
+        clientsEngaged[0].Agent.SetDestination(clientsEngaged[0].finalPosition.position);
+        clientsEngaged[0].taskImage.gameObject.SetActive(false);
 
         for (int i = 1; i < clientsEngaged.Count; i++)
         {
-            clientsEngaged[i].Agent.SetDestination(clientsEngaged[i - 1].targetPosition.position);
+            clientsEngaged[i].targetPosition = clientsEngaged[i - 1].targetPosition;
+            clientsEngaged[i].Agent.SetDestination(clientsEngaged[i].targetPosition.position);
         }
         clientsEngaged.RemoveAt(0);
         currentDestination--;
