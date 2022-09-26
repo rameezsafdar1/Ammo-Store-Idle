@@ -14,11 +14,12 @@ public class ClientsManager : MonoBehaviour
     public Sprite contractSprite;   
     [HideInInspector]
     public float tempTime;
+    [SerializeField]
     private int currentClient, currentDestination;
     public Transform startPos;
     private void Update()
     {
-        if (currentClient < maxClientAvaialable)
+        if (currentClient < maxClientAvaialable && clientsEngaged.Count < destinationPoints.Count)
         {
             tempTime += Time.deltaTime;
 
@@ -34,7 +35,7 @@ public class ClientsManager : MonoBehaviour
 
                 if (currentDestination >= destinationPoints.Count)
                 {
-                    currentDestination = 0;
+                    currentDestination = destinationPoints.Count;
                 }
 
                 if (currentClient >= clientsPool.Count)
@@ -51,10 +52,17 @@ public class ClientsManager : MonoBehaviour
     {
         clientsPool.Add(clientsEngaged[0]);        
 
-        for (int i = 0; i < clientsEngaged.Count; i++)
+        for (int i = 1; i < clientsEngaged.Count; i++)
         {
-
+            clientsEngaged[i].Agent.SetDestination(clientsEngaged[i - 1].targetPosition.position);
         }
         clientsEngaged.RemoveAt(0);
+        currentDestination--;
+
+        if (currentDestination < 0)
+        {
+            currentDestination = 0;
+        }
+
     }
 }
