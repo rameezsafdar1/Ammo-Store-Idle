@@ -385,6 +385,7 @@ MonoBehaviour:
   - {fileID: 3376397174697140146}
   - {fileID: 3376397174226542484}
   spriteColor: {r: 0.38039213, g: 0.7856051, b: 0.972549, a: 1}
+  spriteColor2: {r: 0.854902, g: 0.34509805, b: 0.36078432, a: 1}
   text: {fileID: 3376397173688455627}
   col: {fileID: 3376397174697140151}
 --- !u!114 &3376397174697140149
@@ -403,10 +404,10 @@ MonoBehaviour:
   onEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3376397174697140147}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 3376397174697140144}
+        m_TargetAssemblyTypeName: TriggerPoint, Assembly-CSharp
+        m_MethodName: deactivate
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
