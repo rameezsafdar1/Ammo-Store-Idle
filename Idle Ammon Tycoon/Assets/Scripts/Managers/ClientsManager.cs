@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class ClientsManager : MonoBehaviour
 {
+    public BattleStationHelper battlestation;
     [Header("Contract Clients Settings")]
     [Range(0.3f, 10)]
     public float clientCoolDown;
@@ -50,6 +51,7 @@ public class ClientsManager : MonoBehaviour
 
     public void clientDealt()
     {
+        battlestation.station.taskImage = null;
         clientsPool.Add(clientsEngaged[0]);
         clientsEngaged[0].Agent.SetDestination(clientsEngaged[0].finalPosition.position);
         clientsEngaged[0].taskImage.gameObject.SetActive(false);

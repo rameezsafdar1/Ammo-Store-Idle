@@ -1588,6 +1588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea16e4bd9688b14ca9c9554053898d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battlestation: {fileID: 1307203917}
   clientCoolDown: 2
   maxClientAvaialable: 4
   clientsPool:
@@ -12597,7 +12598,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762437262}
-  m_LocalRotation: {x: 0.32383618, y: 0.000000023022242, z: -0.000000007880067, w: 0.94611317}
+  m_LocalRotation: {x: 0.32383618, y: -0.000000023022238, z: 0.0000000078800655, w: 0.94611317}
   m_LocalPosition: {x: 0.2, y: 23.989998, z: -29.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -21932,7 +21933,6 @@ MonoBehaviour:
   station: {fileID: 2110995506}
   questionsPanel: {fileID: 115236106}
   contractText: {fileID: 1685780533}
-  fillTime: 2
   onContractSigned:
     m_PersistentCalls:
       m_Calls:
@@ -28928,7 +28928,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633965413}
-  m_LocalRotation: {x: 0.32383618, y: 0.000000023022242, z: -0.000000007880067, w: 0.94611317}
+  m_LocalRotation: {x: 0.32383618, y: -0.000000023022238, z: 0.0000000078800655, w: 0.94611317}
   m_LocalPosition: {x: 0.2, y: 23.989998, z: -29.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

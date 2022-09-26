@@ -17,10 +17,8 @@ public class BattleStation : MonoBehaviour
         {
             bcp = other.GetComponent<BaseClientProperties>();
             contractDetail = bcp.contractDetails[Random.Range(0, bcp.contractDetails.Length)];
-            //playerFill = bcp.fillImage;
             waitImage = bcp.waitImage;
             taskImage = bcp.taskImage;
-            //endFill = bcp.endFill;
         }
     }
 }
