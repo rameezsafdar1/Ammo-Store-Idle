@@ -31,6 +31,10 @@ public class AIWaveManager : MonoBehaviour
             }
             activityCounter.totalEvents = x;
         }
+        else
+        {
+            hostages[0].SetActive(true);
+        }
 
         currentWave = 0;
         killsNeeded = totalWaves * enemyLoadOutNumber;

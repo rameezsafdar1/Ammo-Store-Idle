@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class EffectsManager : MonoBehaviour
 {
     public static EffectsManager Instance;
+    public GameObject Player;
     public CinemachineBrain brain;
     public Camera mainCamera;
     public CinemachineVirtualCamera lookCamera;
@@ -17,19 +18,16 @@ public class EffectsManager : MonoBehaviour
     private int currentPooledAudio;
     private float tempPitchTime;
     [Header("Instantiate Settings")]
-    public Transform instParent;
-    //[Header("User Level Settings")]
-    //public Image userLevelFill;
-    //private int currentXp, maxXp;
+    public Transform instParent;    
     public GameObject upgradesMenu;
     public int scene;
-    //public splash Splash;
     public bool contractSigned, contractCompleted;
+    [HideInInspector]
+    public int hostagesFreed;
+
+
     private void Start()
     {
-        //maxXp = userLevel * 10;
-        //userLevelFill.fillAmount = (float)currentXp / (float)maxXp;
-        //userLevelText.text = userLevel.ToString();
         if (Instance != null)
         {
             Destroy(this.gameObject);
@@ -84,35 +82,10 @@ public class EffectsManager : MonoBehaviour
         return converted;
     }
 
-    //public void xpIncreased()
-    //{
-    //    currentXp++;
-    //    userLevelFill.fillAmount = (float)currentXp / (float)maxXp;
-
-    //    if (currentXp >= maxXp)
-    //    {
-    //        if (wavemanager.waveTime > 3)
-    //        {
-    //            wavemanager.waveTime -= 3;
-    //        }
-    //        userLevel++;
-    //        currentXp = 0;
-    //        maxXp = userLevel * 10;
-    //        userLevelText.text = userLevel.ToString();
-    //        upgradesMenu.SetActive(true);            
-    //    }
-    //}
-
     public void setTimeScale(float f)
     {
         Time.timeScale = f;
     }
-
-    //public void setScene(int sceneNumber)
-    //{
-    //    Splash.loadLevel = sceneNumber;
-    //    Splash.gameObject.SetActive(true);
-    //}
 
     public void changeCamTransTime(float time)
     {

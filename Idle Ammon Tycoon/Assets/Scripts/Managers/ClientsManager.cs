@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 public class ClientsManager : MonoBehaviour
 {
+    [Header("==> Contract Clients Settings")]
     public BattleStationHelper battlestation;
-    [Header("Contract Clients Settings")]
     [Range(0.3f, 10)]
     public float clientCoolDown;
     public int maxClientAvaialable;
     public List<BaseClientProperties> clientsPool = new List<BaseClientProperties>();
-    [SerializeField]
     private List<BaseClientProperties> clientsEngaged = new List<BaseClientProperties>();
     public List<Transform> destinationPoints = new List<Transform>();
-    public Sprite contractSprite;   
+    public List<Hostage> HostagesPool = new List<Hostage>();
     [HideInInspector]
-    public float tempTime;
-    [SerializeField]
-    private int currentClient, currentDestination;
-    public Transform startPos;
+    public float tempTime;    
+    private int currentClient, currentDestination, currentHostage;
+    public Transform startPos, waitArea, hostageInstPoint;    
+
     private void Update()
     {
         if (currentClient < maxClientAvaialable && clientsEngaged.Count < destinationPoints.Count)
@@ -75,4 +74,53 @@ public class ClientsManager : MonoBehaviour
         }
 
     }
+
+    public void clientAccepted()
+    {
+        battlestation.station.taskImage = null;
+        clientsEngaged[0].Agent.SetDestination(waitArea.position);
+        clientsEngaged[0].taskImage.gameObject.SetActive(false);
+
+        for (int i = clientsEngaged.Count - 1; i > 0; i--)
+        {
+            clientsEngaged[i].targetPosition = clientsEngaged[i - 1].targetPosition;
+        }
+
+        for (int i = 1; i < clientsEngaged.Count; i++)
+        {
+            clientsEngaged[i].Agent.SetDestination(clientsEngaged[i].targetPosition.position);
+        }
+
+        clientsEngaged.RemoveAt(0);
+        currentDestination--;
+
+        if (currentDestination < 0)
+        {
+            currentDestination = 0;
+        }
+
+    }
+
+    public void contractCompleted()
+    {
+
+    }
+
+    public void callHostages()
+    {
+        for (int i = 0; i < EffectsManager.Instance.hostagesFreed; i++)
+        {
+            HostagesPool[currentHostage].transform.position = hostageInstPoint.position;
+            HostagesPool[currentHostage].startFollowToEnd(waitArea);
+            HostagesPool[currentHostage].gameObject.SetActive(true);
+            HostagesPool[currentHostage].anim.SetTrigger("Cheer");
+            currentHostage++;
+            if (currentHostage >= HostagesPool.Count)
+            {
+                currentHostage = 0;
+            }
+        }
+    }
+
+
 }
