@@ -1704,6 +1704,7 @@ MonoBehaviour:
   - {fileID: 2140512897}
   tempTime: 0
   startPos: {fileID: 1343793668}
+  endPos: {fileID: 378619565}
   waitArea: {fileID: 4551332193391240597}
   hostageInstPoint: {fileID: 592697840}
 --- !u!114 &82935579
@@ -41175,7 +41176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ed599f892e373489819deff5e53e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerTag: Player
+  triggerTag: Hostage
   onEnterEvent:
     m_PersistentCalls:
       m_Calls: []
