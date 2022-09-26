@@ -49,6 +49,12 @@ public class ClientsManager : MonoBehaviour
 
     public void clientDealt()
     {
-        //clientsEngaged[0]
+        clientsPool.Add(clientsEngaged[0]);        
+
+        for (int i = 0; i < clientsEngaged.Count; i++)
+        {
+
+        }
+        clientsEngaged.RemoveAt(0);
     }
 }

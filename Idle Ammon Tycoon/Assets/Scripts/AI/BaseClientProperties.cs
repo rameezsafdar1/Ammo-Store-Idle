@@ -11,12 +11,7 @@ public abstract class BaseClientProperties : MonoBehaviour
     public Image taskImage, fillImage, endFill, waitImage;
     public float accuracy;
     public Animator anim;
-    private bool dealt;
-
-    private void OnEnable()
-    {
-        dealt = false;
-    }
+    public GameObject happyEmojis;
 
     public virtual void Update()
     {
@@ -34,6 +29,7 @@ public abstract class BaseClientProperties : MonoBehaviour
     public void contractOver()
     {
         anim.SetTrigger("Cheer");
+        happyEmojis.SetActive(true);
         StartCoroutine(wait());
     }
 
