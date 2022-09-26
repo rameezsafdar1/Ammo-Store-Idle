@@ -24,7 +24,7 @@ public class EffectsManager : MonoBehaviour
     public GameObject upgradesMenu;
     public int scene;
     //public splash Splash;
-    public bool contractSigned;
+    public bool contractSigned, contractCompleted;
     private void Start()
     {
         //maxXp = userLevel * 10;
@@ -117,6 +117,11 @@ public class EffectsManager : MonoBehaviour
     public void changeCamTransTime(float time)
     {
         brain.m_DefaultBlend.m_Time = time;
+    }
+
+    public void contractSuccessful()
+    {
+        contractCompleted = true;
     }
 
 }

@@ -7,10 +7,16 @@ using UnityEngine.UI;
 public abstract class BaseClientProperties : MonoBehaviour
 {
     public NavMeshAgent Agent;
-    public Transform targetPosition;
-    public Image taskImage, fillImage, waitImage;
+    public Transform targetPosition, finalPosition;
+    public Image taskImage, fillImage, endFill, waitImage;
     public float accuracy;
     public Animator anim;
+    private bool dealt;
+
+    private void OnEnable()
+    {
+        dealt = false;
+    }
 
     public virtual void Update()
     {
@@ -23,6 +29,18 @@ public abstract class BaseClientProperties : MonoBehaviour
         {
             taskImage.transform.parent.gameObject.SetActive(true);
         }
+    }
+
+    public void contractOver()
+    {
+        anim.SetTrigger("Cheer");
+        StartCoroutine(wait());
+    }
+
+    private IEnumerator wait()
+    {
+        yield return new WaitForSeconds(2f);
+        Agent.SetDestination(finalPosition.position);
     }
 
 }

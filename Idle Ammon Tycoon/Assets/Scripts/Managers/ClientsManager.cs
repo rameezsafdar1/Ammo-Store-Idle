@@ -8,6 +8,8 @@ public class ClientsManager : MonoBehaviour
     public float clientCoolDown;
     public int maxClientAvaialable;
     public List<BaseClientProperties> clientsPool = new List<BaseClientProperties>();
+    [SerializeField]
+    private List<BaseClientProperties> clientsEngaged = new List<BaseClientProperties>();
     public List<Transform> destinationPoints = new List<Transform>();
     public Sprite contractSprite;   
     [HideInInspector]
@@ -25,6 +27,7 @@ public class ClientsManager : MonoBehaviour
                 clientsPool[currentClient].transform.position = startPos.position;
                 clientsPool[currentClient].targetPosition = destinationPoints[currentDestination];
                 clientsPool[currentClient].gameObject.SetActive(true);
+                clientsEngaged.Add(clientsPool[currentClient]);
                 clientsPool.Remove(clientsPool[currentClient]);
                 currentClient++;
                 currentDestination++;
@@ -46,6 +49,6 @@ public class ClientsManager : MonoBehaviour
 
     public void clientDealt()
     {
-
+        //clientsEngaged[0]
     }
 }

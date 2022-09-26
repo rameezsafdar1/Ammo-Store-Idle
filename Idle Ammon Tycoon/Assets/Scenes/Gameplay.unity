@@ -1303,6 +1303,7 @@ MonoBehaviour:
   upgradesMenu: {fileID: 0}
   scene: 0
   contractSigned: 0
+  contractCompleted: 0
 --- !u!114 &82935578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1358,6 +1359,7 @@ MonoBehaviour:
   - {fileID: 72423220}
   - {fileID: 674445031}
   - {fileID: 703477262}
+  clientsEngaged: []
   destinationPoints:
   - {fileID: 2110995502}
   - {fileID: 1229282050}
@@ -11275,7 +11277,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762437262}
-  m_LocalRotation: {x: 0.32383618, y: -0.000000023022238, z: 0.0000000078800655, w: 0.94611317}
+  m_LocalRotation: {x: 0.32383618, y: 0.000000023022242, z: -0.000000007880067, w: 0.94611317}
   m_LocalPosition: {x: 0.2, y: 23.989998, z: -29.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -16083,7 +16085,6 @@ GameObject:
   - component: {fileID: 1086333352}
   - component: {fileID: 1086333351}
   - component: {fileID: 1086333350}
-  - component: {fileID: 1086333349}
   m_Layer: 0
   m_Name: CD (1)
   m_TagString: HelpDesk
@@ -16105,21 +16106,6 @@ Transform:
   m_Father: {fileID: 1689755503}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1086333349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086333347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43b6ce7ac1e27144b33d4caa31657e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerFill: {fileID: 0}
-  waitImage: {fileID: 0}
-  taskImage: {fileID: 0}
 --- !u!114 &1086333350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17010,6 +16996,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 82935577}
+        m_TargetAssemblyTypeName: EffectsManager, Assembly-CSharp
+        m_MethodName: contractSuccessful
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -19945,6 +19943,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  onContractCompleted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1307203918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26368,7 +26369,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633965413}
-  m_LocalRotation: {x: 0.32383618, y: -0.000000023022238, z: 0.0000000078800655, w: 0.94611317}
+  m_LocalRotation: {x: 0.32383618, y: 0.000000023022242, z: -0.000000007880067, w: 0.94611317}
   m_LocalPosition: {x: 0.2, y: 23.989998, z: -29.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -27179,8 +27180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 82935578}
-  totalCustomers: 1
-  coolDown: 10
+  totalCustomers: 2
+  coolDown: 0.3
 --- !u!4 &1690886650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4270579384956852, guid: 4e063b93fa1f20144b765209a55a4130, type: 3}
@@ -33533,8 +33534,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerFill: {fileID: 0}
+  endFill: {fileID: 0}
   waitImage: {fileID: 0}
   taskImage: {fileID: 0}
+  bcp: {fileID: 0}
 --- !u!1001 &2115918701
 PrefabInstance:
   m_ObjectHideFlags: 0

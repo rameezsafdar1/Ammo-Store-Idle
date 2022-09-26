@@ -8,7 +8,7 @@ public class BattleStationHelper : MonoBehaviour
     public BattleStation station;
     public float fillTime;
     private float tempFillTime;
-    public UnityEvent onContractSigned;
+    public UnityEvent onContractSigned, onContractCompleted;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,6 +18,13 @@ public class BattleStationHelper : MonoBehaviour
             {
                 station.playerFill.gameObject.SetActive(true);
             }
+        }
+
+        if (EffectsManager.Instance.contractCompleted && station.endFill != null)
+        {
+            station.waitImage.gameObject.SetActive(false);
+            station.endFill.fillAmount = 0;
+            station.endFill.gameObject.SetActive(true);
         }
     }
 
@@ -45,6 +52,29 @@ public class BattleStationHelper : MonoBehaviour
 
             }
         }
+
+        if (EffectsManager.Instance.contractCompleted)
+        {
+            if (other.transform.tag == "Player" && station.endFill != null)
+            {
+                tempFillTime += Time.deltaTime;
+                station.endFill.fillAmount = tempFillTime / fillTime;
+                if (tempFillTime >= fillTime)
+                {
+                    station.bcp.contractOver();
+                    station.endFill.gameObject.SetActive(false);
+                    station.endFill = null;
+                    EffectsManager.Instance.contractSigned = false;
+                    EffectsManager.Instance.contractCompleted = false;
+                    if (onContractCompleted != null)
+                    {
+                        onContractCompleted.Invoke();
+                    }
+                    tempFillTime = 0;
+                }
+
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -60,6 +90,13 @@ public class BattleStationHelper : MonoBehaviour
                 }
             }
         }
+
+        if (EffectsManager.Instance.contractCompleted && station.endFill != null)
+        {
+            tempFillTime = 0;
+            station.endFill.gameObject.SetActive(false);
+        }
+
     }
 
 }
