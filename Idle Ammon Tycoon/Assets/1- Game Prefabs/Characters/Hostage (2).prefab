@@ -354,6 +354,7 @@ GameObject:
   - component: {fileID: 7308030284890568495}
   - component: {fileID: 4194540164488332993}
   - component: {fileID: 6245854039414372431}
+  - component: {fileID: 5064845298008382252}
   m_Layer: 0
   m_Name: Hostage (2)
   m_TagString: Hostage
@@ -432,6 +433,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 4194540164488332993}
   anim: {fileID: 7308030284890568495}
+--- !u!136 &5064845298008382252
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7308030284890568480}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.31
+  m_Height: 6.1
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.3, z: 0}
 --- !u!1 &7308030284915091178
 GameObject:
   m_ObjectHideFlags: 0

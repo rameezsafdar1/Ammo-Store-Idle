@@ -13310,7 +13310,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762437262}
-  m_LocalRotation: {x: 0.32383618, y: 0.000000023022242, z: -0.000000007880067, w: 0.94611317}
+  m_LocalRotation: {x: 0.32383618, y: -0.000000023022238, z: 0.0000000078800655, w: 0.94611317}
   m_LocalPosition: {x: 0.2, y: 23.989998, z: -29.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -30861,7 +30861,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633965413}
-  m_LocalRotation: {x: 0.32383618, y: 0.000000023022242, z: -0.000000007880067, w: 0.94611317}
+  m_LocalRotation: {x: 0.32383618, y: -0.000000023022238, z: 0.0000000078800655, w: 0.94611317}
   m_LocalPosition: {x: 0.2, y: 23.989998, z: -29.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -41293,6 +41293,7 @@ GameObject:
   - component: {fileID: 4551332193391240595}
   - component: {fileID: 4551332193391240594}
   - component: {fileID: 4551332193391240593}
+  - component: {fileID: 4551332193391240600}
   m_Layer: 0
   m_Name: Wait Area (1)
   m_TagString: Untagged
@@ -41300,6 +41301,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4551332193391240600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4551332193391240599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ecd98069ba2c0459141e243853abae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CM: {fileID: 82935578}
 --- !u!212 &4551332193996187056
 SpriteRenderer:
   m_ObjectHideFlags: 0
