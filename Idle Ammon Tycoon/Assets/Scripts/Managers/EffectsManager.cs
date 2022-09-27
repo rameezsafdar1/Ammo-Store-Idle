@@ -26,7 +26,7 @@ public class EffectsManager : MonoBehaviour
     public int hostagesFreed;
 
 
-    private void Start()
+    private void Awake()
     {
         if (Instance != null)
         {
