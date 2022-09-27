@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class Unlockable : MonoBehaviour
 {
     public int Price;
-    public TextMesh priceText;
+    public TextMeshPro priceText;
     private int availableCash;
     public UnityEvent onUnlock; 
 
