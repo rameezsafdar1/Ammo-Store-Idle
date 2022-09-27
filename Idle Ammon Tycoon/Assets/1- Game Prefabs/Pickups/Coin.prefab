@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4733263274257195226}
   - component: {fileID: 6534461025711751438}
   - component: {fileID: 6534461025711751437}
+  - component: {fileID: 4623176465264792212}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Pickup
@@ -109,3 +110,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angles: {x: 0, y: 150, z: 0}
+--- !u!114 &4623176465264792212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6534461025711751439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ed599f892e373489819deff5e53e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerTag: 
+  onEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  dontDetect: 0
