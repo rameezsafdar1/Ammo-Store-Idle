@@ -14,6 +14,15 @@ public class Unlockable : MonoBehaviour
     private void Start()
     {
         priceText.text = Price.ToString();
+
+        if (Price <= 0 || saveManager.Instance.loadCustomInts(transform.name) > 0)
+        {
+            if (onUnlock != null)
+            {
+                onUnlock.Invoke();
+            }
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,20 +35,24 @@ public class Unlockable : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player" && availableCash >= Price)
+        if (Price > 0)
         {
-            Price -= 5;
-            saveManager.Instance.addCash(-5);
-            priceText.text = Price.ToString();
-
-            if (Price <= 0)
+            if (other.tag == "Player" && availableCash >= Price)
             {
-                if (onUnlock != null)
-                {
-                    onUnlock.Invoke();
-                }
-            }
+                Price -= 5;
+                saveManager.Instance.addCash(-5);
+                priceText.text = Price.ToString();
 
+                if (Price <= 0)
+                {
+                    saveManager.Instance.saveCustomInts(transform.name, 1);
+                    if (onUnlock != null)
+                    {
+                        onUnlock.Invoke();
+                    }
+                }
+
+            }
         }
     }
 
