@@ -14,16 +14,14 @@ public class Hostage : MonoBehaviour
     {
         if (followPlayer)
         {
-            agent.SetDestination(EffectsManager.Instance.Player.transform.position);
-            anim.SetFloat("Velocity", agent.velocity.magnitude);
+            agent.SetDestination(EffectsManager.Instance.Player.transform.position);            
         }
 
         if (followEnd)
         {
             agent.SetDestination(endpos.position);
-            anim.SetFloat("Velocity", agent.velocity.magnitude);
         }
-
+        anim.SetFloat("Velocity", agent.velocity.magnitude);
     }
 
     public void startFollow()
@@ -38,5 +36,11 @@ public class Hostage : MonoBehaviour
         endpos = pos;
         agent.enabled = true;
         followEnd = true;
+    }
+
+    public void resetFollows()
+    {
+        followEnd = false;
+        followPlayer = false;
     }
 }

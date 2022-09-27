@@ -80,6 +80,7 @@ public class ClientsManager : MonoBehaviour
         battlestation.station.taskImage = null;
         clientsEngaged[0].Agent.SetDestination(waitArea.position);
         clientsEngaged[0].tag = "Client";
+        clientsEngaged[0].consumed = true;
         clientsEngaged[0].taskImage.gameObject.SetActive(false);
 
         for (int i = clientsEngaged.Count - 1; i > 0; i--)

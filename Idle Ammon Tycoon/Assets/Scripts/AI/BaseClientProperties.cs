@@ -11,8 +11,14 @@ public abstract class BaseClientProperties : MonoBehaviour
     public Image taskImage, fillImage, endFill, waitImage;
     public float accuracy;
     public Animator anim;
-    public GameObject happyEmojis;
     public string[] contractDetails;
+    public bool consumed;
+
+    private void OnEnable()
+    {
+        consumed = false;
+        transform.tag = "AI";
+    }
 
     public virtual void Update()
     {
@@ -23,21 +29,10 @@ public abstract class BaseClientProperties : MonoBehaviour
     {
         if (other.tag == "HelpDesk")
         {
-            taskImage.gameObject.SetActive(true);
+            if (!consumed)
+            {
+                taskImage.gameObject.SetActive(true);
+            }
         }
     }
-
-    public void contractOver()
-    {
-        anim.SetTrigger("Cheer");
-        happyEmojis.SetActive(true);
-        StartCoroutine(wait());
-    }
-
-    private IEnumerator wait()
-    {
-        yield return new WaitForSeconds(2f);
-        Agent.SetDestination(finalPosition.position);
-    }
-
 }
