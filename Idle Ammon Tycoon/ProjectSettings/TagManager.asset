@@ -8,6 +8,7 @@ TagManager:
   - AI
   - Hostage
   - Client
+  - Pickup
   layers:
   - Default
   - TransparentFX

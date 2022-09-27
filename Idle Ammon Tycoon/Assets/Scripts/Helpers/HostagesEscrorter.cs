@@ -7,7 +7,7 @@ public class HostagesEscrorter : MonoBehaviour
     public ClientsManager CM;
     private List<Hostage> hostages = new List<Hostage>();
     private BaseClientProperties Client;
-    public GameObject particles;
+    public GameObject particles, coin;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,6 +31,7 @@ public class HostagesEscrorter : MonoBehaviour
 
     private IEnumerator wait()
     {
+        EffectsManager.Instance.contractSigned = false;
         particles.SetActive(true);
         yield return new WaitForSeconds(2f); 
         EffectsManager.Instance.hostagesFreed = 0;
@@ -40,6 +41,7 @@ public class HostagesEscrorter : MonoBehaviour
             hostages[i].agent.SetDestination(CM.endPos.position);
         }
         Client.Agent.SetDestination(CM.endPos.position);
+        coin.SetActive(true);
     }
 
 
