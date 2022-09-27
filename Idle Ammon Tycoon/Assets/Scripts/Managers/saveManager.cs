@@ -33,7 +33,7 @@ public class saveManager : MonoBehaviour
         cashText.text = EffectsManager.Instance.currencyShortener((float)totalCash);
     }
 
-    public float loadCash()
+    public int loadCash()
     {
         totalCash = PlayerPrefs.GetInt("Cash");
         return totalCash;

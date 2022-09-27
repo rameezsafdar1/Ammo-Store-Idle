@@ -9,6 +9,7 @@ TagManager:
   - Hostage
   - Client
   - Pickup
+  - Unlock
   layers:
   - Default
   - TransparentFX
