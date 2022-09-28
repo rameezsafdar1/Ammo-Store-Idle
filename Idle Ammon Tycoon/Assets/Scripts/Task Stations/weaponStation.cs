@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class BattleStation : MonoBehaviour
+public class weaponStation : MonoBehaviour
 {
     [HideInInspector]
     public Image waitImage, taskImage;
-    public contractAI ai;
-    public string contractDetail;
+    public weaponsAI ai;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "AI")
         {
-            ai = other.GetComponent<contractAI>();
-            contractDetail = ai.contractDetails[Random.Range(0, ai.contractDetails.Length)];
+            ai = other.GetComponent<weaponsAI>();
             waitImage = ai.waitImage;
             taskImage = ai.taskImage;
         }

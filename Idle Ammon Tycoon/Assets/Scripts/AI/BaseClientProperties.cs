@@ -7,32 +7,26 @@ using UnityEngine.UI;
 public abstract class BaseClientProperties : MonoBehaviour
 {
     public NavMeshAgent Agent;
+    [HideInInspector]
     public Transform targetPosition, finalPosition;
-    public Image taskImage, fillImage, endFill, waitImage;
+    public Image taskImage, waitImage;
     public float accuracy;
     public Animator anim;
-    public string[] contractDetails;
     public bool consumed;
 
-    private void OnEnable()
+    public virtual void OnEnable()
     {
-        consumed = false;
-        transform.tag = "AI";
+        consumed = false;        
+        Agent.SetDestination(targetPosition.position);
     }
 
     public virtual void Update()
     {
-        anim.SetFloat("Velocity", Agent.velocity.magnitude);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "HelpDesk")
+        anim.SetFloat("Velocity", Agent.velocity.magnitude); 
+        if (Agent.velocity.magnitude <= 0.1f && targetPosition != null)
         {
-            if (!consumed)
-            {
-                taskImage.gameObject.SetActive(true);
-            }
+            transform.rotation = Quaternion.identity;
         }
     }
+    
 }

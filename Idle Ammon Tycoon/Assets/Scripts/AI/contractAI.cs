@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class contractAI : BaseClientProperties
 {
-    private void OnEnable()
+    public string[] contractDetails;
+
+
+    public override void OnEnable()
     {
-        Agent.SetDestination(targetPosition.position);
+        base.OnEnable();
+        transform.tag = "AI";
     }
 
-    public override void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        base.Update();
-
-        if (Agent.velocity.magnitude <= 0.1f && targetPosition != null)
+        if (other.tag == "HelpDesk")
         {
-            transform.rotation = Quaternion.identity;
+            if (!consumed)
+            {
+                taskImage.gameObject.SetActive(true);
+            }
         }
     }
 }

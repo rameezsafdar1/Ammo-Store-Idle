@@ -10,6 +10,8 @@ TagManager:
   - Client
   - Pickup
   - Unlock
+  - Buyer
+  - BuySpot
   layers:
   - Default
   - TransparentFX
