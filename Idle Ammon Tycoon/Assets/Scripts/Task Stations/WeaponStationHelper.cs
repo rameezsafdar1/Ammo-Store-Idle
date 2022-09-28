@@ -12,6 +12,8 @@ public class WeaponStationHelper : MonoBehaviour
     private float tempFillTime;
     private PlayerHelper helper;
     public Transform happyParticles, endPosition;
+    public GameObject Coin;
+    public Transform cashAnimation, coinInstPoint;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -71,6 +73,8 @@ public class WeaponStationHelper : MonoBehaviour
         yield return new WaitForSeconds(2f);
         station.ai.finalPosition = endPosition;
         weaponClient.clientDealt();
+        GameObject go = Instantiate(Coin, coinInstPoint.position, Quaternion.identity);
+        go.GetComponent<Coin>().cashAnimation = cashAnimation.gameObject;
     }
 
 }
