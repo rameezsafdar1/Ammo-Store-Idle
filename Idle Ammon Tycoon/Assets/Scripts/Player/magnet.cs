@@ -29,7 +29,7 @@ public class magnet : MonoBehaviour
 
             for (int i = 0; i < cols.Length; i++)
             {
-                //cols[i].transform.parent = target;
+                cols[i].transform.parent = target;
                 cols[i].GetComponent<curveFollower>().setMyTarget(target.localPosition);
                 cols[i].gameObject.layer = 0;
             }
