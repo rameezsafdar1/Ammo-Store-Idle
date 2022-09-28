@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public bool debug;
     public GameObject[] Levels;
     private int currentLevel;
+    public int levelNumber;
 
     private void Awake()
     {
-        Levels[currentLevel].SetActive(true);
+        if (!debug)
+        {
+            Levels[currentLevel].SetActive(true);
+        }
+        else
+        {
+            Levels[levelNumber].SetActive(true);
+        }
     }
 }

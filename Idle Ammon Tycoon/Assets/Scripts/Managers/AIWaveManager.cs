@@ -15,25 +15,28 @@ public class AIWaveManager : MonoBehaviour
     public float eventDelay;
     [SerializeField]
     private int killsNeeded;
-    public bool oneHostage;
+    public bool noHostage, oneHostage;
     public GameObject[] hostages;
     public ActivityManager activityCounter;
 
     private void OnEnable()
     {
-        if (!oneHostage)
+        if (!noHostage) 
         {
-            int x = Random.Range(1, hostages.Length);
-
-            for (int i = 0; i < x; i++)
+            if (!oneHostage)
             {
-                hostages[i].SetActive(true);
+                int x = Random.Range(0, hostages.Length - 1);
+
+                for (int i = 0; i < x; i++)
+                {
+                    hostages[i].SetActive(true);
+                }
+                activityCounter.totalEvents = x;
             }
-            activityCounter.totalEvents = x;
-        }
-        else
-        {
-            hostages[0].SetActive(true);
+            else
+            {
+                hostages[0].SetActive(true);
+            }
         }
 
         currentWave = 0;
