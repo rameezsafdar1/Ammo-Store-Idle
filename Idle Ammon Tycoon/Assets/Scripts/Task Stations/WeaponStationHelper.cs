@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class WeaponStationHelper : MonoBehaviour
 {
     public WeaponStation station;
+    public weaponsClientManager weaponClient;
     public UnityEvent onContractSigned, onContractCompleted;
     public float fillTime;
     private float tempFillTime;
@@ -68,7 +69,8 @@ public class WeaponStationHelper : MonoBehaviour
     {
         happyParticles.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
-        station.ai.Agent.SetDestination(endPosition.position);
+        station.ai.finalPosition = endPosition;
+        weaponClient.clientDealt();
     }
 
 }

@@ -8,6 +8,7 @@ public abstract class BaseClientManager : MonoBehaviour
     public float clientCoolDown;
     public int maxClientAvaialable;
     public List<BaseClientProperties> clientsPool = new List<BaseClientProperties>();
+    [SerializeField]
     protected List<BaseClientProperties> clientsEngaged = new List<BaseClientProperties>();
     public List<Transform> destinationPoints = new List<Transform>();    
     [HideInInspector]
