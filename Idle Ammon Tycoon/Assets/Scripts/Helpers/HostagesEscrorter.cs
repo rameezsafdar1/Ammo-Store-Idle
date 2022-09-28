@@ -9,6 +9,7 @@ public class HostagesEscrorter : MonoBehaviour
     private BaseClientProperties Client;
     public GameObject particles, coin, cashAnimation;
     public Transform instPoint;
+    public PlayerHelper Player;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -32,7 +33,7 @@ public class HostagesEscrorter : MonoBehaviour
 
     private IEnumerator wait()
     {
-        EffectsManager.Instance.contractSigned = false;
+        Player.killContractSigned = false;
         particles.SetActive(true);
         yield return new WaitForSeconds(2f); 
         EffectsManager.Instance.hostagesFreed = 0;

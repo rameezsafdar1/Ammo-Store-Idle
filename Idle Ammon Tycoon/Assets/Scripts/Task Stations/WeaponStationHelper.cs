@@ -10,6 +10,7 @@ public class WeaponStationHelper : MonoBehaviour
     public float fillTime;
     private float tempFillTime;
     private PlayerHelper helper;
+    public Transform happyParticles, endPosition;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,10 +18,19 @@ public class WeaponStationHelper : MonoBehaviour
         {
             helper = other.GetComponent<PlayerHelper>();
         }
+
+        if (helper.hasGunForSale)
+        {
+            helper.hasGunForSale = false;
+            helper.gunContractSigned = false;
+            station.ai.waitImage.gameObject.SetActive(false);
+            StartCoroutine(wait());
+        }
+
     }
     private void OnTriggerStay(Collider other)
     {
-        if (!EffectsManager.Instance.contractSigned && !helper.gunContractSigned)
+        if (!helper.killContractSigned && !helper.gunContractSigned)
         {
             if (other.tag == "Player" && station.taskImage != null)
             {
@@ -31,6 +41,7 @@ public class WeaponStationHelper : MonoBehaviour
                     helper.gunContractSigned = true;
                     station.taskImage.gameObject.SetActive(false);
                     station.waitImage.gameObject.SetActive(true);
+                    station.taskImage = null;
                     station.fillImage.fillAmount = 0;
 
                     if (onContractSigned != null)
@@ -52,4 +63,12 @@ public class WeaponStationHelper : MonoBehaviour
             station.fillImage.fillAmount = 0;
         }
     }
+
+    private IEnumerator wait()
+    {
+        happyParticles.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        station.ai.Agent.SetDestination(endPosition.position);
+    }
+
 }

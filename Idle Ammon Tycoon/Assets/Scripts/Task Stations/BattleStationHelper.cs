@@ -11,15 +11,27 @@ public class BattleStationHelper : MonoBehaviour
     public TMPro.TextMeshProUGUI contractText;
     public UnityEvent onContractSigned, onContractCompleted;
     public Button acceptButton;
+    private PlayerHelper helper;
 
     private void Start()
     {
         acceptButton.onClick.AddListener(() => acceptContract());
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (station.isFree)
+        {
+            if (other.tag == "Player")
+            {
+                helper = other.GetComponent<PlayerHelper>();
+            }
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
-        if (!EffectsManager.Instance.contractSigned)
+        if (station.isFree && !helper.gunContractSigned)
         {
             if (other.tag == "Player" && station.taskImage != null)
             {
@@ -40,7 +52,8 @@ public class BattleStationHelper : MonoBehaviour
         if (onContractSigned != null)
         {
             onContractSigned.Invoke();
-            EffectsManager.Instance.contractSigned = true;
+            station.isFree = false;
+            helper.killContractSigned = true;
         }
     }
 

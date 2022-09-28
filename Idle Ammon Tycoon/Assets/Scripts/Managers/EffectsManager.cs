@@ -21,7 +21,6 @@ public class EffectsManager : MonoBehaviour
     public Transform instParent;    
     public GameObject upgradesMenu;
     public int scene;
-    public bool contractSigned, contractCompleted;
     [HideInInspector]
     public int hostagesFreed;
 
@@ -91,10 +90,4 @@ public class EffectsManager : MonoBehaviour
     {
         brain.m_DefaultBlend.m_Time = time;
     }
-
-    public void contractSuccessful()
-    {
-        contractCompleted = true;
-    }
-
 }
