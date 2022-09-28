@@ -7,7 +7,8 @@ public class HostagesEscrorter : MonoBehaviour
     public ClientsManager CM;
     private List<Hostage> hostages = new List<Hostage>();
     private BaseClientProperties Client;
-    public GameObject particles, coin;
+    public GameObject particles, coin, cashAnimation;
+    public Transform instPoint;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -41,7 +42,9 @@ public class HostagesEscrorter : MonoBehaviour
             hostages[i].agent.SetDestination(CM.endPos.position);
         }
         Client.Agent.SetDestination(CM.endPos.position);
-        coin.SetActive(true);
+
+        GameObject go = Instantiate(coin, instPoint.position, Quaternion.identity);
+        go.GetComponent<Coin>().cashAnimation = cashAnimation;
     }
 
 

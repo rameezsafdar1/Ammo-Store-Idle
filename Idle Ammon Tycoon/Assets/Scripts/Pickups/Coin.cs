@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    public int value;
+    public GameObject cashAnimation;
+
+    public void AddCash()
     {
-        if (other.tag == "Player")
-        {
-            saveManager.Instance.addCash(20);
-        }
+        saveManager.Instance.addCash(value);
+        cashAnimation.SetActive(true);
+        Destroy(gameObject);
     }
 }
