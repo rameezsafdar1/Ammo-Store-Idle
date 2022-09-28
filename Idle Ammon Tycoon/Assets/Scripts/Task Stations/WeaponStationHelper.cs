@@ -49,7 +49,7 @@ public class WeaponStationHelper : MonoBehaviour
                     {
                         onContractSigned.Invoke();
                     }
-
+                    tempFillTime = 0;
                 }
             }
         }

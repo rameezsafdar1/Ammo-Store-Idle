@@ -2215,6 +2215,7 @@ MonoBehaviour:
   - {fileID: 72423220}
   - {fileID: 674445031}
   - {fileID: 703477262}
+  clientsEngaged: []
   destinationPoints:
   - {fileID: 2110995502}
   - {fileID: 1229282050}
@@ -14447,6 +14448,7 @@ MonoBehaviour:
   - {fileID: 1803691198}
   - {fileID: 2035618578}
   - {fileID: 1123509999}
+  clientsEngaged: []
   destinationPoints:
   - {fileID: 361729073}
   - {fileID: 1706389046}
@@ -15568,7 +15570,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762437262}
-  m_LocalRotation: {x: 0.32383618, y: -0.000000023022242, z: 0.000000007880067, w: 0.94611317}
+  m_LocalRotation: {x: 0.32383618, y: 0.000000023022238, z: -0.0000000078800655, w: 0.94611317}
   m_LocalPosition: {x: 0.26, y: 23.989998, z: -34.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -35785,7 +35787,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633965413}
-  m_LocalRotation: {x: 0.32383618, y: -0.000000023022242, z: 0.000000007880067, w: 0.94611317}
+  m_LocalRotation: {x: 0.32383618, y: 0.000000023022238, z: -0.0000000078800655, w: 0.94611317}
   m_LocalPosition: {x: 0.26, y: 23.989998, z: -34.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
