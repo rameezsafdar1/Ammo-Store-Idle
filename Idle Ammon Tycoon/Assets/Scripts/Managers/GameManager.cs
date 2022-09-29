@@ -13,11 +13,23 @@ public class GameManager : MonoBehaviour
     {
         if (!debug)
         {
+            currentLevel = saveManager.Instance.loadCustomInts("Level");
             Levels[currentLevel].SetActive(true);
         }
         else
         {
             Levels[levelNumber].SetActive(true);
         }
+    }
+
+    public void nextLevel()
+    {
+        currentLevel++;
+        for (int i = 0; i < Levels.Length; i++)
+        {
+            Levels[i].SetActive(false);
+        }
+        Levels[currentLevel].SetActive(true);
+        saveManager.Instance.saveCustomInts("Level", levelNumber);
     }
 }
