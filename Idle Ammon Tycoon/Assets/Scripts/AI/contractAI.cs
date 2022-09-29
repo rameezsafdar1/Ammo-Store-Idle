@@ -22,5 +22,11 @@ public class contractAI : BaseClientProperties
                 taskImage.gameObject.SetActive(true);
             }
         }
+
+        if (other.tag == "Finish")
+        {
+            gameObject.SetActive(false);
+        }
+
     }
 }

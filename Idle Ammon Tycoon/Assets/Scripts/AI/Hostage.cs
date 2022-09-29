@@ -43,4 +43,13 @@ public class Hostage : MonoBehaviour
         followEnd = false;
         followPlayer = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Finish")
+        {
+            resetFollows();
+            gameObject.SetActive(false);
+        }
+    }
 }
