@@ -16,7 +16,17 @@ public class Door : MonoBehaviour
         {
             repairButton.onClick.RemoveAllListeners();
             repairButton.onClick.AddListener(() => buttonEvents.Invoke());
+            repairButton.onClick.AddListener(() => setHealth(50));
             repairButton.gameObject.SetActive(true);
+
+            if (doorHealth <= 0)
+            {
+                repairButton.interactable = true;
+            }
+            else
+            {
+                repairButton.interactable = false;
+            }
         }
     }
 
@@ -26,6 +36,11 @@ public class Door : MonoBehaviour
         {
             repairButton.gameObject.SetActive(false);
         }
+    }
+
+    public void setHealth(float health)
+    {
+        doorHealth = health;
     }
 
 }

@@ -10,13 +10,6 @@ public class BattleStation : MonoBehaviour
     public Image waitImage, taskImage;
     public contractAI ai;
     public string contractDetail;
-    public bool isFree = true;
-
-    private void OnEnable()
-    {
-        isFree = true;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "AI")

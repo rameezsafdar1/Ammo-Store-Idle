@@ -14,6 +14,7 @@ public class Cage : MonoBehaviour,iInteractable
     private void OnEnable()
     {
         tempInteractTime = 0;
+        fillImage.fillAmount = 0;
     }
 
     public void interact()

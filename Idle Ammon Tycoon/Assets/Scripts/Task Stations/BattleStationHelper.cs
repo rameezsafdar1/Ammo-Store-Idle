@@ -20,18 +20,16 @@ public class BattleStationHelper : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (station.isFree)
+        if (other.tag == "Player")
         {
-            if (other.tag == "Player")
-            {
-                helper = other.GetComponent<PlayerHelper>();
-            }
+            helper = other.GetComponent<PlayerHelper>();
         }
     }
 
+
     private void OnTriggerStay(Collider other)
     {
-        if (station.isFree && !helper.gunContractSigned)
+        if (!helper.killContractSigned && !helper.gunContractSigned)
         {
             if (other.tag == "Player" && station.taskImage != null)
             {
@@ -52,7 +50,6 @@ public class BattleStationHelper : MonoBehaviour
         if (onContractSigned != null)
         {
             onContractSigned.Invoke();
-            station.isFree = false;
             helper.killContractSigned = true;
         }
     }

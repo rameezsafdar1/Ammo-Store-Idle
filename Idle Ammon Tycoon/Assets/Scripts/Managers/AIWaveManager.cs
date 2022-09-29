@@ -26,12 +26,11 @@ public class AIWaveManager : MonoBehaviour
             if (!oneHostage)
             {
                 int x = Random.Range(0, hostages.Length - 1);
-
-                for (int i = 0; i < x; i++)
+                for (int i = 0; i <= x; i++)
                 {
                     hostages[i].SetActive(true);
                 }
-                activityCounter.totalEvents = x;
+                activityCounter.totalEvents = x + 1;
             }
             else
             {
