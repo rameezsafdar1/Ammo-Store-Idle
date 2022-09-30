@@ -12,6 +12,7 @@ TagManager:
   - Unlock
   - Buyer
   - BuySpot
+  - Stopper
   layers:
   - Default
   - TransparentFX

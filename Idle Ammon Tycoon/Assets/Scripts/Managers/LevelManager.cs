@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
             contract_manager[i].tempTime = ContractCoolDown;
         }
 
-        for (int j = 0; j < contract_manager.Length; j++)
+        for (int j = 0; j < weapon_manager.Length; j++)
         {
             weapon_manager[j].maxClientAvaialable = WeaponCustomers;
             weapon_manager[j].clientCoolDown = WeaponCoolDown;

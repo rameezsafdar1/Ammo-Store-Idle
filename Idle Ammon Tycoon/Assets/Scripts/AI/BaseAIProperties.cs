@@ -125,4 +125,24 @@ public abstract class BaseAIProperties : MonoBehaviour, iDamagable
         ragdoll.gameObject.SetActive(false);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Stopper")
+        {
+            isHit = true;
+            agent.isStopped = true;
+            agent.velocity = Vector3.zero;
+            agent.ResetPath();
+            anim.SetFloat("Velocity", 0);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Stopper")
+        {
+            isHit = false;
+        }
+    }
+
 }

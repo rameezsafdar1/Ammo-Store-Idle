@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // This script handles contract clients for mercenaries
 public class ClientsManager : BaseClientManager
@@ -9,6 +10,17 @@ public class ClientsManager : BaseClientManager
     public List<Hostage> HostagesPool = new List<Hostage>();
     private int currentHostage;
     public Transform hostageInstPoint, waitArea;
+    public Button acceptButton, rejectButton;
+    public bool playerOriented;
+
+    private void OnEnable()
+    {
+        if (playerOriented)
+        {
+            acceptButton.onClick.AddListener(() => clientAccepted());
+            rejectButton.onClick.AddListener(() => clientDealt());
+        }
+    }
 
     public override void clientDealt()
     {

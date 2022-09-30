@@ -6,8 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public bool debug;
     public GameObject[] Levels;
-    private int currentLevel;
-    public int levelNumber;
+    public int currentLevel;
 
     private void Awake()
     {
@@ -18,7 +17,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Levels[levelNumber].SetActive(true);
+            Levels[currentLevel].SetActive(true);
         }
     }
 
@@ -36,6 +35,6 @@ public class GameManager : MonoBehaviour
         }
 
         Levels[currentLevel].SetActive(true);
-        saveManager.Instance.saveCustomInts("Level", levelNumber);
+        saveManager.Instance.saveCustomInts("Level", currentLevel);
     }
 }

@@ -29,13 +29,16 @@ public class BattleStationHelper : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!helper.killContractSigned && !helper.gunContractSigned)
+        if (helper != null)
         {
-            if (other.tag == "Player" && station.taskImage != null)
+            if (!helper.killContractSigned && !helper.gunContractSigned)
             {
-                contractText.text = station.contractDetail;
-                questionsPanel.SetActive(true);
-                station.taskImage.gameObject.SetActive(true);
+                if (other.tag == "Player" && station.taskImage != null)
+                {
+                    contractText.text = station.contractDetail;
+                    questionsPanel.SetActive(true);
+                    station.taskImage.gameObject.SetActive(true);
+                }
             }
         }
     }

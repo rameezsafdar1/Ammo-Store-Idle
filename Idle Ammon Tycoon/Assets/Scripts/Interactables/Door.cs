@@ -8,7 +8,36 @@ public class Door : MonoBehaviour
 {
     public float doorHealth;
     public Button repairButton;
-    public UnityEvent buttonEvents;
+    public UnityEvent buttonEvents, onDoorHealthDown;
+
+    private void Start()
+    {
+        if (doorHealth > 0)
+        {
+            if (buttonEvents != null)
+            {
+                buttonEvents.Invoke();
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (doorHealth > 0)
+        {
+            doorHealth -= 2 * Time.deltaTime;
+
+            if (doorHealth <= 0)
+            {
+                if (onDoorHealthDown != null)
+                {
+                    onDoorHealthDown.Invoke();
+                    doorHealth = 0;
+                }
+            }
+        }
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
