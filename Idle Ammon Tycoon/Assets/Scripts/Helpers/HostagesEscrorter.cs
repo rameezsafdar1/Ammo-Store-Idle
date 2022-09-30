@@ -43,7 +43,7 @@ public class HostagesEscrorter : MonoBehaviour
             hostages[i].agent.SetDestination(CM.endPos.position);
         }
         Client.Agent.SetDestination(CM.endPos.position);
-
+        CM.clientsPool.Add(Client);
         GameObject go = Instantiate(coin, instPoint.position, Quaternion.identity);
         go.GetComponent<Coin>().cashAnimation = cashAnimation;
     }
