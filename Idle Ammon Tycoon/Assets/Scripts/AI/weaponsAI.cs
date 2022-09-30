@@ -7,8 +7,9 @@ public class weaponsAI : BaseClientProperties
 {
     public Image waitFill;
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
+        base.OnTriggerEnter(other);
         if (other.tag == "BuySpot")
         {
             taskImage.gameObject.SetActive(true);

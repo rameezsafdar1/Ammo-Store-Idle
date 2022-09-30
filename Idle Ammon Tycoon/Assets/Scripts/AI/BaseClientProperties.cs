@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public abstract class BaseClientProperties : MonoBehaviour
 {
     public NavMeshAgent Agent;
-    [HideInInspector]
+    //[HideInInspector]
     public Transform targetPosition, finalPosition;
     public Image taskImage, waitImage;
     public float accuracy;
@@ -28,5 +28,13 @@ public abstract class BaseClientProperties : MonoBehaviour
             transform.rotation = targetPosition.localRotation;
         }
     }
-    
+
+    public virtual void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Finish")
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
 }

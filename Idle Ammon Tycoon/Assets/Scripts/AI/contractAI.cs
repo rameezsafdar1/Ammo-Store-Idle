@@ -13,8 +13,9 @@ public class contractAI : BaseClientProperties
         transform.tag = "AI";
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
+        base.OnTriggerEnter(other);
         if (other.tag == "HelpDesk")
         {
             if (!consumed)
@@ -22,11 +23,5 @@ public class contractAI : BaseClientProperties
                 taskImage.gameObject.SetActive(true);
             }
         }
-
-        if (other.tag == "Finish")
-        {
-            gameObject.SetActive(false);
-        }
-
     }
 }
