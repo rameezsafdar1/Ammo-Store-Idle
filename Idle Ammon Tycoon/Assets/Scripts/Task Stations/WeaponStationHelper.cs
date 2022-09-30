@@ -63,7 +63,11 @@ public class WeaponStationHelper : MonoBehaviour
         {
             helper = null;
             tempFillTime = 0;
-            station.fillImage.fillAmount = 0;
+
+            if (station.fillImage != null)
+            {
+                station.fillImage.fillAmount = 0;
+            }
         }
     }
 

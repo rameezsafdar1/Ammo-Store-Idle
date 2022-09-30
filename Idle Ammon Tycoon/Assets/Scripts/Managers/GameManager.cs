@@ -29,6 +29,12 @@ public class GameManager : MonoBehaviour
         {
             Levels[i].SetActive(false);
         }
+
+        if (currentLevel >= Levels.Length)
+        {
+            currentLevel = Levels.Length - 1;
+        }
+
         Levels[currentLevel].SetActive(true);
         saveManager.Instance.saveCustomInts("Level", levelNumber);
     }
