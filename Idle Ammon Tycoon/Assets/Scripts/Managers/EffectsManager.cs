@@ -23,8 +23,6 @@ public class EffectsManager : MonoBehaviour
     public int scene;
     [HideInInspector]
     public int hostagesFreed;
-
-
     private void Awake()
     {
         if (Instance != null)
