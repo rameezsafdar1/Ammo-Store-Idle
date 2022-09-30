@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public ClientsManager contract_manager;
+    public ClientsManager[] contract_manager;
     public int ContractCustomers;
     [Range(0.3f, 10)]
     public float ContractCoolDown;
-    public weaponsClientManager weapon_manager;
+    public weaponsClientManager[] weapon_manager;
     public int WeaponCustomers;
     [Range(0.3f, 10)]
     public float WeaponCoolDown;
@@ -19,12 +19,20 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        contract_manager.maxClientAvaialable = ContractCustomers;
-        contract_manager.clientCoolDown = ContractCoolDown;
-        contract_manager.tempTime = ContractCoolDown;
-        weapon_manager.maxClientAvaialable = WeaponCustomers;
-        weapon_manager.clientCoolDown = WeaponCoolDown;
-        weapon_manager.tempTime = ContractCoolDown;
+
+        for (int i = 0; i < contract_manager.Length; i++)
+        {
+            contract_manager[i].maxClientAvaialable = ContractCustomers;
+            contract_manager[i].clientCoolDown = ContractCoolDown;
+            contract_manager[i].tempTime = ContractCoolDown;
+        }
+
+        for (int j = 0; j < contract_manager.Length; j++)
+        {
+            weapon_manager[j].maxClientAvaialable = WeaponCustomers;
+            weapon_manager[j].clientCoolDown = WeaponCoolDown;
+            weapon_manager[j].tempTime = ContractCoolDown;
+        }
 
 
         combat_manager.battleAreas = new GameObject[areas.Length];
