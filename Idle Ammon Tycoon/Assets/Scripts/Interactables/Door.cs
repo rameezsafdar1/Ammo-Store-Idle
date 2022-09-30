@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class Door : MonoBehaviour
 {
     public float doorHealth;
+    private float tempHealth;
     public Button repairButton;
     public UnityEvent buttonEvents, onDoorHealthDown;
-
     private void Start()
     {
         if (doorHealth > 0)
         {
+            tempHealth = doorHealth;
             if (buttonEvents != null)
             {
                 buttonEvents.Invoke();
@@ -45,7 +46,7 @@ public class Door : MonoBehaviour
         {
             repairButton.onClick.RemoveAllListeners();
             repairButton.onClick.AddListener(() => buttonEvents.Invoke());
-            repairButton.onClick.AddListener(() => setHealth(50));
+            repairButton.onClick.AddListener(() => setHealth(tempHealth));
             repairButton.gameObject.SetActive(true);
 
             if (doorHealth <= 0)

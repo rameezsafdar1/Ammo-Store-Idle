@@ -12902,6 +12902,7 @@ MonoBehaviour:
   Coin: {fileID: 4127773076206209790, guid: 20e7b4d97e901384594a6fbfe738e4d7, type: 3}
   cashAnimation: {fileID: 1633254036}
   coinInstPoint: {fileID: 462415676}
+  signed: 0
 --- !u!54 &462415678
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13440,6 +13441,7 @@ MonoBehaviour:
   Coin: {fileID: 4127773076206209790, guid: 20e7b4d97e901384594a6fbfe738e4d7, type: 3}
   cashAnimation: {fileID: 1633254036}
   coinInstPoint: {fileID: 473992009}
+  signed: 0
 --- !u!54 &473992011
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22894,7 +22896,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762437262}
-  m_LocalRotation: {x: 0.32383618, y: -0.000000023022242, z: 0.000000007880067, w: 0.94611317}
+  m_LocalRotation: {x: 0.32383618, y: 0.000000023022238, z: -0.0000000078800655, w: 0.94611317}
   m_LocalPosition: {x: 0.26, y: 23.989998, z: -34.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -47477,6 +47479,7 @@ MonoBehaviour:
   Coin: {fileID: 4127773076206209790, guid: 20e7b4d97e901384594a6fbfe738e4d7, type: 3}
   cashAnimation: {fileID: 1633254036}
   coinInstPoint: {fileID: 1535446478}
+  signed: 0
 --- !u!54 &1535446481
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -50014,7 +50017,7 @@ MonoBehaviour:
   weapon_manager:
   - {fileID: 922461733}
   - {fileID: 1417224300}
-  WeaponCustomers: 5
+  WeaponCustomers: 2
   WeaponCoolDown: 1
   combat_manager: {fileID: 82935579}
   areas:
@@ -51987,7 +51990,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633965413}
-  m_LocalRotation: {x: 0.32383618, y: -0.000000023022242, z: 0.000000007880067, w: 0.94611317}
+  m_LocalRotation: {x: 0.32383618, y: 0.000000023022238, z: -0.0000000078800655, w: 0.94611317}
   m_LocalPosition: {x: 0.26, y: 23.989998, z: -34.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -64201,6 +64204,7 @@ MonoBehaviour:
   Coin: {fileID: 4127773076206209790, guid: 20e7b4d97e901384594a6fbfe738e4d7, type: 3}
   cashAnimation: {fileID: 1633254036}
   coinInstPoint: {fileID: 2025277271}
+  signed: 0
 --- !u!54 &2025277273
 Rigidbody:
   m_ObjectHideFlags: 0

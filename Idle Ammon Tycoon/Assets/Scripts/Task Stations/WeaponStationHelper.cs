@@ -14,6 +14,7 @@ public class WeaponStationHelper : MonoBehaviour
     public Transform happyParticles, endPosition;
     public GameObject Coin;
     public Transform cashAnimation, coinInstPoint;
+    public bool signed;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,7 +23,7 @@ public class WeaponStationHelper : MonoBehaviour
             helper = other.GetComponent<PlayerHelper>();
         }
 
-        if (helper.hasGunForSale)
+        if (helper.hasGunForSale && signed)
         {
             helper.hasGunForSale = false;
             helper.gunContractSigned = false;
@@ -46,7 +47,7 @@ public class WeaponStationHelper : MonoBehaviour
                     station.waitImage.gameObject.SetActive(true);
                     station.taskImage = null;
                     station.fillImage.fillAmount = 0;
-
+                    signed = true;
                     if (onContractSigned != null)
                     {
                         onContractSigned.Invoke();
@@ -79,6 +80,7 @@ public class WeaponStationHelper : MonoBehaviour
         weaponClient.clientDealt();
         GameObject go = Instantiate(Coin, coinInstPoint.position, Quaternion.identity);
         go.GetComponent<Coin>().cashAnimation = cashAnimation.gameObject;
+        signed = false;
     }
 
 }
