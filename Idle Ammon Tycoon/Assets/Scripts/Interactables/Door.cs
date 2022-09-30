@@ -71,6 +71,14 @@ public class Door : MonoBehaviour
     public void setHealth(float health)
     {
         doorHealth = health;
+        if (doorHealth <= 0)
+        {
+            if (onDoorHealthDown != null)
+            {
+                onDoorHealthDown.Invoke();
+                doorHealth = 0;
+            }
+        }
     }
 
 }

@@ -13,15 +13,11 @@ public class BattleStationHelper : MonoBehaviour
     public Button acceptButton;
     private PlayerHelper helper;
 
-    private void Start()
-    {
-        acceptButton.onClick.AddListener(() => acceptContract());
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
+            acceptButton.onClick.AddListener(() => acceptContract());
             helper = other.GetComponent<PlayerHelper>();
         }
     }

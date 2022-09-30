@@ -12,11 +12,14 @@ public class ClientsManager : BaseClientManager
     public Transform hostageInstPoint, waitArea;
     public Button acceptButton, rejectButton;
     public bool playerOriented;
+    public TriggerPoint trigger;
 
     private void OnEnable()
     {
         if (playerOriented)
         {
+            acceptButton.onClick.RemoveAllListeners();
+            rejectButton.onClick.RemoveAllListeners();
             acceptButton.onClick.AddListener(() => clientAccepted());
             rejectButton.onClick.AddListener(() => clientDealt());
         }
@@ -24,12 +27,14 @@ public class ClientsManager : BaseClientManager
 
     public override void clientDealt()
     {
+        acceptButton.transform.parent.gameObject.SetActive(false);
         battlestation.station.taskImage = null;
         base.clientDealt();
     }
 
     public void clientAccepted()
     {
+        acceptButton.transform.parent.gameObject.SetActive(false);
         battlestation.station.taskImage = null;
         clientsEngaged[0].Agent.SetDestination(waitArea.position);
         clientsEngaged[0].tag = "Client";
@@ -53,7 +58,7 @@ public class ClientsManager : BaseClientManager
         {
             currentDestination = 0;
         }
-
+        trigger.activate();
     }
 
     public void contractCompleted()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    private ActivityManager activityManager;
+    public FinishTrigger finishTrigger;
     public ClientsManager[] contract_manager;
     public int ContractCustomers;
     [Range(0.3f, 10)]
@@ -19,7 +21,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-
+        activityManager = GetComponent<ActivityManager>();
         for (int i = 0; i < contract_manager.Length; i++)
         {
             contract_manager[i].maxClientAvaialable = ContractCustomers;
@@ -41,6 +43,12 @@ public class LevelManager : MonoBehaviour
             combat_manager.battleAreas[i] = areas[i];
         }
 
+        if (activityManager != null)
+        {
+            finishTrigger.activity = activityManager;
+            int eventcount = (contract_manager.Length * ContractCustomers) + (weapon_manager.Length * WeaponCustomers);
+            activityManager.totalEvents = eventcount;
+        }
     }
 
 }

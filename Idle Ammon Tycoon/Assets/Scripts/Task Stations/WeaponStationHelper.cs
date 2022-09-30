@@ -23,36 +23,42 @@ public class WeaponStationHelper : MonoBehaviour
             helper = other.GetComponent<PlayerHelper>();
         }
 
-        if (helper.hasGunForSale && signed)
+        if (helper != null)
         {
-            helper.hasGunForSale = false;
-            helper.gunContractSigned = false;
-            station.ai.waitImage.gameObject.SetActive(false);
-            StartCoroutine(wait());
+            if (helper.hasGunForSale && signed)
+            {
+                helper.hasGunForSale = false;
+                helper.gunContractSigned = false;
+                station.ai.waitImage.gameObject.SetActive(false);
+                StartCoroutine(wait());
+            }
         }
 
     }
     private void OnTriggerStay(Collider other)
     {
-        if (!helper.killContractSigned && !helper.gunContractSigned)
+        if (helper != null)
         {
-            if (other.tag == "Player" && station.taskImage != null)
+            if (!helper.killContractSigned && !helper.gunContractSigned)
             {
-                tempFillTime += Time.deltaTime;
-                station.fillImage.fillAmount = tempFillTime / fillTime;
-                if (tempFillTime >= fillTime)
+                if (other.tag == "Player" && station.taskImage != null)
                 {
-                    helper.gunContractSigned = true;
-                    station.taskImage.gameObject.SetActive(false);
-                    station.waitImage.gameObject.SetActive(true);
-                    station.taskImage = null;
-                    station.fillImage.fillAmount = 0;
-                    signed = true;
-                    if (onContractSigned != null)
+                    tempFillTime += Time.deltaTime;
+                    station.fillImage.fillAmount = tempFillTime / fillTime;
+                    if (tempFillTime >= fillTime)
                     {
-                        onContractSigned.Invoke();
+                        helper.gunContractSigned = true;
+                        station.taskImage.gameObject.SetActive(false);
+                        station.waitImage.gameObject.SetActive(true);
+                        station.taskImage = null;
+                        station.fillImage.fillAmount = 0;
+                        signed = true;
+                        if (onContractSigned != null)
+                        {
+                            onContractSigned.Invoke();
+                        }
+                        tempFillTime = 0;
                     }
-                    tempFillTime = 0;
                 }
             }
         }
