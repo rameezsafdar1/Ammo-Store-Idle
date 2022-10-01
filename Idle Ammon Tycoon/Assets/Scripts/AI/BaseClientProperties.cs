@@ -25,7 +25,7 @@ public abstract class BaseClientProperties : MonoBehaviour
         anim.SetFloat("Velocity", Agent.velocity.magnitude); 
         if (Agent.velocity.magnitude <= 0.1f && targetPosition != null)
         {
-            transform.rotation = targetPosition.localRotation;
+            transform.localRotation = targetPosition.localRotation;
         }
     }
 

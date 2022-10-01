@@ -13,6 +13,8 @@ TagManager:
   - Buyer
   - BuySpot
   - Stopper
+  - Worker
+  - WorkerInteractable
   layers:
   - Default
   - TransparentFX

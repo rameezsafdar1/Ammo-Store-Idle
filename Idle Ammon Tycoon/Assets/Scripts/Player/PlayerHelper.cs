@@ -5,5 +5,5 @@ using UnityEngine.UI;
 
 public class PlayerHelper : MonoBehaviour
 {
-    public bool gunContractSigned, hasGunForSale, killContractSigned;
+    public bool mainPlayer, gunContractSigned, hasGunForSale, killContractSigned;
 }

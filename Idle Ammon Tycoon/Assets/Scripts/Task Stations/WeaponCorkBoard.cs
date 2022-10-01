@@ -31,9 +31,7 @@ public class WeaponCorkBoard : MonoBehaviour
                 if (tempWait >= waitTime)
                 {
                     helper.hasGunForSale = true;
-                    weaponsOnBoard[currentSoldGun].gameObject.SetActive(false);
-                    StartCoroutine(wait(weaponsOnBoard[currentSoldGun]));
-                    currentSoldGun++;
+                    takeGun();
                     tempWait = 0;
                     fillImage.fillAmount = tempWait;
                 }
@@ -58,4 +56,10 @@ public class WeaponCorkBoard : MonoBehaviour
         currentSoldGun--;
     }
 
+    public void takeGun()
+    {
+        weaponsOnBoard[currentSoldGun].gameObject.SetActive(false);
+        StartCoroutine(wait(weaponsOnBoard[currentSoldGun]));
+        currentSoldGun++;
+    }
 }

@@ -10,17 +10,21 @@ public class WeaponStationHelper : MonoBehaviour
     public UnityEvent onContractSigned, onContractCompleted;
     public float fillTime;
     private float tempFillTime;
+    [SerializeField]
     private PlayerHelper helper;
-    public Transform happyParticles, endPosition;
+    public Transform collectionPoint, happyParticles, endPosition;
     public GameObject Coin;
     public Transform cashAnimation, coinInstPoint;
     public bool signed;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (helper == null)
         {
-            helper = other.GetComponent<PlayerHelper>();
+            if (other.tag == "Player" || other.tag == "Worker")
+            {
+                helper = other.GetComponent<PlayerHelper>();
+            }
         }
 
         if (helper != null)
@@ -33,40 +37,51 @@ public class WeaponStationHelper : MonoBehaviour
                 StartCoroutine(wait());
             }
         }
-
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (helper != null)
         {
             if (!helper.killContractSigned && !helper.gunContractSigned)
             {
-                if (other.tag == "Player" && station.taskImage != null)
+                if (other.tag == "Player" || other.tag == "Worker")
                 {
-                    tempFillTime += Time.deltaTime;
-                    station.fillImage.fillAmount = tempFillTime / fillTime;
-                    if (tempFillTime >= fillTime)
+                    if (station.taskImage != null)
                     {
-                        helper.gunContractSigned = true;
-                        station.taskImage.gameObject.SetActive(false);
-                        station.waitImage.gameObject.SetActive(true);
-                        station.taskImage = null;
-                        station.fillImage.fillAmount = 0;
-                        signed = true;
-                        if (onContractSigned != null)
+                        tempFillTime += Time.deltaTime;
+                        station.fillImage.fillAmount = tempFillTime / fillTime;
+                        if (tempFillTime >= fillTime)
                         {
-                            onContractSigned.Invoke();
+                            helper.gunContractSigned = true;
+                            station.taskImage.gameObject.SetActive(false);
+                            station.waitImage.gameObject.SetActive(true);
+                            station.taskImage = null;
+                            station.fillImage.fillAmount = 0;
+                            signed = true;
+                            if (onContractSigned != null)
+                            {
+                                onContractSigned.Invoke();
+                            }
+                            tempFillTime = 0;
                         }
-                        tempFillTime = 0;
                     }
                 }
+            }
+        }
+
+        else
+        {
+            if (other.tag == "Worker")
+            {
+                helper = other.GetComponent<PlayerHelper>();
             }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player" && !helper.gunContractSigned)
+        if (other.tag == "Player" && helper.mainPlayer && !helper.gunContractSigned)
         {
             helper = null;
             tempFillTime = 0;
@@ -76,6 +91,7 @@ public class WeaponStationHelper : MonoBehaviour
                 station.fillImage.fillAmount = 0;
             }
         }
+
     }
 
     private IEnumerator wait()
