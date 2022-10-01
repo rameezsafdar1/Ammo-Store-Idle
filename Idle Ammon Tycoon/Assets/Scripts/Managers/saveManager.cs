@@ -22,24 +22,28 @@ public class saveManager : MonoBehaviour
 
     private void Start()
     {
+        totalGems = PlayerPrefs.GetInt("Gems");
+        totalCash = PlayerPrefs.GetInt("Cash");
         addCash(0);
         addGem(0);
     }
 
     public void addCash(int cash)
     {
-        totalCash = PlayerPrefs.GetInt("Cash");
         totalCash += cash;
-        PlayerPrefs.SetInt("Cash", totalCash);
         cashText.text = EffectsManager.Instance.currencyShortener((float)totalCash);
     }
 
     public void addGem()
     {
-        totalGems = PlayerPrefs.GetInt("Gems");
         totalGems += 1;
-        PlayerPrefs.SetInt("Gems", totalGems);
         gemsText.text = EffectsManager.Instance.currencyShortener((float)totalGems) + " / 30";
+    }
+
+    public void savePermanentGems()
+    {
+        PlayerPrefs.SetInt("Gems", totalGems);
+        PlayerPrefs.SetInt("Cash", totalCash);
     }
 
     public void addGem(int gems)
@@ -52,7 +56,6 @@ public class saveManager : MonoBehaviour
 
     public int loadCash()
     {
-        totalCash = PlayerPrefs.GetInt("Cash");
         return totalCash;
     }
 

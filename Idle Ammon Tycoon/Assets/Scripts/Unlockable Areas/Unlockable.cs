@@ -46,6 +46,7 @@ public class Unlockable : MonoBehaviour
                 if (Price <= 0)
                 {
                     saveManager.Instance.saveCustomInts(transform.name, 1);
+                    saveManager.Instance.savePermanentGems();
                     if (onUnlock != null)
                     {
                         onUnlock.Invoke();

@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public void nextLevel()
     {
+        saveManager.Instance.savePermanentGems();
         currentLevel++;
         for (int i = 0; i < Levels.Length; i++)
         {

@@ -28278,7 +28278,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762437262}
-  m_LocalRotation: {x: 0.32383618, y: -0.000000023022242, z: 0.000000007880067, w: 0.94611317}
+  m_LocalRotation: {x: 0.32383618, y: 0.000000023022238, z: -0.0000000078800655, w: 0.94611317}
   m_LocalPosition: {x: 1.7, y: 23.989998, z: -29.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -63108,6 +63108,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 710779769}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDisableEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -63131,8 +63143,8 @@ MonoBehaviour:
   weapon_manager:
   - {fileID: 922461733}
   - {fileID: 1417224300}
-  WeaponCustomers: 4
-  WeaponCoolDown: 1
+  WeaponCustomers: 10
+  WeaponCoolDown: 0.3
   combat_manager: {fileID: 82935579}
   areas:
   - {fileID: 1068158740}
@@ -65273,7 +65285,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633965413}
-  m_LocalRotation: {x: 0.32383618, y: -0.000000023022242, z: 0.000000007880067, w: 0.94611317}
+  m_LocalRotation: {x: 0.32383618, y: 0.000000023022238, z: -0.0000000078800655, w: 0.94611317}
   m_LocalPosition: {x: 1.7, y: 23.989998, z: -29.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -112965,7 +112977,7 @@ PrefabInstance:
     - target: {fileID: 7769596382518047112, guid: 3fc4db7d9b91fd446bc23ed07062888f, type: 3}
       propertyPath: onUnlock.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 710779772}
     - target: {fileID: 7769596382518047112, guid: 3fc4db7d9b91fd446bc23ed07062888f, type: 3}
       propertyPath: onUnlock.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2

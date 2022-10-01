@@ -18,31 +18,35 @@ public abstract class BaseClientManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentClient < maxClientAvaialable && clientsEngaged.Count < destinationPoints.Count)
+        if (maxClientAvaialable > 0)
         {
-            tempTime += Time.deltaTime;
-
-            if (tempTime >= clientCoolDown)
+            if (currentClient < destinationPoints.Count && clientsEngaged.Count < destinationPoints.Count)
             {
-                clientsPool[currentClient].transform.position = startPos.position;
-                clientsPool[currentClient].targetPosition = destinationPoints[currentDestination];
-                clientsPool[currentClient].gameObject.SetActive(true);
-                clientsEngaged.Add(clientsPool[currentClient]);
-                clientsPool.Remove(clientsPool[currentClient]);
-                currentClient++;
-                currentDestination++;
+                tempTime += Time.deltaTime;
 
-                if (currentDestination >= destinationPoints.Count)
+                if (tempTime >= clientCoolDown)
                 {
-                    currentDestination = destinationPoints.Count;
-                }
+                    maxClientAvaialable--;
+                    clientsPool[currentClient].transform.position = startPos.position;
+                    clientsPool[currentClient].targetPosition = destinationPoints[currentDestination];
+                    clientsPool[currentClient].gameObject.SetActive(true);
+                    clientsEngaged.Add(clientsPool[currentClient]);
+                    clientsPool.Remove(clientsPool[currentClient]);
+                    currentClient++;
+                    currentDestination++;
 
-                if (currentClient >= clientsPool.Count)
-                {
-                    currentClient = 0;
-                }
+                    if (currentDestination >= destinationPoints.Count)
+                    {
+                        currentDestination = destinationPoints.Count;
+                    }
 
-                tempTime = 0;
+                    if (currentClient >= clientsPool.Count)
+                    {
+                        currentClient = 0;
+                    }
+
+                    tempTime = 0;
+                }
             }
         }
     }
