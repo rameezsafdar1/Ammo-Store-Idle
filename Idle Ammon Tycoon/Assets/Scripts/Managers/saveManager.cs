@@ -59,6 +59,11 @@ public class saveManager : MonoBehaviour
         return totalCash;
     }
 
+    public int loadGems()
+    {
+        return totalGems;
+    }
+
     public float currentDay()
     {
         currentDayNumber = PlayerPrefs.GetFloat("currentDay");
