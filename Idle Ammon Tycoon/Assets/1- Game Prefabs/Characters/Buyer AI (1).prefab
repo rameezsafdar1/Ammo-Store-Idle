@@ -1614,7 +1614,7 @@ GameObject:
   - component: {fileID: 4755273992760361804}
   - component: {fileID: 3975795660277908399}
   - component: {fileID: 7996726105797275635}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Buyer AI (1)
   m_TagString: Buyer
   m_Icon: {fileID: 0}

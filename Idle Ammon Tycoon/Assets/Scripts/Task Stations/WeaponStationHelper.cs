@@ -14,8 +14,12 @@ public class WeaponStationHelper : MonoBehaviour
     private PlayerHelper helper;
     public Transform collectionPoint, happyParticles, endPosition;
     public GameObject Coin;
-    public Transform cashAnimation, coinInstPoint;
+    public Transform cashAnimation;
+    public Transform[] coinInstPoint;
+    private int currentCoinPosition;
     public bool signed;
+    [HideInInspector]
+    public bool hasWorker;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,11 +33,18 @@ public class WeaponStationHelper : MonoBehaviour
 
         if (helper != null)
         {
+            PlayerHelper tempHelper = other.GetComponent<PlayerHelper>();
+
+            if (tempHelper != helper)
+            {
+                return;
+            }
             if (helper.hasGunForSale && signed)
             {
                 helper.hasGunForSale = false;
                 helper.gunContractSigned = false;
                 station.ai.waitImage.gameObject.SetActive(false);
+                helper = null;
                 StartCoroutine(wait());
             }
         }
@@ -83,7 +94,10 @@ public class WeaponStationHelper : MonoBehaviour
     {
         if (other.tag == "Player" && helper.mainPlayer && !helper.gunContractSigned)
         {
-            helper = null;
+            if (hasWorker)
+            {
+                helper = null;
+            }
             tempFillTime = 0;
 
             if (station.fillImage != null)
@@ -100,8 +114,15 @@ public class WeaponStationHelper : MonoBehaviour
         yield return new WaitForSeconds(2f);
         station.ai.finalPosition = endPosition;
         weaponClient.clientDealt();
-        GameObject go = Instantiate(Coin, coinInstPoint.position, Quaternion.identity);
+        GameObject go = Instantiate(Coin, coinInstPoint[currentCoinPosition].position, Quaternion.identity);
         go.GetComponent<Coin>().cashAnimation = cashAnimation.gameObject;
+        currentCoinPosition++;
+
+        if (currentCoinPosition >= coinInstPoint.Length)
+        {
+            currentCoinPosition = 0;
+        }
+
         signed = false;
     }
 

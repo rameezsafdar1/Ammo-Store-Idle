@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 4194540164488332993}
   - component: {fileID: 6245854039414372431}
   - component: {fileID: 5064845298008382252}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hostage (2)
   m_TagString: Hostage
   m_Icon: {fileID: 0}

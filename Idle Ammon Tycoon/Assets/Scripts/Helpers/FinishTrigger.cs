@@ -8,9 +8,12 @@ public class FinishTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Client" || other.tag == "Buyer" || other.tag == "AI")
+        if (activity != null)
         {
-            activity.eventDone();
+            if (other.tag == "Client" || other.tag == "Buyer" || other.tag == "AI")
+            {
+                activity.eventDone();
+            }
         }
     }
 }

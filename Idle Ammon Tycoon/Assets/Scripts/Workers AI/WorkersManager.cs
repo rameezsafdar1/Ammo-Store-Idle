@@ -11,9 +11,10 @@ public class WorkersManager : MonoBehaviour
 
     public void unlockWeaponWorker()
     {
-        weaponWorkers[unlockedWeaponWorker].stationPoint = weaponStations[unlockedWeaponWorker];
+        weaponWorkers[unlockedWeaponWorker].stationPoint = weaponStations[unlockedWeaponWorker];        
         weaponWorkers[unlockedWeaponWorker].collectionPoint = weaponStations[unlockedWeaponWorker].collectionPoint;
         weaponWorkers[unlockedWeaponWorker].gameObject.SetActive(true);
+        weaponStations[unlockedWeaponWorker].hasWorker = true;
         unlockedWeaponWorker++;
 
         if (unlockedWeaponWorker >= weaponWorkers.Length)
