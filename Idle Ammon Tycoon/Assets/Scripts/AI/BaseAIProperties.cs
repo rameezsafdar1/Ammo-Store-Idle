@@ -30,6 +30,7 @@ public abstract class BaseAIProperties : MonoBehaviour, iDamagable
     protected Vector3 randomDirection;
     [HideInInspector]
     public AIWaveManager waveManager;
+    public Gem gem;
 
     public virtual void Start()
     {
@@ -94,6 +95,13 @@ public abstract class BaseAIProperties : MonoBehaviour, iDamagable
         anim.SetBool("isHit", true);
         if (health <= 0)
         {
+            if (gem != null)
+            {
+                gem.realParent = transform;
+                gem.transform.parent = null;
+                gem.gameObject.SetActive(true);
+            }
+
             lerpColor = col;
             for (int i = 0; i < propertyBlock.Length; i++)
             {

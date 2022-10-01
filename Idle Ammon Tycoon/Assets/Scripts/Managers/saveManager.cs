@@ -7,8 +7,8 @@ public class saveManager : MonoBehaviour
 {
     public static saveManager Instance;
     private float currentDayNumber;
-    private int totalCash;
-    public TextMeshProUGUI cashText;
+    private int totalCash, totalGems;
+    public TextMeshProUGUI cashText, gemsText;
 
     private void Awake()
     {
@@ -23,6 +23,7 @@ public class saveManager : MonoBehaviour
     private void Start()
     {
         addCash(0);
+        addGem(0);
     }
 
     public void addCash(int cash)
@@ -31,6 +32,22 @@ public class saveManager : MonoBehaviour
         totalCash += cash;
         PlayerPrefs.SetInt("Cash", totalCash);
         cashText.text = EffectsManager.Instance.currencyShortener((float)totalCash);
+    }
+
+    public void addGem()
+    {
+        totalGems = PlayerPrefs.GetInt("Gems");
+        totalGems += 1;
+        PlayerPrefs.SetInt("Gems", totalGems);
+        gemsText.text = EffectsManager.Instance.currencyShortener((float)totalGems) + " / 30";
+    }
+
+    public void addGem(int gems)
+    {
+        totalGems = PlayerPrefs.GetInt("Gems");
+        totalGems += gems;
+        PlayerPrefs.SetInt("Gems", totalGems);
+        gemsText.text = EffectsManager.Instance.currencyShortener((float)totalGems) + " / 30";
     }
 
     public int loadCash()

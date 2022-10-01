@@ -105,7 +105,6 @@ public class WeaponStationHelper : MonoBehaviour
                 station.fillImage.fillAmount = 0;
             }
         }
-
     }
 
     private IEnumerator wait()
