@@ -45,6 +45,7 @@ public class Unlockable : MonoBehaviour
         {
             if (other.tag == "Player" && availableCash >= 5)
             {
+                availableCash -= 5;
                 Price -= 5;
                 saveManager.Instance.addCash(-5);
                 priceText.text = Price.ToString();
@@ -66,10 +67,12 @@ public class Unlockable : MonoBehaviour
         {
             if (other.tag == "Player" && availableGems >= 5 && availableCash >= 5)
             {
+                availableGems -= 5;
                 Gems -= 5;
                 saveManager.Instance.addGem(-5);
                 GemsText.text = Gems.ToString();
 
+                availableCash -= 5;
                 Price -= 5;
                 saveManager.Instance.addCash(-5);
                 priceText.text = Price.ToString();

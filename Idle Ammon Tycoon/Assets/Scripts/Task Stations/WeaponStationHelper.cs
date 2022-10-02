@@ -7,6 +7,7 @@ public class WeaponStationHelper : MonoBehaviour
 {
     public WeaponStation station;
     public weaponsClientManager weaponClient;
+    public WorkersManager workersmanager;
     public UnityEvent onContractSigned, onContractCompleted;
     public float fillTime;
     private float tempFillTime;
@@ -20,6 +21,14 @@ public class WeaponStationHelper : MonoBehaviour
     public bool signed;
     [HideInInspector]
     public bool hasWorker;
+
+    private void OnEnable()
+    {
+        if (!workersmanager.weaponStations.Contains(this))
+        {
+            workersmanager.weaponStations.Add(this);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
