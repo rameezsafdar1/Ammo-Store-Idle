@@ -37,7 +37,7 @@ public class saveManager : MonoBehaviour
     public void addGem()
     {
         totalGems += 1;
-        gemsText.text = EffectsManager.Instance.currencyShortener((float)totalGems) + " / 30";
+        gemsText.text = EffectsManager.Instance.currencyShortener((float)totalGems);
     }
 
     public void savePermanentGems()
@@ -51,7 +51,7 @@ public class saveManager : MonoBehaviour
         totalGems = PlayerPrefs.GetInt("Gems");
         totalGems += gems;
         PlayerPrefs.SetInt("Gems", totalGems);
-        gemsText.text = EffectsManager.Instance.currencyShortener((float)totalGems) + " / 30";
+        gemsText.text = EffectsManager.Instance.currencyShortener((float)totalGems);
     }
 
     public int loadCash()

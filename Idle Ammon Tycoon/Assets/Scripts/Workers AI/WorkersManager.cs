@@ -9,6 +9,7 @@ public class WorkersManager : MonoBehaviour
     public GunWorker[] weaponWorkers;
     public List<WeaponStationHelper> weaponStations = new List<WeaponStationHelper>();
     private List<WeaponStationHelper> removableSlots = new List<WeaponStationHelper>();
+    private List<WeaponStationHelper> removableSlotstwo = new List<WeaponStationHelper>();
     private int unlockedWeaponWorker;
     public Button workerButton, mechanicButton;
 
@@ -27,6 +28,7 @@ public class WorkersManager : MonoBehaviour
 
     public void unlockWeaponWorker()
     {
+        clearStationswithnoclient();
         if (saveManager.Instance.loadCash() >= 100)
         {
             saveManager.Instance.addCash(-100);
@@ -44,6 +46,19 @@ public class WorkersManager : MonoBehaviour
             }
         }
     }
+
+
+    private void clearStationswithnoclient()
+    {
+        for (int i = 0; i < weaponStations.Count; i++)
+        {
+            if (weaponStations[i].weaponClient.maxClientAvaialable <= 0)
+            {
+
+            }
+        }
+    }
+
 
     public void clearStations()
     {

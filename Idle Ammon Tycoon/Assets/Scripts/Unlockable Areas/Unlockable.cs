@@ -41,55 +41,37 @@ public class Unlockable : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Price > 0 && Gems == 0)
+        if (Price > 0)
         {
+            if (Gems > 0)
+            {
+                if (other.tag == "Player" && availableGems >= 5)
+                {
+                    availableGems -= 5;
+                    Gems -= 5;
+                    saveManager.Instance.addGem(-5);
+                    GemsText.text = Gems.ToString();
+                }
+            }
+
             if (other.tag == "Player" && availableCash >= 5)
             {
                 availableCash -= 5;
                 Price -= 5;
                 saveManager.Instance.addCash(-5);
                 priceText.text = Price.ToString();
-
-                if (Price <= 0)
-                {
-                    saveManager.Instance.saveCustomInts(transform.name, 1);
-                    saveManager.Instance.savePermanentGems();
-                    if (onUnlock != null)
-                    {
-                        onUnlock.Invoke();
-                    }
-                }
-
             }
-        }
 
-        if (Gems > 0 && Price > 0)
-        {
-            if (other.tag == "Player" && availableGems >= 5 && availableCash >= 5)
+            if (Price <= 0 && Gems <= 0)
             {
-                availableGems -= 5;
-                Gems -= 5;
-                saveManager.Instance.addGem(-5);
-                GemsText.text = Gems.ToString();
-
-                availableCash -= 5;
-                Price -= 5;
-                saveManager.Instance.addCash(-5);
-                priceText.text = Price.ToString();
-
-                if (Price <= 0 && Gems <= 0)
+                saveManager.Instance.saveCustomInts(transform.name, 1);
+                saveManager.Instance.savePermanentGems();
+                if (onUnlock != null)
                 {
-                    saveManager.Instance.saveCustomInts(transform.name, 1);
-                    saveManager.Instance.savePermanentGems();
-                    if (onUnlock != null)
-                    {
-                        onUnlock.Invoke();
-                    }
+                    onUnlock.Invoke();
                 }
-
             }
+
         }
     }
-
-
 }
