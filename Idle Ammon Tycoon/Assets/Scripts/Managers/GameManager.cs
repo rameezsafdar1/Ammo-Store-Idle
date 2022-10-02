@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public bool debug;
+    public int forceCash;
     public GameObject[] Levels;
     public int currentLevel;
 
@@ -17,7 +18,15 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Levels[currentLevel].SetActive(true);
+            Levels[currentLevel].SetActive(true);            
+        }
+    }
+
+    private void Start()
+    {
+        if (debug)
+        {
+            saveManager.Instance.addCash(forceCash);
         }
     }
 

@@ -18,10 +18,6 @@ public class saveManager : MonoBehaviour
             return;
         }
         Instance = this;
-    }
-
-    private void Start()
-    {
         totalGems = PlayerPrefs.GetInt("Gems");
         totalCash = PlayerPrefs.GetInt("Cash");
         addCash(0);
