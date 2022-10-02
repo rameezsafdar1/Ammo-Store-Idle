@@ -43,7 +43,7 @@ public class Unlockable : MonoBehaviour
     {
         if (Price > 0 && Gems == 0)
         {
-            if (other.tag == "Player" && availableCash >= Price)
+            if (other.tag == "Player" && availableCash >= 5)
             {
                 Price -= 5;
                 saveManager.Instance.addCash(-5);
@@ -64,7 +64,7 @@ public class Unlockable : MonoBehaviour
 
         if (Gems > 0 && Price > 0)
         {
-            if (other.tag == "Player" && availableGems >= Gems && availableCash >= Price)
+            if (other.tag == "Player" && availableGems >= 5 && availableCash >= 5)
             {
                 Gems -= 5;
                 saveManager.Instance.addGem(-5);

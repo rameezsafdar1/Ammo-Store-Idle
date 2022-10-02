@@ -129,7 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Price: 20
+  Gems: 0
   priceText: {fileID: 7769596383503723479}
+  GemsText: {fileID: 0}
   onUnlock:
     m_PersistentCalls:
       m_Calls:
@@ -251,7 +253,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: d61587a2d9bcf4cb6b573be18771106a, type: 3}
   m_Color: {r: 0.15218942, g: 0.7169812, b: 0.41497442, a: 1}
   m_FlipX: 0

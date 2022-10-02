@@ -44,7 +44,10 @@ public class WeaponStationHelper : MonoBehaviour
                 helper.hasGunForSale = false;
                 helper.gunContractSigned = false;
                 station.ai.waitImage.gameObject.SetActive(false);
-                helper = null;
+                if (hasWorker)
+                {
+                    helper = null;
+                }
                 StartCoroutine(wait());
             }
         }
@@ -94,10 +97,7 @@ public class WeaponStationHelper : MonoBehaviour
     {
         if (other.tag == "Player" && helper.mainPlayer && !helper.gunContractSigned)
         {
-            if (hasWorker)
-            {
-                helper = null;
-            }
+            helper = null;
             tempFillTime = 0;
 
             if (station.fillImage != null)
