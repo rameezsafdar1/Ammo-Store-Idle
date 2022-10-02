@@ -44,9 +44,7 @@ public class saveManager : MonoBehaviour
 
     public void addGem(int gems)
     {
-        totalGems = PlayerPrefs.GetInt("Gems");
         totalGems += gems;
-        PlayerPrefs.SetInt("Gems", totalGems);
         gemsText.text = EffectsManager.Instance.currencyShortener((float)totalGems);
     }
 
