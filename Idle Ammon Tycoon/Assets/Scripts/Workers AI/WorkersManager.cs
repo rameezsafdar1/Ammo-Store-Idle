@@ -16,7 +16,15 @@ public class WorkersManager : MonoBehaviour
     public List<WeaponStationHelper> weaponStations = new List<WeaponStationHelper>();
     private List<WeaponStationHelper> removableSlots = new List<WeaponStationHelper>();
     private List<WeaponStationHelper> removableSlotstwo = new List<WeaponStationHelper>();    
+
+    [Header("Mercenary Workers")]
+    public List<MercenaryWorker> mercenary = new List<MercenaryWorker>();
+    public List<BattleStationHelper> battleStations = new List<BattleStationHelper>();
+    private List<BattleStationHelper> removablebattleStations = new List<BattleStationHelper>();
+
+
     public Button workerButton, mechanicButton;
+
 
     private void OnEnable()
     {
@@ -52,10 +60,6 @@ public class WorkersManager : MonoBehaviour
             {
                 workerButton.interactable = false;
             }
-        }
-        else
-        {
-            workerButton.interactable = false;
         }
     }
 
@@ -93,6 +97,36 @@ public class WorkersManager : MonoBehaviour
             weaponStations.Remove(removableSlots[i]);
         }
         removableSlots.Clear();
+
+        for (int i =  0; i < battleStations.Count; i++)
+        {
+            if (!battleStations[i].gameObject.activeInHierarchy)
+            {
+                removablebattleStations.Add(battleStations[i]);
+            }
+        }
+
+        for (int i = 0; i < removablebattleStations.Count; i++)
+        {
+            battleStations.Remove(removablebattleStations[i]);
+        }
+        removablebattleStations.Clear();
     }
 
+    public void unlockMercenary()
+    {
+        if (saveManager.Instance.loadCash() >= shooterPrice && mercenary.Count > 0 && weaponStations.Count > 1)
+        {
+            saveManager.Instance.addCash(-shooterPrice);
+            saveManager.Instance.savePermanentGems();
+            mercenary[0].stationPoint = battleStations[0];
+            mercenary[0].gameObject.SetActive(true);
+            shooterPrice += 200;
+            priceTextShooter.text = shooterPrice.ToString();
+            if (mercenary.Count <= 0)
+            {
+                mechanicButton.interactable = false;
+            }
+        }
+    }
 }
