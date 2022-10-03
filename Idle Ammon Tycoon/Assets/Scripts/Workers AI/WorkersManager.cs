@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class WorkersManager : MonoBehaviour
 {
+
+    public int workerPrice, shooterPrice;
+    public TextMeshProUGUI priceTextWorker, priceTextShooter;
+
     [Header("Weapon workers")]
     public List<GunWorker> weaponWorkers = new List<GunWorker>();
     [HideInInspector]
@@ -16,6 +21,8 @@ public class WorkersManager : MonoBehaviour
     private void OnEnable()
     {
         clearStations();
+        priceTextWorker.text = workerPrice.ToString();
+        priceTextShooter.text = shooterPrice.ToString();
         if (weaponStations.Count > 0)
         {
             workerButton.interactable = true;
@@ -29,9 +36,9 @@ public class WorkersManager : MonoBehaviour
     public void unlockWeaponWorker()
     {
         clearStationswithnoclient();
-        if (saveManager.Instance.loadCash() >= 100 && weaponWorkers.Count > 0 && weaponStations.Count >  0)
+        if (saveManager.Instance.loadCash() >= workerPrice && weaponWorkers.Count > 0 && weaponStations.Count >  0)
         {
-            saveManager.Instance.addCash(-100);
+            saveManager.Instance.addCash(-workerPrice);
             saveManager.Instance.savePermanentGems();
             weaponWorkers[0].stationPoint = weaponStations[0];
             weaponWorkers[0].collectionPoint = weaponStations[0].collectionPoint;
@@ -39,6 +46,8 @@ public class WorkersManager : MonoBehaviour
             weaponStations[0].hasWorker = true;
             weaponWorkers.RemoveAt(0);
             weaponStations.RemoveAt(0);
+            workerPrice += 100;
+            priceTextWorker.text = workerPrice.ToString();
             if (weaponWorkers.Count <= 0)
             {
                 workerButton.interactable = false;
@@ -69,7 +78,7 @@ public class WorkersManager : MonoBehaviour
     }
 
 
-    public void clearStations()
+    private void clearStations()
     {
         for (int i = 0; i < weaponStations.Count; i++)
         {

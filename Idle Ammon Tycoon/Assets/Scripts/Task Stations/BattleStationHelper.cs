@@ -12,25 +12,31 @@ public class BattleStationHelper : MonoBehaviour
     public UnityEvent onContractSigned, onContractCompleted;
     public Button acceptButton;
     private PlayerHelper helper;
+    //[HideInInspector]
+    public bool hasWorker, isBusy;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (!hasWorker)
         {
-            acceptButton.onClick.AddListener(() => acceptContract());
-            helper = other.GetComponent<PlayerHelper>();
+            if (other.tag == "Player")
+            {
+                acceptButton.onClick.AddListener(() => acceptContract());
+                helper = other.GetComponent<PlayerHelper>();
+            }
         }
     }
 
 
     private void OnTriggerStay(Collider other)
     {
-        if (helper != null)
+        if (helper != null && !hasWorker)
         {
             if (!helper.killContractSigned && !helper.gunContractSigned)
             {
                 if (other.tag == "Player" && station.taskImage != null)
                 {
+                    isBusy = true;
                     contractText.text = station.contractDetail;
                     questionsPanel.SetActive(true);
                     station.taskImage.gameObject.SetActive(true);
@@ -41,7 +47,14 @@ public class BattleStationHelper : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        questionsPanel.SetActive(false);
+        if (other.tag == "Player")
+        {
+            if (!helper.killContractSigned)
+            {
+                isBusy = false;
+            }
+            questionsPanel.SetActive(false);
+        }
     }
 
     public void acceptContract()
@@ -50,6 +63,7 @@ public class BattleStationHelper : MonoBehaviour
         {
             onContractSigned.Invoke();
             helper.killContractSigned = true;
+            isBusy = true;
         }
     }
 

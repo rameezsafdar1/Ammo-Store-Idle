@@ -34,6 +34,7 @@ public class HostagesEscrorter : MonoBehaviour
     private IEnumerator wait()
     {
         Player.killContractSigned = false;
+        CM.battlestation.isBusy = false;
         particles.SetActive(true);
         yield return new WaitForSeconds(2f); 
         EffectsManager.Instance.hostagesFreed = 0;

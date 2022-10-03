@@ -61,11 +61,6 @@ public class ClientsManager : BaseClientManager
         trigger.activate();
     }
 
-    public void contractCompleted()
-    {
-
-    }
-
     public void callHostages()
     {
         for (int i = 0; i < EffectsManager.Instance.hostagesFreed; i++)
