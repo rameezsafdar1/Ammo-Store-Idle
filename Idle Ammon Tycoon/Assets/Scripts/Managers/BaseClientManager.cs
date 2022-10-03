@@ -26,7 +26,11 @@ public abstract class BaseClientManager : MonoBehaviour
 
                 if (tempTime >= clientCoolDown)
                 {
-                    maxClientAvaialable--;
+                    if (maxClientAvaialable < 999)
+                    {
+                        maxClientAvaialable--;
+                    }
+
                     clientsPool[currentClient].transform.position = startPos.position;
                     clientsPool[currentClient].targetPosition = destinationPoints[currentDestination];
                     clientsPool[currentClient].gameObject.SetActive(true);
