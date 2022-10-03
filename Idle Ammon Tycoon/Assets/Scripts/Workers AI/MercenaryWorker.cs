@@ -13,6 +13,13 @@ public class MercenaryWorker : MonoBehaviour
     public Animator anim;
     private PlayerHelper helper;
     private NavMeshAgent agent;
+    public float yieldTime;
+    private float tempTime;
+    public GameObject Gem, Coin;
+    public int yieldQuantity;
+    public Transform[] dropPositions;
+    private int currentDropPosition;
+    public GameObject coinAnimation;
 
     private void OnEnable()
     {
@@ -34,7 +41,17 @@ public class MercenaryWorker : MonoBehaviour
 
             if (!stationPoint.isBusy)
             {
-                Debug.Log("I can take over");
+                tempTime += Time.deltaTime;
+                if (tempTime >= yieldTime)
+                {
+                    for (int i = 0; i < yieldQuantity; i++)
+                    {
+                        Instantiate(Gem, dropPositions[Random.Range(0, dropPositions.Length)].position, Quaternion.identity);
+                        GameObject go = Instantiate(Coin, dropPositions[Random.Range(0, dropPositions.Length)].position, Quaternion.identity);
+                        go.GetComponent<Coin>().cashAnimation = coinAnimation;                        
+                    }
+                    tempTime = 0;
+                }
             }
         }
     }
