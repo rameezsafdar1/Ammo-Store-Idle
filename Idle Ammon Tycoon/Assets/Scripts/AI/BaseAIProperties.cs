@@ -73,6 +73,7 @@ public abstract class BaseAIProperties : MonoBehaviour, iDamagable
             bodyPart[i].SetPropertyBlock(propertyBlock[i]);
         }
     }
+
     public Vector3 RandomNavmeshLocation(float radius)
     {
         randomDirection = (Random.insideUnitSphere * radius) + transform.position;

@@ -13,13 +13,14 @@ public class MercenaryWorker : MonoBehaviour
     public Animator anim;
     private PlayerHelper helper;
     private NavMeshAgent agent;
-    [Range(5, 15)]
+    [Range(5, 30)]
     public float yieldTime;
     private float tempTime;
     public GameObject Gem, Coin;
     public int yieldQuantity;
     public Transform[] dropPositions;
-    public GameObject coinAnimation, waitImage;    
+    public GameObject coinAnimation, waitImage;
+    private bool once;
 
     private void OnEnable()
     {
@@ -41,7 +42,12 @@ public class MercenaryWorker : MonoBehaviour
 
             if (!stationPoint.isBusy && stationPoint.clientManager.clientsEngaged.Count > 0)
             {
-                waitImage.SetActive(true);
+                if (!once)
+                {
+                    waitImage.SetActive(true);
+                    GetComponent<MeshMatChanger>().changeColor();
+                }
+
                 stationPoint.clientManager.clientsEngaged[0].taskImage.gameObject.SetActive(false);
                 tempTime += Time.deltaTime;
                 if (tempTime >= yieldTime)
