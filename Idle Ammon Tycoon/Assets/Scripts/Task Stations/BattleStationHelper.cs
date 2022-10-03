@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class BattleStationHelper : MonoBehaviour
 {
+    public CombatManager combatManager;
+    public WorkersManager workerManager;
     public ClientsManager clientManager;
     public BattleStation station;
     public GameObject questionsPanel;
@@ -13,8 +15,15 @@ public class BattleStationHelper : MonoBehaviour
     public UnityEvent onContractSigned, onContractCompleted;
     public Button acceptButton;
     private PlayerHelper helper;
-    //[HideInInspector]
+    public GameObject CompleteTrigger, DropPoint;
+
+    [HideInInspector]
     public bool hasWorker, isBusy;
+
+    private void OnEnable()
+    {
+        workerManager.battleStations.Add(this);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,6 +31,7 @@ public class BattleStationHelper : MonoBehaviour
         {
             if (other.tag == "Player")
             {
+                clientManager.passButtonFunctions();
                 acceptButton.onClick.AddListener(() => acceptContract());
                 helper = other.GetComponent<PlayerHelper>();
             }
@@ -63,6 +73,8 @@ public class BattleStationHelper : MonoBehaviour
         if (onContractSigned != null)
         {
             onContractSigned.Invoke();
+            combatManager.Trigger = CompleteTrigger;
+            combatManager.dropPoint = DropPoint.transform;
             helper.killContractSigned = true;
             isBusy = true;
         }

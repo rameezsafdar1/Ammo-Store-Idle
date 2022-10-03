@@ -121,6 +121,8 @@ public class WorkersManager : MonoBehaviour
             saveManager.Instance.savePermanentGems();
             mercenary[0].stationPoint = battleStations[0];
             mercenary[0].gameObject.SetActive(true);
+            mercenary.RemoveAt(0);
+            battleStations.RemoveAt(0);
             shooterPrice += 200;
             priceTextShooter.text = shooterPrice.ToString();
             if (mercenary.Count <= 0)

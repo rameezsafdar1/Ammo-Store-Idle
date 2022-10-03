@@ -11,18 +11,14 @@ public class ClientsManager : BaseClientManager
     private int currentHostage;
     public Transform hostageInstPoint, waitArea;
     public Button acceptButton, rejectButton;
-    public bool playerOriented;
     public TriggerPoint trigger;
 
-    private void OnEnable()
+    public void passButtonFunctions()
     {
-        if (playerOriented)
-        {
-            acceptButton.onClick.RemoveAllListeners();
-            rejectButton.onClick.RemoveAllListeners();
-            acceptButton.onClick.AddListener(() => clientAccepted());
-            rejectButton.onClick.AddListener(() => clientDealt());
-        }
+        acceptButton.onClick.RemoveAllListeners();
+        rejectButton.onClick.RemoveAllListeners();
+        acceptButton.onClick.AddListener(() => clientAccepted());
+        rejectButton.onClick.AddListener(() => clientDealt());
     }
 
     public override void clientDealt()
