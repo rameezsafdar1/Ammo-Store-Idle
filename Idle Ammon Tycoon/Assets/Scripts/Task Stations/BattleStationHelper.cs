@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class BattleStationHelper : MonoBehaviour
 {
+    public ClientsManager clientManager;
     public BattleStation station;
     public GameObject questionsPanel;
     public TMPro.TextMeshProUGUI contractText;
@@ -49,7 +50,7 @@ public class BattleStationHelper : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (!helper.killContractSigned)
+            if (helper != null && !helper.killContractSigned)
             {
                 isBusy = false;
             }

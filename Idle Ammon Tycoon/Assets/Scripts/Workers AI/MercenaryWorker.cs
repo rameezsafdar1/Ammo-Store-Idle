@@ -13,13 +13,13 @@ public class MercenaryWorker : MonoBehaviour
     public Animator anim;
     private PlayerHelper helper;
     private NavMeshAgent agent;
+    [Range(5, 15)]
     public float yieldTime;
     private float tempTime;
     public GameObject Gem, Coin;
     public int yieldQuantity;
     public Transform[] dropPositions;
-    private int currentDropPosition;
-    public GameObject coinAnimation;
+    public GameObject coinAnimation, waitImage;    
 
     private void OnEnable()
     {
@@ -39,17 +39,20 @@ public class MercenaryWorker : MonoBehaviour
             stationPoint.hasWorker = true;
             transform.rotation = stationPoint.transform.localRotation;
 
-            if (!stationPoint.isBusy)
+            if (!stationPoint.isBusy && stationPoint.clientManager.clientsEngaged.Count > 0)
             {
+                waitImage.SetActive(true);
+                stationPoint.clientManager.clientsEngaged[0].taskImage.gameObject.SetActive(false);
                 tempTime += Time.deltaTime;
                 if (tempTime >= yieldTime)
                 {
                     for (int i = 0; i < yieldQuantity; i++)
                     {
-                        Instantiate(Gem, dropPositions[Random.Range(0, dropPositions.Length)].position, Quaternion.identity);
-                        GameObject go = Instantiate(Coin, dropPositions[Random.Range(0, dropPositions.Length)].position, Quaternion.identity);
-                        go.GetComponent<Coin>().cashAnimation = coinAnimation;                        
+                        Instantiate(Gem, dropPositions[Random.Range(0, dropPositions.Length)].position, Quaternion.identity, EffectsManager.Instance.instParent);
+                        GameObject go = Instantiate(Coin, dropPositions[Random.Range(0, dropPositions.Length)].position, Quaternion.identity, EffectsManager.Instance.instParent);
+                        go.GetComponent<Coin>().cashAnimation = coinAnimation;
                     }
+                    stationPoint.clientManager.clientDealt();
                     tempTime = 0;
                 }
             }
