@@ -16,4 +16,11 @@ public class weaponsAI : BaseClientProperties
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "BuySpot")
+        {
+            taskImage.gameObject.SetActive(false);
+        }
+    }
 }
