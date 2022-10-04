@@ -44,7 +44,7 @@ public abstract class BaseClientManager : MonoBehaviour
                         currentDestination = destinationPoints.Count;
                     }
 
-                    if (currentClient >= clientsPool.Count)
+                    if (currentClient >= destinationPoints.Count)
                     {
                         currentClient = 0;
                     }
