@@ -13,6 +13,7 @@ public abstract class BaseClientProperties : MonoBehaviour
     public float accuracy;
     public Animator anim;
     public bool consumed;
+    private float fleeTime;
 
     public virtual void OnEnable()
     {
@@ -36,5 +37,4 @@ public abstract class BaseClientProperties : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-
 }
