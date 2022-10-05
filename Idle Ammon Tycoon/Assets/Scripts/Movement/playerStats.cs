@@ -46,12 +46,7 @@ public class playerStats : MonoBehaviour, iDamagable
             saveManager.Instance.addCash(-100);
             saveManager.Instance.savePermanentGems();
 
-            health += health;
-
-            if (health > maxHealth)
-            {
-                health = maxHealth;
-            }
+            health = maxHealth;
 
             float fillval = health / maxHealth;
             fillval = Mathf.Clamp(fillval, 0.2f, 1f);

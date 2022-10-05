@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerWeapons : MonoBehaviour
 {
     public GameObject pistol, rifle, shotgun;
     public Animator anim;
+    public TextMeshProUGUI rifleText, shotGunText;
+    public Button rifleButton, shotgunButton;
+
+    private void Start()
+    {
+        checkRifleBuy();
+    }
 
     public void enableGun()
     {
@@ -36,6 +44,32 @@ public class PlayerWeapons : MonoBehaviour
         pistol.gameObject.SetActive(false);
         rifle.gameObject.SetActive(false);
         shotgun.gameObject.SetActive(true);
+    }
+
+    private void buyRifle()
+    {
+        if (saveManager.Instance.loadCash() >= 150)
+        {
+            saveManager.Instance.addCash(-350);
+            saveManager.Instance.savePermanentGems();
+            saveManager.Instance.saveCustomInts("Rifle", 1);
+        }
+        checkRifleBuy();
+    }
+
+    public void checkRifleBuy()
+    {
+        if (saveManager.Instance.loadCustomInts("Rifle") > 0)
+        {
+            rifleText.text = "Equip";
+            rifleButton.onClick.RemoveAllListeners();
+            rifleButton.onClick.AddListener(() => enableRifle());
+        }
+        else
+        {
+            rifleButton.onClick.RemoveAllListeners();
+            rifleButton.onClick.AddListener(() => buyRifle());
+        }
     }
 
 }

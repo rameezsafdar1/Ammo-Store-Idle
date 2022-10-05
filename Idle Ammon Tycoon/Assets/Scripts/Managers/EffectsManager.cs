@@ -25,6 +25,7 @@ public class EffectsManager : MonoBehaviour
     public int hostagesFreed;
     private void Awake()
     {
+        setTimeScale(1);
         if (Instance != null)
         {
             Destroy(this.gameObject);

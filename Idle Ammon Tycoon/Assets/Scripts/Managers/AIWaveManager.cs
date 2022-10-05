@@ -20,10 +20,11 @@ public class AIWaveManager : MonoBehaviour
     public ActivityManager activityCounter;
     public bool randomWaves;
     public int maxWaves;
+    private int totalEnemyCount;
 
     private void OnEnable()
     {
-
+        totalEnemyCount = Agents.Count;
         if (randomWaves)
         {
             totalWaves = Random.Range(3, maxWaves);
@@ -99,6 +100,16 @@ public class AIWaveManager : MonoBehaviour
                 tempTime = 0;
             }
         }
+
+        if (killsNeeded > 0 && currentWave >= totalWaves && Agents.Count >= totalEnemyCount)
+        {
+            killsNeeded = 0;
+            if (onWaveKilled != null)
+            {
+                StartCoroutine(wait());
+            }
+        }
+
     }
 
     public void enemyKilled()
