@@ -15,6 +15,7 @@ TagManager:
   - Stopper
   - Worker
   - WorkerInteractable
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,7 @@ public class playerStats : MonoBehaviour, iDamagable
     public float damage;
     public Image healthBar;
     public UnityEvent onDeadEvent;
+    private float tempTime;
 
     private void Start()
     {
@@ -40,17 +41,38 @@ public class playerStats : MonoBehaviour, iDamagable
 
     public void increaseHealth()
     {
-        health += (25 / 100) * maxHealth;
-
-        if (health > maxHealth)
+        if (saveManager.Instance.loadCash() >= 100 && health < maxHealth)
         {
-            health = maxHealth;
+            saveManager.Instance.addCash(-100);
+            saveManager.Instance.savePermanentGems();
+
+            health += health;
+
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
+
+            float fillval = health / maxHealth;
+            fillval = Mathf.Clamp(fillval, 0.2f, 1f);
+
+            healthBar.fillAmount = fillval;
         }
+    }
 
-        float fillval = health / maxHealth;
-        fillval = Mathf.Clamp(fillval, 0.2f, 1f);
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            tempTime += Time.deltaTime;
 
-        healthBar.fillAmount = fillval;
+            if (tempTime >= 0.5f)
+            {
+                takeDamage(other.GetComponent<EnemyStats>().damage, transform);
+                tempTime = 0;
+            }
+
+        }
     }
 
 }

@@ -1140,9 +1140,11 @@ GameObject:
   - component: {fileID: 3564475915512200345}
   - component: {fileID: 3318881126151504290}
   - component: {fileID: 8832625009683823006}
+  - component: {fileID: 77338157968378008}
+  - component: {fileID: 5001853795081888551}
   m_Layer: 0
   m_Name: Enemy AI (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1179,7 +1181,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 500
-  m_StoppingDistance: 3
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1317,6 +1319,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!136 &77338157968378008
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096927565430062105}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.6328568
+  m_Height: 7.3081527
+  m_Direction: 1
+  m_Center: {x: -0.00000001644792, y: 3.1540763, z: 0.56021553}
+--- !u!114 &5001853795081888551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096927565430062105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6a4db71983969478f33fa709b77999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 15
 --- !u!1 &5096927565534474826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3277,7 +3306,7 @@ MonoBehaviour:
   state: 2
   ragdoll: {fileID: 3564475915512200345}
   health: 30
-  accuracy: 3
+  accuracy: 2
   waitToPatrol: 3
   deathParticle: {fileID: 0}
   deathReward: {fileID: 0}

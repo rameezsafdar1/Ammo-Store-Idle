@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int forceCash, forceGems;
     public GameObject[] Levels;
     public int currentLevel;
+    public splash Splash;
 
     private void Awake()
     {
@@ -47,5 +49,11 @@ public class GameManager : MonoBehaviour
 
         Levels[currentLevel].SetActive(true);
         saveManager.Instance.saveCustomInts("Level", currentLevel);
+    }
+
+    public void restart()
+    {
+        Splash.loadLevel = SceneManager.GetActiveScene().buildIndex;
+        Splash.gameObject.SetActive(true);
     }
 }

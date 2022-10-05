@@ -18,9 +18,18 @@ public class AIWaveManager : MonoBehaviour
     public bool noHostage, oneHostage;
     public GameObject[] hostages;
     public ActivityManager activityCounter;
+    public bool randomWaves;
+    public int maxWaves;
 
     private void OnEnable()
     {
+
+        if (randomWaves)
+        {
+            totalWaves = Random.Range(3, maxWaves);
+            enemyLoadOutNumber = Random.Range(5, 15);
+        }
+
         if (!noHostage) 
         {
             if (!oneHostage)

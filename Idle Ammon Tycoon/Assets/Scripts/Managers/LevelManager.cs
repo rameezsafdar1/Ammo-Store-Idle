@@ -36,11 +36,13 @@ public class LevelManager : MonoBehaviour
             weapon_manager[j].tempTime = ContractCoolDown;
         }
 
-
-        combat_manager.battleAreas = new GameObject[areas.Length];
-        for (int i = 0; i < combat_manager.battleAreas.Length; i++)
+        if (areas.Length > 0)
         {
-            combat_manager.battleAreas[i] = areas[i];
+            combat_manager.battleAreas = new GameObject[areas.Length];
+            for (int i = 0; i < combat_manager.battleAreas.Length; i++)
+            {
+                combat_manager.battleAreas[i] = areas[i];
+            }
         }
 
         if (activityManager != null)

@@ -26,7 +26,7 @@ public class Ragdoller : MonoBehaviour
             ragCols[i].enabled = false;
         }
         ragCols[0].enabled = true;
-
+        ragCols[1].enabled = true;
     }
 
     public void turnOnRagDoll(float force, Vector3 direction)
@@ -36,6 +36,7 @@ public class Ragdoller : MonoBehaviour
         {
             ragCols[i].enabled = true;
         }
+        ragCols[0].enabled = false;
         for (int i = 0; i < ragRigids.Length; i++)
         {
             ragRigids[i].isKinematic = false;
