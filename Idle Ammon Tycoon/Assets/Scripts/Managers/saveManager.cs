@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class saveManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class saveManager : MonoBehaviour
     private int currentDayNumber;
     private int totalCash, totalGems;
     public TextMeshProUGUI cashText, gemsText, currentDayText, nextDayText;
+    public Image dayBarFiller;
 
     private void Awake()
     {
@@ -22,8 +24,8 @@ public class saveManager : MonoBehaviour
         totalCash = PlayerPrefs.GetInt("Cash");
         addCash(0);
         addGem(0);
-        currentDayText.text = currentDay().ToString();
-        nextDayText.text = (currentDayNumber + 1).ToString();
+        currentDayText.text = (currentDay() + 1).ToString();
+        nextDayText.text = (currentDayNumber + 2).ToString();
     }
 
     public void addCash(int cash)
@@ -68,7 +70,7 @@ public class saveManager : MonoBehaviour
 
     public void updateDay(int maxDays)
     {
-        currentDayNumber = PlayerPrefs.GetFloat("currentDay");
+        currentDayNumber = PlayerPrefs.GetInt("currentDay");
         currentDayNumber++;
 
         if (currentDayNumber >= maxDays)
@@ -77,7 +79,7 @@ public class saveManager : MonoBehaviour
             PlayerPrefs.DeleteAll();
         }
 
-        PlayerPrefs.SetFloat("currentDay", currentDayNumber);
+        PlayerPrefs.SetInt("currentDay", currentDayNumber);
     }
 
     public void saveCustomFloats(string s, float value)
@@ -114,10 +116,4 @@ public class saveManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(s, value);
     }
-
-    public void dayComplete()
-    {
-
-    }
-
 }

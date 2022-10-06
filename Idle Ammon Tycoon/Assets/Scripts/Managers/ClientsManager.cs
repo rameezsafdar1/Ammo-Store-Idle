@@ -25,6 +25,7 @@ public class ClientsManager : BaseClientManager
     {
         acceptButton.transform.parent.gameObject.SetActive(false);
         battlestation.station.taskImage = null;
+        battlestation.station.ai = null;
         base.clientDealt();
     }
 

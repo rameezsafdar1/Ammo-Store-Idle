@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class LevelManager : MonoBehaviour
     [Header("Combat Areas")]
     public CombatManager combat_manager;
     public GameObject[] areas;
+    public UnityEvent onLevelTimeComplete;
+
 
     private void Start()
     {
