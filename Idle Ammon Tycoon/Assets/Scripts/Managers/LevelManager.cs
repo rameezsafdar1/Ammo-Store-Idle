@@ -26,6 +26,35 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        setLevel();
+    }
+
+    public void stopClientInflux()
+    {
+        if (!dayCompleted)
+        {
+            dayCompleted = true;
+
+            int remainingCustomers = 0;
+
+            for (int i = 0; i < weapon_manager.Length; i++)
+            {
+                weapon_manager[i].maxClientAvaialable = 0;
+                remainingCustomers += weapon_manager[i].clientsEngaged.Count;
+            }
+
+            for (int i = 0; i < contract_manager.Length; i++)
+            {
+                contract_manager[i].maxClientAvaialable = 0;
+                remainingCustomers += contract_manager[i].clientsEngaged.Count;
+            }
+
+            activityManager.setNewevents(remainingCustomers);
+        }
+    }
+
+    private void setLevel()
+    {
         saveManager.Instance.levelManager = this;
         saveManager.Instance.cashCollectionTarget = cashCollectionTarget;
         activityManager = GetComponent<ActivityManager>();
@@ -60,28 +89,16 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void stopClientInflux()
+    public void updateLevel()
     {
-        if (!dayCompleted)
+        cashCollectionTarget += 2;
+
+        if (cashCollectionTarget >= 50)
         {
-            dayCompleted = true;
-
-            int remainingCustomers = 0;
-
-            for (int i = 0; i < weapon_manager.Length; i++)
-            {
-                weapon_manager[i].maxClientAvaialable = 0;
-                remainingCustomers += weapon_manager[i].clientsEngaged.Count;
-            }
-
-            for (int i = 0; i < contract_manager.Length; i++)
-            {
-                contract_manager[i].maxClientAvaialable = 0;
-                remainingCustomers += contract_manager[i].clientsEngaged.Count;
-            }
-
-            activityManager.setNewevents(remainingCustomers);
+            cashCollectionTarget = 50;
         }
+
+        setLevel();
     }
 
 }
