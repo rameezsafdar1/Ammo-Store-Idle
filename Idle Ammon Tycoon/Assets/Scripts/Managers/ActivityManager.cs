@@ -13,8 +13,6 @@ public class ActivityManager : MonoBehaviour
 
     public void eventDone()
     {
-        saveManager.Instance.dayBarFiller.fillAmount = currentEvents / totalEvents;
-
         currentEvents++;
 
         if (currentEvents >= totalEvents)
@@ -33,5 +31,10 @@ public class ActivityManager : MonoBehaviour
         onEventComplete.Invoke();
     }
 
+    public void setNewevents(float newEventsCount)
+    {
+        totalEvents = newEventsCount;
+        currentEvents = 0;
+    }
 
 }

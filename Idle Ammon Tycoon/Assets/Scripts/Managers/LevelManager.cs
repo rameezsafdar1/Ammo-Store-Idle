@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
+    public int cashCollectionTarget;
     private ActivityManager activityManager;
     public FinishTrigger finishTrigger;
     public ClientsManager[] contract_manager;
@@ -20,10 +21,13 @@ public class LevelManager : MonoBehaviour
     public CombatManager combat_manager;
     public GameObject[] areas;
     public UnityEvent onLevelTimeComplete;
+    private bool dayCompleted;
 
 
     private void Start()
     {
+        saveManager.Instance.levelManager = this;
+        saveManager.Instance.cashCollectionTarget = cashCollectionTarget;
         activityManager = GetComponent<ActivityManager>();
         for (int i = 0; i < contract_manager.Length; i++)
         {
@@ -53,6 +57,30 @@ public class LevelManager : MonoBehaviour
             finishTrigger.activity = activityManager;
             int eventcount = (contract_manager.Length * ContractCustomers) + (weapon_manager.Length * WeaponCustomers);
             activityManager.totalEvents = eventcount;
+        }
+    }
+
+    public void stopClientInflux()
+    {
+        if (!dayCompleted)
+        {
+            dayCompleted = true;
+
+            int remainingCustomers = 0;
+
+            for (int i = 0; i < weapon_manager.Length; i++)
+            {
+                weapon_manager[i].maxClientAvaialable = 0;
+                remainingCustomers += weapon_manager[i].clientsEngaged.Count;
+            }
+
+            for (int i = 0; i < contract_manager.Length; i++)
+            {
+                contract_manager[i].maxClientAvaialable = 0;
+                remainingCustomers += contract_manager[i].clientsEngaged.Count;
+            }
+
+            activityManager.setNewevents(remainingCustomers);
         }
     }
 

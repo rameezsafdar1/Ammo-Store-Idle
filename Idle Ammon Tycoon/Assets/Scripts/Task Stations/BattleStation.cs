@@ -18,4 +18,12 @@ public class BattleStation : MonoBehaviour
         waitImage = ai.waitImage;
         taskImage = ai.taskImage;
     }
+
+    public void resetDetails()
+    {
+        waitImage = null;
+        taskImage = null;
+        ai = null;
+        contractDetail = "";
+    }
 }

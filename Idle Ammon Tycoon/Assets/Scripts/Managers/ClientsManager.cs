@@ -24,8 +24,7 @@ public class ClientsManager : BaseClientManager
     public override void clientDealt()
     {
         acceptButton.transform.parent.gameObject.SetActive(false);
-        battlestation.station.taskImage = null;
-        battlestation.station.ai = null;
+        battlestation.station.resetDetails();
         base.clientDealt();
     }
 

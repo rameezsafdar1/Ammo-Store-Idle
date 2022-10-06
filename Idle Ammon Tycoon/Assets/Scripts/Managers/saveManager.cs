@@ -11,6 +11,11 @@ public class saveManager : MonoBehaviour
     private int totalCash, totalGems;
     public TextMeshProUGUI cashText, gemsText, currentDayText, nextDayText;
     public Image dayBarFiller;
+    private int collectedCashInLevel;
+    [HideInInspector]
+    public int cashCollectionTarget;
+    [HideInInspector]
+    public LevelManager levelManager;
 
     private void Awake()
     {
@@ -32,6 +37,7 @@ public class saveManager : MonoBehaviour
     {
         totalCash += cash;
         cashText.text = EffectsManager.Instance.currencyShortener((float)totalCash);
+        fillDayBar();
     }
 
     public void addGem()
@@ -116,4 +122,19 @@ public class saveManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(s, value);
     }
+
+    public void fillDayBar()
+    {
+        if (cashCollectionTarget > 0)
+        {
+            collectedCashInLevel++;
+            dayBarFiller.fillAmount = collectedCashInLevel / cashCollectionTarget;
+            if (collectedCashInLevel >= cashCollectionTarget)
+            {
+                levelManager.stopClientInflux();
+            }
+        }
+
+    }
+
 }
