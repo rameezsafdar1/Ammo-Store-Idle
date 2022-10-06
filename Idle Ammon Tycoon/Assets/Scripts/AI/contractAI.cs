@@ -16,8 +16,9 @@ public class contractAI : BaseClientProperties
     public override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-        if (other.tag == "HelpDesk")
+        if (other.tag == "HelpDesk" && targetPosition == other.transform)
         {
+            other.GetComponent<BattleStation>().setDetails(this);
             if (!consumed)
             {
                 taskImage.gameObject.SetActive(true);

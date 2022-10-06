@@ -131,6 +131,7 @@ public class WeaponStationHelper : MonoBehaviour
             currentCoinPosition = 0;
         }
 
+        station.ai = null;
         signed = false;
     }
 

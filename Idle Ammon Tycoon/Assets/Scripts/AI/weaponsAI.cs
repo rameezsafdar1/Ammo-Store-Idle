@@ -10,17 +10,10 @@ public class weaponsAI : BaseClientProperties
     public override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-        if (other.tag == "BuySpot")
+        if (other.tag == "BuySpot" && targetPosition == other.transform)
         {
             taskImage.gameObject.SetActive(true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "BuySpot")
-        {
-            taskImage.gameObject.SetActive(false);
+            other.GetComponent<WeaponStation>().setDetails(this);
         }
     }
 }

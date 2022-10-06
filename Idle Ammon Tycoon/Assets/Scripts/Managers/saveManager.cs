@@ -6,9 +6,9 @@ using TMPro;
 public class saveManager : MonoBehaviour
 {
     public static saveManager Instance;
-    private float currentDayNumber;
+    private int currentDayNumber;
     private int totalCash, totalGems;
-    public TextMeshProUGUI cashText, gemsText;
+    public TextMeshProUGUI cashText, gemsText, currentDayText, nextDayText;
 
     private void Awake()
     {
@@ -22,6 +22,8 @@ public class saveManager : MonoBehaviour
         totalCash = PlayerPrefs.GetInt("Cash");
         addCash(0);
         addGem(0);
+        currentDayText.text = currentDay().ToString();
+        nextDayText.text = (currentDayNumber + 1).ToString();
     }
 
     public void addCash(int cash)
@@ -58,15 +60,9 @@ public class saveManager : MonoBehaviour
         return totalGems;
     }
 
-    public float currentDay()
+    public int currentDay()
     {
-        currentDayNumber = PlayerPrefs.GetFloat("currentDay");
-        return currentDayNumber;
-    }
-
-    public float loadDay()
-    {
-        currentDayNumber = PlayerPrefs.GetFloat("currentDay");
+        currentDayNumber = PlayerPrefs.GetInt("currentDay");
         return currentDayNumber;
     }
 
@@ -119,5 +115,9 @@ public class saveManager : MonoBehaviour
         PlayerPrefs.SetInt(s, value);
     }
 
+    public void dayComplete()
+    {
+
+    }
 
 }

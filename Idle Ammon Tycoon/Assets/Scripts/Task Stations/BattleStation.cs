@@ -10,14 +10,12 @@ public class BattleStation : MonoBehaviour
     public Image waitImage, taskImage;
     public contractAI ai;
     public string contractDetail;
-    private void OnTriggerEnter(Collider other)
+
+    public void setDetails(contractAI cai)
     {
-        if (other.tag == "AI")
-        {
-            ai = other.GetComponent<contractAI>();
-            contractDetail = ai.contractDetails[Random.Range(0, ai.contractDetails.Length)];
-            waitImage = ai.waitImage;
-            taskImage = ai.taskImage;
-        }
+        ai = cai;
+        contractDetail = ai.contractDetails[Random.Range(0, ai.contractDetails.Length)];
+        waitImage = ai.waitImage;
+        taskImage = ai.taskImage;
     }
 }

@@ -9,14 +9,23 @@ public class WeaponStation : MonoBehaviour
     public Image waitImage, taskImage, fillImage;
     public weaponsAI ai;
 
-    private void OnTriggerEnter(Collider other)
+    public void setDetails(weaponsAI wai)
     {
-        if (other.tag == "Buyer")
-        {
-            ai = other.GetComponent<weaponsAI>();
-            fillImage = ai.waitFill;
-            waitImage = ai.waitImage;
-            taskImage = ai.taskImage;
-        }
+        ai = wai;
+        fillImage = ai.waitFill;
+        waitImage = ai.waitImage;
+        taskImage = ai.taskImage;
     }
+
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Buyer" && ai == null)
+    //    {
+    //        ai = other.GetComponent<weaponsAI>();
+    //        fillImage = ai.waitFill;
+    //        waitImage = ai.waitImage;
+    //        taskImage = ai.taskImage;
+    //    }
+    //}
 }
