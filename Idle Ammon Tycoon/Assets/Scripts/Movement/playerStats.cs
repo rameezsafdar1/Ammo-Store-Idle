@@ -12,6 +12,8 @@ public class playerStats : MonoBehaviour, iDamagable
     public Image healthBar;
     public UnityEvent onDeadEvent;
     private float tempTime;
+    public Transform pickupPoint;
+    public GameObject cardboard;
 
     private void Start()
     {

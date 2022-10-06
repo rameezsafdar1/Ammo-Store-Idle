@@ -5,18 +5,24 @@ using UnityEngine.UI;
 
 public class WeaponCorkBoard : MonoBehaviour
 {
-    public GameObject[] weaponsOnBoard;
+    public curveFollower[] weaponsOnBoard;
     public float waitTime;
     private float tempWait;
     private PlayerHelper helper;
     private int currentSoldGun;
     public Image fillImage;
+    public curveFollower[] targetcubBoards;
+    private Transform dropPoint;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             helper = other.GetComponent<PlayerHelper>();
+            if (dropPoint == null)
+            {
+                dropPoint = other.GetComponent<playerStats>().pickupPoint;
+            }
         }
     }
 
@@ -58,8 +64,13 @@ public class WeaponCorkBoard : MonoBehaviour
 
     public void takeGun()
     {
-        weaponsOnBoard[currentSoldGun].gameObject.SetActive(false);
-        StartCoroutine(wait(weaponsOnBoard[currentSoldGun]));
+        weaponsOnBoard[currentSoldGun].transform.parent = dropPoint;
+        weaponsOnBoard[currentSoldGun].setMyTarget(dropPoint.transform.GetChild(0).transform.localPosition);
+        targetcubBoards[currentSoldGun].transform.parent = dropPoint;
+        targetcubBoards[currentSoldGun].setMyTarget(dropPoint.transform.GetChild(0).transform.localPosition);
+        targetcubBoards[currentSoldGun].GetComponent<Animator>().SetTrigger("Animate");
+        targetcubBoards[currentSoldGun].transform.localRotation = Quaternion.identity;
+        StartCoroutine(wait(weaponsOnBoard[currentSoldGun].gameObject));
         currentSoldGun++;
     }
 }
