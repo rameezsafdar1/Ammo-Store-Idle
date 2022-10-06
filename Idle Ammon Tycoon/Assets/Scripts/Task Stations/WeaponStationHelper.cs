@@ -51,8 +51,11 @@ public class WeaponStationHelper : MonoBehaviour
             if (helper.hasGunForSale && signed)
             {
                 helper.hasGunForSale = false;
+                helper.anim.SetBool("Holding", false);
+                helper.cardboardBox.SetActive(false);
                 helper.gunContractSigned = false;
                 station.ai.waitImage.gameObject.SetActive(false);
+                station.ai.weaponSold();
                 if (hasWorker)
                 {
                     helper = null;

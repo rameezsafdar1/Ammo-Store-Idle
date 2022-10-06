@@ -19,6 +19,13 @@ public class curveFollower : MonoBehaviour
     public Vector3 finalScale;
     public float scaleSpeed;
 
+    private void OnEnable()
+    {
+        target = Vector3.zero;
+        timer = 0;
+        speed = 0;
+    }
+
     private void Update()
     {
         if (target.magnitude > 0.1f)

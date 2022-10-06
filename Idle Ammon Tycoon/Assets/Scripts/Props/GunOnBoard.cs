@@ -6,6 +6,7 @@ public class GunOnBoard : MonoBehaviour
 {
     public Transform initialParent;
     private Vector3 initpos;
+    private Quaternion initrot;
     private bool activated;
 
     private void OnEnable()
@@ -14,12 +15,14 @@ public class GunOnBoard : MonoBehaviour
         if (activated)
         {
             transform.localPosition = initpos;
+            transform.localRotation = initrot;
         }
     }
 
     private void Start()
     {
         initpos = transform.localPosition;
+        initrot = transform.localRotation;
         activated = true;
     }
 

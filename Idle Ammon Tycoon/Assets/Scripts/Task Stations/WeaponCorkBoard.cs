@@ -37,6 +37,7 @@ public class WeaponCorkBoard : MonoBehaviour
                 if (tempWait >= waitTime)
                 {
                     helper.hasGunForSale = true;
+                    helper.anim.SetBool("Holding", true);
                     takeGun();
                     tempWait = 0;
                     fillImage.fillAmount = tempWait;
@@ -55,22 +56,26 @@ public class WeaponCorkBoard : MonoBehaviour
         }
     }
 
-    private IEnumerator wait(GameObject go)
+    private IEnumerator wait(GameObject go, float duration, bool yes)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(duration);
         go.SetActive(true);
-        currentSoldGun--;
+        if (yes)
+        {
+            currentSoldGun--;
+        }
     }
 
     public void takeGun()
     {
         weaponsOnBoard[currentSoldGun].transform.parent = dropPoint;
         weaponsOnBoard[currentSoldGun].setMyTarget(dropPoint.transform.GetChild(0).transform.localPosition);
-        targetcubBoards[currentSoldGun].transform.parent = dropPoint;
-        targetcubBoards[currentSoldGun].setMyTarget(dropPoint.transform.GetChild(0).transform.localPosition);
-        targetcubBoards[currentSoldGun].GetComponent<Animator>().SetTrigger("Animate");
-        targetcubBoards[currentSoldGun].transform.localRotation = Quaternion.identity;
-        StartCoroutine(wait(weaponsOnBoard[currentSoldGun].gameObject));
+        targetcubBoards[0].transform.parent = dropPoint;
+        targetcubBoards[0].setMyTarget(dropPoint.transform.GetChild(0).transform.localPosition);
+        targetcubBoards[0].GetComponent<Animator>().SetTrigger("Animate");
+        targetcubBoards[0].transform.localRotation = Quaternion.identity;
+        StartCoroutine(wait(weaponsOnBoard[currentSoldGun].gameObject, 3f, true));
+        StartCoroutine(wait(targetcubBoards[0].gameObject, 1f, false));
         currentSoldGun++;
     }
 }

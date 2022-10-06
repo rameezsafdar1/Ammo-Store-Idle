@@ -16,16 +16,4 @@ public class WeaponStation : MonoBehaviour
         waitImage = ai.waitImage;
         taskImage = ai.taskImage;
     }
-
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "Buyer" && ai == null)
-    //    {
-    //        ai = other.GetComponent<weaponsAI>();
-    //        fillImage = ai.waitFill;
-    //        waitImage = ai.waitImage;
-    //        taskImage = ai.taskImage;
-    //    }
-    //}
 }
