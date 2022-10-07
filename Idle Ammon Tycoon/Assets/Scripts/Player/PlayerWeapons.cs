@@ -50,7 +50,7 @@ public class PlayerWeapons : MonoBehaviour
     {
         if (saveManager.Instance.loadCash() >= 150)
         {
-            saveManager.Instance.addCash(-350);
+            saveManager.Instance.addCash(-150);
             saveManager.Instance.savePermanentGems();
             saveManager.Instance.saveCustomInts("Rifle", 1);
         }
