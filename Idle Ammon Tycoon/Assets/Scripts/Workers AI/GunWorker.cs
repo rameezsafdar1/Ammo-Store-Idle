@@ -10,7 +10,6 @@ public class GunWorker : MonoBehaviour
     public WeaponStationHelper stationPoint;
     [HideInInspector]
     public Transform collectionPoint;
-    public Animator anim;
     private PlayerHelper helper;
     private NavMeshAgent agent;
     private WeaponCorkBoard board;
@@ -24,7 +23,7 @@ public class GunWorker : MonoBehaviour
 
     private void Update()
     {
-        anim.SetFloat("Velocity", agent.velocity.magnitude);
+        helper.anim.SetFloat("Velocity", agent.velocity.magnitude);
         if (!helper.gunContractSigned)
         {
             agent.SetDestination(stationPoint.transform.position);
@@ -59,7 +58,8 @@ public class GunWorker : MonoBehaviour
 
             if (waitTime >= board.waitTime)
             {
-                board.takeGun();
+                board.takeGunAI();
+                helper.cardboardBox.SetActive(true);
                 helper.hasGunForSale = true;
                 waitTime = 0;
             }

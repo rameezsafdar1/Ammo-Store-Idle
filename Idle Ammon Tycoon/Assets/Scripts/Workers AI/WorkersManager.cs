@@ -43,7 +43,7 @@ public class WorkersManager : MonoBehaviour
 
     public void unlockWeaponWorker()
     {
-        clearStationswithnoclient();
+        //clearStationswithnoclient();
         if (saveManager.Instance.loadCash() >= workerPrice && weaponWorkers.Count > 0 && weaponStations.Count >  0)
         {
             saveManager.Instance.addCash(-workerPrice);

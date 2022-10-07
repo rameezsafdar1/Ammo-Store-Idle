@@ -56,11 +56,11 @@ public class WeaponCorkBoard : MonoBehaviour
         }
     }
 
-    private IEnumerator wait(GameObject go, float duration, bool yes)
+    private IEnumerator wait(GameObject go, float duration, bool gunSold)
     {
         yield return new WaitForSeconds(duration);
         go.SetActive(true);
-        if (yes)
+        if (gunSold)
         {
             currentSoldGun--;
         }
@@ -76,6 +76,13 @@ public class WeaponCorkBoard : MonoBehaviour
         targetcubBoards[0].transform.localRotation = Quaternion.identity;
         StartCoroutine(wait(weaponsOnBoard[currentSoldGun].gameObject, 3f, true));
         StartCoroutine(wait(targetcubBoards[0].gameObject, 1f, false));
+        currentSoldGun++;
+    }
+
+    public void takeGunAI()
+    {
+        weaponsOnBoard[currentSoldGun].gameObject.SetActive(false);
+        StartCoroutine(wait(weaponsOnBoard[currentSoldGun].gameObject, 3f, true));
         currentSoldGun++;
     }
 }
