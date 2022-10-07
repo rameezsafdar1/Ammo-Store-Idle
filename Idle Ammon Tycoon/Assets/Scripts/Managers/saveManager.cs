@@ -74,18 +74,12 @@ public class saveManager : MonoBehaviour
         return currentDayNumber;
     }
 
-    public void updateDay(int maxDays)
+    public void updateDay()
     {
-        currentDayNumber = PlayerPrefs.GetInt("currentDay");
         currentDayNumber++;
-
-        if (currentDayNumber >= maxDays)
-        {
-            currentDayNumber = 0;
-            PlayerPrefs.DeleteAll();
-        }
-
         PlayerPrefs.SetInt("currentDay", currentDayNumber);
+        currentDayText.text = (currentDay() + 1).ToString();
+        nextDayText.text = (currentDayNumber + 2).ToString();
     }
 
     public void saveCustomFloats(string s, float value)

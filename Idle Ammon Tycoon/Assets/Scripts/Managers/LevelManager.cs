@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
                 remainingCustomers += contract_manager[i].clientsEngaged.Count;
             }
 
-            activityManager.setNewevents(remainingCustomers);
+            activityManager.setNewevents(remainingCustomers + 1);
         }
     }
 
@@ -91,6 +91,7 @@ public class LevelManager : MonoBehaviour
 
     public void updateLevel()
     {
+        saveManager.Instance.updateDay();
         cashCollectionTarget += 2;
 
         if (cashCollectionTarget >= 50)
