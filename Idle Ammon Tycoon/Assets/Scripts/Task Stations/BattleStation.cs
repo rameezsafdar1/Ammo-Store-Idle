@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BattleStation : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public Image waitImage, taskImage;
     public contractAI ai;
     public string contractDetail;

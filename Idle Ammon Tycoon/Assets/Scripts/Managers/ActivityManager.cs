@@ -25,6 +25,15 @@ public class ActivityManager : MonoBehaviour
 
     }
 
+    public void callEvent()
+    {
+        if (onEventComplete != null)
+        {
+            onEventComplete.Invoke();
+        }
+    }
+
+
     private IEnumerator wait()
     {
         yield return new WaitForSeconds(delay);

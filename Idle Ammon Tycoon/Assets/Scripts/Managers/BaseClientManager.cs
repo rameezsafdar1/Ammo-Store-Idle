@@ -55,10 +55,10 @@ public abstract class BaseClientManager : MonoBehaviour
         }
     }
 
-    //public void changeClientsNumber(int x)
-    //{
-    //    maxClientAvaialable = x;
-    //}
+    public void changeClientsNumber(int x)
+    {
+        maxClientAvaialable = x;
+    }
 
     public virtual void clientDealt()
     {

@@ -22,35 +22,47 @@ public class LevelManager : MonoBehaviour
     public GameObject[] areas;
     public UnityEvent onLevelTimeComplete;
     private bool dayCompleted;
-
+    public bool targeted;
 
     private void Start()
     {
+        if (targeted)
+        {
+            cashCollectionTarget = saveManager.Instance.loadCustomInts("dailyTarget");
+
+            if (cashCollectionTarget < 3)
+            {
+                cashCollectionTarget = 3;
+                saveManager.Instance.saveCustomInts("dailyTarget", cashCollectionTarget);
+            }
+
+        }
+
         setLevel();
     }
 
     public void stopClientInflux()
     {
-        Debug.Log("Called");
         if (!dayCompleted)
         {
             dayCompleted = true;
 
-            int remainingCustomers = 0;
+            //int remainingCustomers = 0;
 
-            for (int i = 0; i < weapon_manager.Length; i++)
-            {
-                weapon_manager[i].maxClientAvaialable = 0;
-                remainingCustomers += weapon_manager[i].clientsEngaged.Count;
-            }
+            //for (int i = 0; i < weapon_manager.Length; i++)
+            //{
+            //    weapon_manager[i].maxClientAvaialable = 0;
+            //    remainingCustomers += weapon_manager[i].clientsEngaged.Count;
+            //}
 
-            for (int i = 0; i < contract_manager.Length; i++)
-            {
-                contract_manager[i].maxClientAvaialable = 0;
-                remainingCustomers += contract_manager[i].clientsEngaged.Count;
-            }
-
-            activityManager.setNewevents(remainingCustomers + 1);
+            //for (int i = 0; i < contract_manager.Length; i++)
+            //{
+            //    contract_manager[i].maxClientAvaialable = 0;
+            //    remainingCustomers += contract_manager[i].clientsEngaged.Count;
+            //}
+            activityManager.callEvent();
+            //activityManager.setNewevents(remainingCustomers + 1);
+            
         }
     }
 
@@ -58,6 +70,11 @@ public class LevelManager : MonoBehaviour
     {
         saveManager.Instance.levelManager = this;
         saveManager.Instance.cashCollectionTarget = cashCollectionTarget;
+        saveManager.Instance.collectedCashInLevel = 0;
+        if (cashCollectionTarget > 0)
+        {
+            saveManager.Instance.dayBarFiller.fillAmount = 0 / cashCollectionTarget;
+        }
         activityManager = GetComponent<ActivityManager>();
         for (int i = 0; i < contract_manager.Length; i++)
         {
@@ -94,12 +111,14 @@ public class LevelManager : MonoBehaviour
     {
         saveManager.Instance.updateDay();
         cashCollectionTarget += 2;
+        saveManager.Instance.saveCustomInts("dailyTarget", cashCollectionTarget);
+        saveManager.Instance.savePermanentGems();
 
         if (cashCollectionTarget >= 50)
         {
             cashCollectionTarget = 50;
         }
-
+        dayCompleted = false;
         setLevel();
     }
 

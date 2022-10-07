@@ -7,6 +7,11 @@ public class Gem : MonoBehaviour
     [HideInInspector]
     public Transform realParent;
 
+    private void OnEnable()
+    {
+        gameObject.layer = 8;
+    }
+
     public void addGems()
     {
         transform.parent = realParent;

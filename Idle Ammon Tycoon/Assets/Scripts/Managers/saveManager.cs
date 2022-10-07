@@ -11,9 +11,8 @@ public class saveManager : MonoBehaviour
     private int totalCash, totalGems;
     public TextMeshProUGUI cashText, gemsText, currentDayText, nextDayText;
     public Image dayBarFiller;
-    private int collectedCashInLevel;
     [HideInInspector]
-    public int cashCollectionTarget;
+    public int cashCollectionTarget, collectedCashInLevel;
     [HideInInspector]
     public LevelManager levelManager;
 
@@ -121,7 +120,7 @@ public class saveManager : MonoBehaviour
         if (cashCollectionTarget > 0)
         {
             collectedCashInLevel++;
-            dayBarFiller.fillAmount = collectedCashInLevel / cashCollectionTarget;
+            dayBarFiller.fillAmount = (float)collectedCashInLevel / (float)cashCollectionTarget;
             if (collectedCashInLevel >= cashCollectionTarget)
             {
                 levelManager.stopClientInflux();

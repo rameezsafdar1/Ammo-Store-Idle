@@ -18,9 +18,9 @@ public class contractAI : BaseClientProperties
         base.OnTriggerEnter(other);
         if (other.tag == "HelpDesk" && targetPosition == other.transform)
         {
-            other.GetComponent<BattleStation>().setDetails(this);
             if (!consumed)
             {
+                other.GetComponent<BattleStation>().setDetails(this);
                 taskImage.gameObject.SetActive(true);
             }
         }
