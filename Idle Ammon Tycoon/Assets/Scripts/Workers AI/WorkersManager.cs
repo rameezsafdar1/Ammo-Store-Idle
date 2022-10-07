@@ -12,7 +12,7 @@ public class WorkersManager : MonoBehaviour
 
     [Header("Weapon workers")]
     public List<GunWorker> weaponWorkers = new List<GunWorker>();
-    [HideInInspector]
+    //[HideInInspector]
     public List<WeaponStationHelper> weaponStations = new List<WeaponStationHelper>();
     private List<WeaponStationHelper> removableSlots = new List<WeaponStationHelper>();
     private List<WeaponStationHelper> removableSlotstwo = new List<WeaponStationHelper>();    

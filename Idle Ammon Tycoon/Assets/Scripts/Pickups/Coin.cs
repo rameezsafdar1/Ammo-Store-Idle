@@ -10,6 +10,7 @@ public class Coin : MonoBehaviour
     public void AddCash()
     {
         saveManager.Instance.addCash(value);
+        saveManager.Instance.fillDayBar();
         cashAnimation.SetActive(true);
         Destroy(gameObject);
     }

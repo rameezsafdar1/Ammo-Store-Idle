@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
 
     public void stopClientInflux()
     {
+        Debug.Log("Called");
         if (!dayCompleted)
         {
             dayCompleted = true;

@@ -37,7 +37,6 @@ public class saveManager : MonoBehaviour
     {
         totalCash += cash;
         cashText.text = EffectsManager.Instance.currencyShortener((float)totalCash);
-        fillDayBar();
     }
 
     public void addGem()
