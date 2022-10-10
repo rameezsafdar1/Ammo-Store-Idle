@@ -9,7 +9,7 @@ public class Unlockable : MonoBehaviour
     public int Price, Gems;
     public TextMeshPro priceText, GemsText;
     private int availableCash, availableGems;
-    public UnityEvent onUnlock; 
+    public UnityEvent onUnlock;
 
     private void Start()
     {
