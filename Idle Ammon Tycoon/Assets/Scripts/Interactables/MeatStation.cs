@@ -9,13 +9,15 @@ public class MeatStation : MonoBehaviour
     public bool inProcessing;
     public Animator meatWorker;
     private bool onArea;
+    public curveFollower meatObject;
+    public PlayerHelper helper;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             onArea = true;
-            if (!inProcessing)
+            if (!inProcessing && !helper.hasGunForSale && !helper.killContractSigned)
             {
                 meatProcessButton.gameObject.SetActive(true);
             }
@@ -32,15 +34,19 @@ public class MeatStation : MonoBehaviour
 
     public void startMeatProduction()
     {
-        inProcessing = true;
-        meatProcessButton.SetActive(false);
-        meatWorker.SetBool("IsCutting", true);
-        StartCoroutine(productionComplete());
+        if (saveManager.Instance.loadGems() >= 10)
+        {
+            inProcessing = true;
+            meatProcessButton.SetActive(false);
+            meatWorker.SetBool("IsCutting", true);
+            StartCoroutine(productionComplete());
+        }
     }
 
     private IEnumerator productionComplete()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(5.5f);
+        meatObject.gameObject.SetActive(true);
         inProcessing = false;
         meatWorker.SetBool("IsCutting", false);
         if (onArea)
@@ -49,4 +55,9 @@ public class MeatStation : MonoBehaviour
         }
     }
 
+    public void setPlayerMeat()
+    {
+        helper.hasMeat = true;
+        helper.anim.SetBool("Holding", true);
+    }
 }

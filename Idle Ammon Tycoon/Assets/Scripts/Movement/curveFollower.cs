@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public class curveFollower : MonoBehaviour
 {
+    [SerializeField]
     private Vector3 target;
     public AnimationCurve Curve;
     [HideInInspector]
