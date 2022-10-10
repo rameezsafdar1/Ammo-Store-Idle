@@ -57,7 +57,11 @@ public class Bullet : MonoBehaviour
             impactparticle.transform.parent = EffectsManager.Instance.instParent;
             damageText.transform.parent.gameObject.SetActive(true);
             impactparticle.SetActive(true);
-            other.GetComponent<iDamagable>().takeDamage(Parent.damage, transform);
+            iDamagable damager = other.GetComponent<iDamagable>();
+            if (damager != null)
+            {
+                damager.takeDamage(Parent.damage, transform);
+            }
             gameObject.SetActive(false);
         }
     }
