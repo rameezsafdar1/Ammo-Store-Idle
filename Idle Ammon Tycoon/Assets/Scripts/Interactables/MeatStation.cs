@@ -35,8 +35,9 @@ public class MeatStation : MonoBehaviour
 
     public void startMeatProduction()
     {
-        if (saveManager.Instance.loadGems() >= 10)
+        if (saveManager.Instance.loadGems() >= 5 && !helper.hasMeat)
         {
+            saveManager.Instance.addGem(-5);
             inProcessing = true;
             meatProcessButton.SetActive(false);
             meatWorker.SetBool("IsCutting", true);

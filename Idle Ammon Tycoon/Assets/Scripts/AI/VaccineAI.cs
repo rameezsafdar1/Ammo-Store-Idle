@@ -36,12 +36,10 @@ public class VaccineAI : BaseClientProperties
                 cage.vaccineTaken(this);
                 finalPosition = cage.endPos;
                 Agent.SetDestination(finalPosition.position);
-
-                for (int i = 0; i < 3; i++)
-                {
-                    GameObject coin = Instantiate(Coin, transform.position, Quaternion.identity);
-                    coin.GetComponent<Coin>().cashAnimation = coinAnimation;
-                }
+                GameObject coin = Instantiate(Coin, transform.position, Quaternion.identity);
+                Coin c = coin.GetComponent<Coin>();
+                c.cashAnimation = coinAnimation;
+                c.value = 40;
                 hasVaccine = true;
             }
         }

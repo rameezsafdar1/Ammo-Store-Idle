@@ -28,7 +28,7 @@ public class AIWaveManager : MonoBehaviour
         if (randomWaves)
         {
             totalWaves = Random.Range(3, maxWaves);
-            enemyLoadOutNumber = Random.Range(5, 15);
+            enemyLoadOutNumber = Random.Range(3, 8);
         }
 
         if (!noHostage) 

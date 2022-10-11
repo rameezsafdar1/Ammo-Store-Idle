@@ -46,23 +46,8 @@ public class LevelManager : MonoBehaviour
     {
         if (!dayCompleted)
         {
-            dayCompleted = true;
-
-            //int remainingCustomers = 0;
-
-            //for (int i = 0; i < weapon_manager.Length; i++)
-            //{
-            //    weapon_manager[i].maxClientAvaialable = 0;
-            //    remainingCustomers += weapon_manager[i].clientsEngaged.Count;
-            //}
-
-            //for (int i = 0; i < contract_manager.Length; i++)
-            //{
-            //    contract_manager[i].maxClientAvaialable = 0;
-            //    remainingCustomers += contract_manager[i].clientsEngaged.Count;
-            //}
+            dayCompleted = true;            
             activityManager.callEvent();
-            //activityManager.setNewevents(remainingCustomers + 1);
             
         }
     }
@@ -71,23 +56,15 @@ public class LevelManager : MonoBehaviour
     {
         if (!worldChange)
         {
-
-
-            int remainingCustomers = 0;
-
             for (int i = 0; i < weapon_manager.Length; i++)
             {
                 weapon_manager[i].maxClientAvaialable = 0;
-                remainingCustomers += weapon_manager[i].clientsEngaged.Count;
             }
 
             for (int i = 0; i < contract_manager.Length; i++)
             {
                 contract_manager[i].maxClientAvaialable = 0;
-                remainingCustomers += contract_manager[i].clientsEngaged.Count;
             }
-            activityManager.callEvent();
-            activityManager.setNewevents(remainingCustomers + 1);
             worldChange = true;
         }
     }
