@@ -15,6 +15,8 @@ public class saveManager : MonoBehaviour
     public int cashCollectionTarget, collectedCashInLevel;
     [HideInInspector]
     public LevelManager levelManager;
+    public Button nextWorldButton;
+    public int maxDay;
 
     private void Awake()
     {
@@ -78,6 +80,13 @@ public class saveManager : MonoBehaviour
         PlayerPrefs.SetInt("currentDay", currentDayNumber);
         currentDayText.text = (currentDay() + 1).ToString();
         nextDayText.text = (currentDayNumber + 2).ToString();
+
+        if (currentDayNumber >= maxDay)
+        {
+            nextWorldButton.gameObject.SetActive(true);
+            levelManager.permanentClientStop();
+        }
+
     }
 
     public void saveCustomFloats(string s, float value)

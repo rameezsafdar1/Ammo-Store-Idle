@@ -12,6 +12,7 @@ public class ClientsManager : BaseClientManager
     public Transform hostageInstPoint, waitArea;
     public Button acceptButton, rejectButton;
     public TriggerPoint trigger;
+    public AudioSource buttonAudio;
 
     public void passButtonFunctions()
     {
@@ -23,6 +24,7 @@ public class ClientsManager : BaseClientManager
 
     public override void clientDealt()
     {
+        buttonAudio.Play();
         acceptButton.transform.parent.gameObject.SetActive(false);
         battlestation.station.resetDetails();
         base.clientDealt();
@@ -30,6 +32,7 @@ public class ClientsManager : BaseClientManager
 
     public void clientAccepted()
     {
+        buttonAudio.Play();
         acceptButton.transform.parent.gameObject.SetActive(false);
         battlestation.station.taskImage = null;
         clientsEngaged[0].Agent.SetDestination(waitArea.position);
