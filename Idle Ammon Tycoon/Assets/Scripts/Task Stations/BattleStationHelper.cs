@@ -43,7 +43,7 @@ public class BattleStationHelper : MonoBehaviour
     {
         if (helper != null && !hasWorker)
         {
-            if (!helper.killContractSigned && !helper.gunContractSigned)
+            if (!helper.killContractSigned && !helper.gunContractSigned && !helper.hasMeat)
             {
                 if (other.tag == "Player" && station.taskImage != null)
                 {

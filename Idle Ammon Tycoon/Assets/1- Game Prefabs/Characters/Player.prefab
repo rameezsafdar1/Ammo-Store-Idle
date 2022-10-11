@@ -1591,8 +1591,10 @@ MonoBehaviour:
   gunContractSigned: 0
   hasGunForSale: 0
   killContractSigned: 0
+  hasMeat: 0
   anim: {fileID: 5945354304595630967}
   cardboardBox: {fileID: 1005654211}
+  meatInHand: {fileID: 8164078558006587845}
 --- !u!114 &6966296115671620771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1699,13 +1701,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8164078558006587845}
-  m_LocalRotation: {x: -0, y: -0.9614729, z: -0, w: -0.27489963}
-  m_LocalPosition: {x: -15.600001, y: 0.4893229, z: -25.539999}
-  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.549, z: 0.488}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 1421253693}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -31.912, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2823090747117509556
 MeshFilter:
   m_ObjectHideFlags: 0
