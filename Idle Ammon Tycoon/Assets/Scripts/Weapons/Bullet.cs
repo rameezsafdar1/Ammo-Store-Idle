@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
+        EffectsManager.Instance.callBulletSound();
         rb.isKinematic = false;        
         damageText.text = Parent.damage.ToString();
         impactparticle.transform.parent = this.transform;

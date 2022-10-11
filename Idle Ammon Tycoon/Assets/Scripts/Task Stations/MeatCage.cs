@@ -64,9 +64,17 @@ public class MeatCage : BaseClientManager
         }
     }
 
-    public void vaccineTaken()
+    public void vaccineTaken(BaseClientProperties client)
     {
         availableVaccines--;
+
+        if (availableVaccines < 0)
+        {
+            availableVaccines = 0;
+        }
+
+        clientsPool.Add(client);
+        clientsEngaged.Remove(client);
         Flasks[currentFlask].SetActive(false);
         currentFlask--;
 

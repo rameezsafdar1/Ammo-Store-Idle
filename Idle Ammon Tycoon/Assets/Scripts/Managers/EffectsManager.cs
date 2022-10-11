@@ -23,6 +23,11 @@ public class EffectsManager : MonoBehaviour
     public int scene;
     [HideInInspector]
     public int hostagesFreed;
+
+    public AudioSource[] bulletSound;
+    private int currentBulletSound;
+
+
     private void Awake()
     {
         setTimeScale(1);
@@ -89,4 +94,16 @@ public class EffectsManager : MonoBehaviour
     {
         brain.m_DefaultBlend.m_Time = time;
     }
+
+    public void callBulletSound()
+    {
+        bulletSound[currentBulletSound].Play();
+        currentBulletSound++;
+
+        if (currentBulletSound >= bulletSound.Length)
+        {
+            currentBulletSound = 0;
+        }
+    }
+
 }

@@ -96,7 +96,7 @@ public class saveManager : MonoBehaviour
         currentDayText.text = (currentDay() + 1).ToString();
         nextDayText.text = (currentDayNumber + 2).ToString();
 
-        if (currentDayNumber >= maxDay)
+        if ((currentDayNumber + 1) >= maxDay)
         {
             nextWorldButton.gameObject.SetActive(true);
             levelManager.permanentClientStop();

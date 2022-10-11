@@ -69,7 +69,7 @@ public class WeaponStationHelper : MonoBehaviour
     {
         if (helper != null)
         {
-            if (!helper.killContractSigned && !helper.gunContractSigned)
+            if (!helper.killContractSigned && !helper.gunContractSigned && !helper.hasMeat)
             {
                 if (other.tag == "Player" || other.tag == "Worker")
                 {

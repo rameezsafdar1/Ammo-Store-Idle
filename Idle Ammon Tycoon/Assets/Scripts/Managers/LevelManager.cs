@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     public UnityEvent onLevelTimeComplete;
     private bool dayCompleted;
     public bool targeted;
+    private bool worldChange;
 
     private void Start()
     {
@@ -68,21 +69,27 @@ public class LevelManager : MonoBehaviour
 
     public void permanentClientStop()
     {
-        int remainingCustomers = 0;
-
-        for (int i = 0; i < weapon_manager.Length; i++)
+        if (!worldChange)
         {
-            weapon_manager[i].maxClientAvaialable = 0;
-            remainingCustomers += weapon_manager[i].clientsEngaged.Count;
-        }
 
-        for (int i = 0; i < contract_manager.Length; i++)
-        {
-            contract_manager[i].maxClientAvaialable = 0;
-            remainingCustomers += contract_manager[i].clientsEngaged.Count;
+
+            int remainingCustomers = 0;
+
+            for (int i = 0; i < weapon_manager.Length; i++)
+            {
+                weapon_manager[i].maxClientAvaialable = 0;
+                remainingCustomers += weapon_manager[i].clientsEngaged.Count;
+            }
+
+            for (int i = 0; i < contract_manager.Length; i++)
+            {
+                contract_manager[i].maxClientAvaialable = 0;
+                remainingCustomers += contract_manager[i].clientsEngaged.Count;
+            }
+            activityManager.callEvent();
+            activityManager.setNewevents(remainingCustomers + 1);
+            worldChange = true;
         }
-        activityManager.callEvent();
-        activityManager.setNewevents(remainingCustomers + 1);
     }
 
     private void setLevel()

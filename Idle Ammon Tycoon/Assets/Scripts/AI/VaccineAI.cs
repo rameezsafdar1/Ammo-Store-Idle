@@ -33,7 +33,7 @@ public class VaccineAI : BaseClientProperties
             if (cage != null && cage.availableVaccines > 0 && !hasVaccine)
             {
                 waitImage.gameObject.SetActive(false);
-                cage.vaccineTaken();
+                cage.vaccineTaken(this);
                 finalPosition = cage.endPos;
                 Agent.SetDestination(finalPosition.position);
 

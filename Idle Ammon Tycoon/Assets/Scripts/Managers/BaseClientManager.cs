@@ -8,11 +8,12 @@ public abstract class BaseClientManager : MonoBehaviour
     public float clientCoolDown;
     public int maxClientAvaialable;
     public List<BaseClientProperties> clientsPool = new List<BaseClientProperties>();
-    [HideInInspector]
+    //[HideInInspector]
     public List<BaseClientProperties> clientsEngaged = new List<BaseClientProperties>();
     public List<Transform> destinationPoints = new List<Transform>();    
-    [HideInInspector]
+    //[HideInInspector]
     public float tempTime;
+    [SerializeField]
     protected int currentClient, currentDestination;
     public Transform startPos, endPos;
 
@@ -41,7 +42,7 @@ public abstract class BaseClientManager : MonoBehaviour
 
                     if (currentDestination >= destinationPoints.Count)
                     {
-                        currentDestination = destinationPoints.Count;
+                        currentDestination = destinationPoints.Count - 1;
                     }
 
                     if (currentClient >= destinationPoints.Count)
