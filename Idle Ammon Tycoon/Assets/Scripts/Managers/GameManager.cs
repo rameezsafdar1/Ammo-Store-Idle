@@ -51,6 +51,13 @@ public class GameManager : MonoBehaviour
         saveManager.Instance.saveCustomInts("Level", currentLevel);
     }
 
+    public void nextLevel(int level)
+    {
+        saveManager.Instance.savePermanentGems();
+        currentLevel = level;
+        saveManager.Instance.saveCustomInts("Level", currentLevel);
+    }
+
     public void restart()
     {
         Splash.loadLevel = SceneManager.GetActiveScene().buildIndex;

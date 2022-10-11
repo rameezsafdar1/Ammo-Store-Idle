@@ -11,6 +11,7 @@ public class MeatStation : MonoBehaviour
     private bool onArea;
     public curveFollower meatObject;
     public PlayerHelper helper;
+    public Transform meatParent, meatInitPos;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -46,6 +47,9 @@ public class MeatStation : MonoBehaviour
     private IEnumerator productionComplete()
     {
         yield return new WaitForSeconds(5.5f);
+        meatObject.transform.parent = meatParent;
+        meatObject.transform.localPosition = meatInitPos.localPosition;
+        meatObject.gameObject.layer = 8;
         meatObject.gameObject.SetActive(true);
         inProcessing = false;
         meatWorker.SetBool("IsCutting", false);

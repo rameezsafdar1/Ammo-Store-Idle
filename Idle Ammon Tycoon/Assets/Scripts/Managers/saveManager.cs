@@ -31,7 +31,22 @@ public class saveManager : MonoBehaviour
         addCash(0);
         addGem(0);
         currentDayText.text = (currentDay() + 1).ToString();
-        nextDayText.text = (currentDayNumber + 2).ToString();
+        nextDayText.text = (currentDayNumber + 2).ToString();        
+    }
+
+    private void Start()
+    {
+        StartCoroutine(check());
+    }
+
+    private IEnumerator check()
+    {
+        yield return new WaitForSeconds(2f);
+        if (currentDayNumber >= maxDay)
+        {
+            nextWorldButton.gameObject.SetActive(true);
+            levelManager.permanentClientStop();
+        }
     }
 
     public void addCash(int cash)

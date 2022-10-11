@@ -11,11 +11,14 @@ public class MeatCage : BaseClientManager
     public GameObject meatImage;
     public GameObject[] Flasks;
     private int currentFlask;
+    public int availableVaccines;
+    [SerializeField]
+    private int availableMeat;
 
     public override void Update()
     {
         base.Update();
-        if (tempEatTime < eatTime)
+        if (tempEatTime < eatTime && availableVaccines < Flasks.Length && availableMeat > 0)
         {
             tempEatTime += Time.deltaTime;
             if (tempEatTime >= eatTime)
@@ -24,31 +27,53 @@ public class MeatCage : BaseClientManager
                 zombie.SetBool("Eating", false);
                 Flasks[currentFlask].gameObject.SetActive(true);
                 currentFlask++;
-
+                availableVaccines++;
+                availableMeat--;
                 if (currentFlask >= Flasks.Length)
                 {
                     currentFlask = 0;
                 }
+                tempEatTime = 0;
+
+                if (availableMeat > 0)
+                {
+                    meatImage.SetActive(false);
+                    zombie.SetBool("Eating", true);
+                }
+
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && tempTime >= eatTime)
+        if (other.tag == "Player")
         {
             PlayerHelper helper = other.GetComponent<PlayerHelper>();
 
             if (helper != null && helper.hasMeat)
             {
+                availableMeat++;
                 helper.hasMeat = false;
                 helper.meatInHand.SetActive(false);
                 helper.anim.SetBool("Holding", false);
                 meatImage.SetActive(false);
                 zombie.SetBool("Eating", true);
-                tempEatTime = 0;
             }
 
         }
     }
+
+    public void vaccineTaken()
+    {
+        availableVaccines--;
+        Flasks[currentFlask].SetActive(false);
+        currentFlask--;
+
+        if (currentFlask < 0)
+        {
+            currentFlask = 0;
+        }
+    }
+
 }
