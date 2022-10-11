@@ -16,7 +16,7 @@ public abstract class BaseClientManager : MonoBehaviour
     protected int currentClient, currentDestination;
     public Transform startPos, endPos;
 
-    private void Update()
+    public virtual void Update()
     {
         if (maxClientAvaialable > 0)
         {

@@ -16,6 +16,7 @@ TagManager:
   - Worker
   - WorkerInteractable
   - Enemy
+  - VaccineSpot
   layers:
   - Default
   - TransparentFX

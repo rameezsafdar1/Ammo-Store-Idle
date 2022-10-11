@@ -3,22 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MeatCage : MonoBehaviour
+public class MeatCage : BaseClientManager
 {
     public Animator zombie;
     public float eatTime;
-    private float tempTime;
+    private float tempEatTime;
     public GameObject meatImage;
+    public GameObject[] Flasks;
+    private int currentFlask;
 
-    private void Update()
+    public override void Update()
     {
-        if (tempTime < eatTime)
+        base.Update();
+        if (tempEatTime < eatTime)
         {
-            tempTime += Time.deltaTime;
-            if (tempTime >= eatTime)
+            tempEatTime += Time.deltaTime;
+            if (tempEatTime >= eatTime)
             {
                 meatImage.SetActive(true);
                 zombie.SetBool("Eating", false);
+                Flasks[currentFlask].gameObject.SetActive(true);
+                currentFlask++;
+
+                if (currentFlask >= Flasks.Length)
+                {
+                    currentFlask = 0;
+                }
             }
         }
     }
@@ -36,7 +46,7 @@ public class MeatCage : MonoBehaviour
                 helper.anim.SetBool("Holding", false);
                 meatImage.SetActive(false);
                 zombie.SetBool("Eating", true);
-                tempTime = 0;
+                tempEatTime = 0;
             }
 
         }
