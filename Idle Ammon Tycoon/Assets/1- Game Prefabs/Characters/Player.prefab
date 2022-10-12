@@ -1809,7 +1809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionFrequency: 0.1
-  radius: 5
+  radius: 12
   detectionMask:
     serializedVersion: 2
     m_Bits: 256
