@@ -116,7 +116,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 1
     m_Colors:
-    - _Color: {r: 0.8584906, g: 0.5959281, b: 0.2794144, a: 1}
+    - _Color: {r: 0.8584906, g: 0.5335195, b: 0.4251958, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 0}
     - _DetailSpecularColor: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1.7411011, g: 1.7411011, b: 1.7411011, a: 1}
