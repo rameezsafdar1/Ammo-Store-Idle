@@ -14,6 +14,7 @@ public class Gem : MonoBehaviour
 
     public void addGems()
     {
+        EffectsManager.Instance.playPickupSound();
         transform.parent = realParent;
         transform.localPosition = new Vector3(0, 2, 0);
         saveManager.Instance.addGem();

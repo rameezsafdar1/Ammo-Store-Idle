@@ -13,8 +13,6 @@ public class EffectsManager : MonoBehaviour
     public CinemachineBrain brain;
     public Camera mainCamera;
     public CinemachineVirtualCamera lookCamera;
-    [SerializeField]
-    private AudioSource[] pooledAudioSource;
     private int currentPooledAudio;
     private float tempPitchTime;
     [Header("Instantiate Settings")]
@@ -24,9 +22,8 @@ public class EffectsManager : MonoBehaviour
     [HideInInspector]
     public int hostagesFreed;
 
-    public AudioSource[] bulletSound;
+    public AudioSource[] bulletSound, gemSound;
     private int currentBulletSound;
-
 
     private void Awake()
     {
@@ -61,12 +58,12 @@ public class EffectsManager : MonoBehaviour
     public void playPickupSound()
     {
         tempPitchTime = 0;
-        pooledAudioSource[currentPooledAudio].Play();
+        gemSound[currentPooledAudio].Play();
         currentPooledAudio++;
 
-        if (currentPooledAudio >= pooledAudioSource.Length)
+        if (currentPooledAudio >= gemSound.Length)
         {
-            currentPooledAudio = pooledAudioSource.Length - 1;
+            currentPooledAudio = gemSound.Length - 1;
         }
     }
 
