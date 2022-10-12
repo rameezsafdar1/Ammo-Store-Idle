@@ -17,6 +17,10 @@ public class MeatCage : BaseClientManager
 
     public override void Update()
     {
+        if (currentDestination >= destinationPoints.Count)
+        {
+            currentDestination = 0;
+        }
         base.Update();
         if (tempEatTime < eatTime && availableVaccines < Flasks.Length && availableMeat > 0)
         {
