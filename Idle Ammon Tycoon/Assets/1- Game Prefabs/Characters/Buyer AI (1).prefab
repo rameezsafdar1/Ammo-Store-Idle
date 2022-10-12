@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &158414094962927177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1091,6 +1091,7 @@ GameObject:
   - component: {fileID: 1643795145668195288}
   - component: {fileID: 3743846177571963282}
   - component: {fileID: 6105882674521584307}
+  - component: {fileID: 7584306436483003915}
   m_Layer: 0
   m_Name: Cardboard Box
   m_TagString: Untagged
@@ -1271,6 +1272,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &7584306436483003915
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6389003330888445696}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5db4688e48a16af448786c9a781f3b31, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6834904954252617360
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ public class Door : MonoBehaviour
 {
     public float doorHealth;
     private float tempHealth;
-    public Button repairButton;
     public UnityEvent buttonEvents, onDoorHealthDown;
     private void Start()
     {
@@ -44,30 +43,20 @@ public class Door : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            repairButton.onClick.RemoveAllListeners();
-            repairButton.onClick.AddListener(() => buttonEvents.Invoke());
-            repairButton.onClick.AddListener(() => setHealth(tempHealth));
-            repairButton.gameObject.SetActive(true);
+            //repairButton.onClick.RemoveAllListeners();
+            //repairButton.onClick.AddListener(() => buttonEvents.Invoke());
+            //repairButton.onClick.AddListener(() => setHealth(tempHealth));
+            //repairButton.gameObject.SetActive(true);
 
-            if (doorHealth <= 0)
+            setHealth(tempHealth);
+            if (buttonEvents != null)
             {
-                repairButton.interactable = true;
+                buttonEvents.Invoke();
             }
-            else
-            {
-                repairButton.interactable = false;
-            }
+
         }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            repairButton.gameObject.SetActive(false);
-        }
-    }
-
+   
     public void setHealth(float health)
     {
         doorHealth = health;
