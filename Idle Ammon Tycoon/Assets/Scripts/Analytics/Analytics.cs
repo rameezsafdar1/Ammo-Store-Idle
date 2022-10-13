@@ -34,7 +34,7 @@ public class Analytics : MonoBehaviour
         if (!purchaseEvent.ContainsKey(eventName))
         {
             purchaseEvent.Add(eventName, AFInAppEvents.LEVEL_ACHIEVED);
-            AppsFlyer.sendEvent("day_start_", purchaseEvent);
+            AppsFlyer.sendEvent("level_start_", purchaseEvent);
         }
     }
 
@@ -44,7 +44,7 @@ public class Analytics : MonoBehaviour
         if (!purchaseEvent.ContainsKey(eventName))
         {
             purchaseEvent.Add(eventName, AFInAppEvents.LEVEL);
-            AppsFlyer.sendEvent("day_end_", purchaseEvent);
+            AppsFlyer.sendEvent("level_end_", purchaseEvent);
         }
 
     }
