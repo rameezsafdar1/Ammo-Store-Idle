@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
+
 public class AIWaveManager : MonoBehaviour
 {
     public List<Ragdoller> Agents = new List<Ragdoller>();
@@ -21,9 +23,13 @@ public class AIWaveManager : MonoBehaviour
     public bool randomWaves;
     public int maxWaves;
     private int totalEnemyCount;
+    public TextMeshProUGUI KillsNeededText;
+    private int killsDone;
+    public GameObject progressionBar;
 
     private void OnEnable()
     {
+        killsDone = 0;
         totalEnemyCount = Agents.Count;
         if (randomWaves)
         {
@@ -40,7 +46,7 @@ public class AIWaveManager : MonoBehaviour
                 {
                     hostages[i].SetActive(true);
                 }
-                activityCounter.totalEvents = x + 1;
+                activityCounter.totalEvents = x + 1;                
             }
             else
             {
@@ -50,6 +56,12 @@ public class AIWaveManager : MonoBehaviour
 
         currentWave = 0;
         killsNeeded = totalWaves * enemyLoadOutNumber;
+        if (KillsNeededText != null)
+        {
+            progressionBar.SetActive(false);
+            KillsNeededText.transform.parent.gameObject.SetActive(true);
+            KillsNeededText.text = "0 / " + killsNeeded;
+        }
         int randomPos = Random.Range(0, positions.Length);
         for (int i = 0; i < enemyLoadOutNumber; i++)
         {
@@ -114,10 +126,22 @@ public class AIWaveManager : MonoBehaviour
 
     public void enemyKilled()
     {
-        killsNeeded--;
+        killsDone++;
 
-        if (killsNeeded <= 0)
+        if (KillsNeededText != null)
         {
+            KillsNeededText.text = killsDone.ToString() + " / " + killsNeeded.ToString();
+        }
+
+        if (killsDone >= killsNeeded)
+        {
+
+            if (KillsNeededText != null)
+            {
+                progressionBar.SetActive(true);
+                KillsNeededText.transform.parent.gameObject.SetActive(false);
+            }
+
             if (onWaveKilled != null)
             {
                 StartCoroutine(wait());

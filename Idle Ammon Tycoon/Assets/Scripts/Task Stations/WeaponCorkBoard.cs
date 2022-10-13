@@ -13,6 +13,7 @@ public class WeaponCorkBoard : MonoBehaviour
     public Image fillImage;
     public curveFollower[] targetcubBoards;
     private Transform dropPoint;
+    public GameObject locator;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -68,6 +69,10 @@ public class WeaponCorkBoard : MonoBehaviour
 
     public void takeGun()
     {
+        if (locator != null)
+        {
+            locator.SetActive(false);
+        }
         weaponsOnBoard[currentSoldGun].transform.parent = dropPoint;
         weaponsOnBoard[currentSoldGun].setMyTarget(dropPoint.transform.GetChild(0).transform.localPosition);
         targetcubBoards[0].transform.parent = dropPoint;

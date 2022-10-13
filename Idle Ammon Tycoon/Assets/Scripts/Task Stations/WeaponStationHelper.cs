@@ -85,7 +85,7 @@ public class WeaponStationHelper : MonoBehaviour
                             station.taskImage = null;
                             station.fillImage.fillAmount = 0;
                             signed = true;
-                            if (onContractSigned != null)
+                            if (onContractSigned != null && helper.mainPlayer)
                             {
                                 onContractSigned.Invoke();
                             }
