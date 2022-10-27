@@ -115,7 +115,7 @@ public class WorkersManager : MonoBehaviour
 
     public void unlockMercenary()
     {
-        if (saveManager.Instance.loadCash() >= shooterPrice && mercenary.Count > 0 && weaponStations.Count > 1)
+        if (saveManager.Instance.loadCash() >= shooterPrice && mercenary.Count > 0 && battleStations.Count > 0)
         {
             saveManager.Instance.addCash(-shooterPrice);
             saveManager.Instance.savePermanentGems();
@@ -123,7 +123,7 @@ public class WorkersManager : MonoBehaviour
             mercenary[0].gameObject.SetActive(true);
             mercenary.RemoveAt(0);
             battleStations.RemoveAt(0);
-            shooterPrice += 200;
+            shooterPrice += 100;
             priceTextShooter.text = shooterPrice.ToString();
             if (mercenary.Count <= 0)
             {

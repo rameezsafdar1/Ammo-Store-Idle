@@ -73,7 +73,7 @@ public class WeaponStationHelper : MonoBehaviour
             {
                 if (other.tag == "Player" || other.tag == "Worker")
                 {
-                    if (station.taskImage != null)
+                    if (station.taskImage != null && !signed)
                     {
                         tempFillTime += Time.deltaTime;
                         station.fillImage.fillAmount = tempFillTime / fillTime;

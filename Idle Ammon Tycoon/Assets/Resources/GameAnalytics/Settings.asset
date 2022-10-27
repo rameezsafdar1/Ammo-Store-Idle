@@ -30,7 +30,7 @@ MonoBehaviour:
   secretKey:
   - c3a1d1e4a1d4e9ba2ff709acdbd7feb9005ba400
   Build:
-  - 0.1
+  - 0.2
   SelectedPlatformOrganization:
   - Rameez
   SelectedPlatformStudio:

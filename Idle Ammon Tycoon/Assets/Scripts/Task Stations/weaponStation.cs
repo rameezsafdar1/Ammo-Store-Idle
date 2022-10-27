@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WeaponStation : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public Image waitImage, taskImage, fillImage;
     public weaponsAI ai;
 
