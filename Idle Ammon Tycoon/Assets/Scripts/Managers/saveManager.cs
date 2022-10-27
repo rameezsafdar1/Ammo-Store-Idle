@@ -95,8 +95,8 @@ public class saveManager : MonoBehaviour
         PlayerPrefs.SetInt("currentDay", currentDayNumber);
         currentDayText.text = (currentDay() + 1).ToString();
         nextDayText.text = (currentDayNumber + 2).ToString();
-        Analytics.instance.AFEventStart((currentDay() + 1).ToString());
-        Analytics.instance.AFEventEnd(currentDay().ToString());
+        //Analytics.instance.AFEventStart((currentDay() + 1).ToString());
+        //Analytics.instance.AFEventEnd(currentDay().ToString());
 
         if ((currentDayNumber + 1) >= maxDay)
         {
