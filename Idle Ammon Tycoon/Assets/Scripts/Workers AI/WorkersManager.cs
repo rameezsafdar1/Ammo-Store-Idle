@@ -8,7 +8,7 @@ public class WorkersManager : MonoBehaviour
 {
 
     public int workerPrice, shooterPrice;
-    public TextMeshProUGUI priceTextWorker, priceTextShooter;
+    public TextMeshProUGUI priceTextWorker, priceTextShooter, failText;
 
     [Header("Weapon workers")]
     public List<GunWorker> weaponWorkers = new List<GunWorker>();
@@ -115,7 +115,7 @@ public class WorkersManager : MonoBehaviour
 
     public void unlockMercenary()
     {
-        if (saveManager.Instance.loadCash() >= shooterPrice && mercenary.Count > 0 && battleStations.Count > 0)
+        if (saveManager.Instance.loadCash() >= shooterPrice && mercenary.Count > 0 && battleStations.Count > 1)
         {
             saveManager.Instance.addCash(-shooterPrice);
             saveManager.Instance.savePermanentGems();
@@ -129,6 +129,12 @@ public class WorkersManager : MonoBehaviour
             {
                 mechanicButton.interactable = false;
             }
+        }
+
+        if (battleStations.Count < 1)
+        {
+            failText.text = "You need more than one contract stations";
+            failText.gameObject.SetActive(true);
         }
     }
 }
